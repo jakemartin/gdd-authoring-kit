@@ -1,0 +1,28 @@
+flowchart TD
+    D["Director (human)<br/>brief + final merge"]
+    S["sync.py<br/>source/gdd.md · kb_rules.md · kb_setting.md"]
+
+    D --> S
+    S --> R & SC & UX & TD
+
+    R["rules-designer<br/>Systems Designer"]
+    SC["scenario-designer<br/>Level / Mission Designer"]
+    UX["ux-onboarding-designer<br/>UX/UI Designer"]
+    TD["tech-director<br/>Technical Director"]
+
+    R --> RF["sections/rules.md"]
+    SC --> SF["sections/scenario.md"]
+    UX --> UF["sections/ux.md"]
+    TD --> TF["sections/tech.md"]
+
+    RF & SF & UF & TF --> G["continuity-gate<br/>QA / Doc Control"]
+    S -.->|ground truth| G
+
+    G --> A["gate/accept.json<br/>(gate is the ONLY writer)"]
+    G --> GR["gate/gate_report.md"]
+
+    A -->|"verdict = PASS"| M["Director merges into<br/>Stratocracy_Prototype_GDD.md<br/>+ rebuild .pdf / .txt + re-sync kb/rules.md"]
+    A -->|"verdict = BLOCK"| R & SC & UX & TD
+
+    M --> RA["rubric-auditor (Stage 3, optional)"]
+    RA --> RR["gate/rubric_report.md"]
