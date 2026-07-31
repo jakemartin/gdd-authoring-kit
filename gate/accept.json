@@ -1,0 +1,27 @@
+{
+  "run": "stage-2",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\Stratocracy_Prototype_GDD.md  md5=4cdcff7ad4abbb3c93ad0036ead04faf",
+  "verdict": "PASS",
+  "sections": [
+    {
+      "file": "sections/rules.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/ux.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/scenario.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/tech.md",
+      "verdict": "PASS",
+      "violations": []
+    }
+  ]
+}
