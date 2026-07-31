@@ -1,106 +1,282 @@
-# Gate report — run `post-merge-6`
+# Continuity gate — run `post-merge-11`
 
-- **Audit target:** `source/gdd.md` itself (md5 `68a57cf71d15290685e654f2e3fdcbac`, per `source/MANIFEST.txt`, matching the md5 named in the task), plus `source/kb_rules.md` (md5 `0c1884f9e06619b35ae7608c824e8b93`) and `source/kb_setting.md` (md5 `b3e9e89daaef1cdeb333e3fb4368d1c0`). `source/MANIFEST.txt` is present; the run is not `sync-missing`.
-- **`sections/`:** 13 `.md` files, all inert (see the `sections/` area below). No draft was produced this run, so there is no placement to collide.
-- **Top-level verdict:** **PASS** — 0 violations across 12 areas.
-- **Carried forward:** nothing. Every area was re-derived from this document state. The four `post-merge-5` findings were re-checked from the document's own text, not accepted on the orchestrator's report, and each area that passed last run was re-swept rather than assumed.
+**Audit target:** `source/gdd.md`, md5 `68991030a238c1804a3234db2fa0485f`
+(manifest line: `gdd.md <- E:\MultiAgent\stratocracy-content\Stratocracy_Prototype_GDD.md`),
+plus `source/kb_rules.md` (`0c1884f9e06619b35ae7608c824e8b93`) and
+`source/kb_setting.md` (`b3e9e89daaef1cdeb333e3fb4368d1c0`).
+`source/MANIFEST.txt` is present — the run proceeds.
+
+**Top-level verdict: PASS. Zero violations.**
+
+**Scope note.** `sections/` holds 20 files. One — `sections/tech_post-merge-11.md`
+— is this stage's draft, now applied and sealed under the `✅ APPLIED ADDENDUM`
+header. The other 19 are superseded drafts and sealed addenda. Only one draft
+targets the master this run, so there is no placement to collide with; all four
+replacement pairs were compared against the merged text and all four are applied
+verbatim. Re-audited in full; nothing carried forward from `post-merge-10`.
+
+---
+
+## Per-area verdicts
 
 | Area | Verdict | Violations |
 |---|---|---|
 | §1, §1.5, §1.6 | **PASS** | 0 |
 | §2.0–§2.10 | **PASS** | 0 |
-| §2.11 (UI/UX + onboarding) | **PASS** | 0 |
-| §2.12–§2.13 (lineage, scenario & map design) | **PASS** | 0 |
+| §2.11 (UI/UX + onboarding, incl. §2.11.6-B beat schedule) | **PASS** | 0 |
+| §2.12–§2.13.1 (lineage, layout conventions, opening-capture invariant, symmetry facts) | **PASS** | 0 |
+| §2.13.2–§2.13.7 (*Ferrum Crossing*, eight-route table, stretch maps, summary) | **PASS** | 0 |
 | §3 (AI architecture + provenance ledger) | **PASS** | 0 |
-| §4.1–§4.5 | **PASS** | 0 |
-| §4.6 (token budget) | **PASS** | 0 |
-| §4.7 (gate plan + open-question register) | **PASS** | 0 |
-| §4.8–§4.11 | **PASS** | 0 |
+| §4.1–§4.3, §4.5, §4.6, §4.8–§4.10 | **PASS** | 0 |
+| §4.4 + §4.11 (the schedule seam) | **PASS** | 0 |
+| §4.7 Stub 7 — the four repaired sites | **PASS** | 0 |
+| §4.7 register Q1–Q29 (incl. Q17) | **PASS** | 0 |
 | `source/kb_rules.md` | **PASS** | 0 |
 | `source/kb_setting.md` | **PASS** | 0 |
-| `sections/` | **PASS** | 0 |
+| `sections/tech_post-merge-11.md` (draft, sealed) | **PASS** | 0 |
+| `sections/` — remaining 19 files | **PASS** | 0 |
 
-No violations are filed this run, so this report is a record of what was checked and how each prior finding was closed.
-
----
-
-## The four `post-merge-5` remediations, re-derived
-
-### 1. §2.13.1 fact 1 — repointed to Q26. **Closed.**
-
-Current text (§2.13.1, symmetry note, fact 1):
-
-> Whether a horizontal `mirror` therefore becomes a declarable value alongside `rot180`, with an odd-row-count precondition, is open as **Q26** (§4.7), which owns that question; no map in the set declares one today.
-
-Against §4.7's Q24 row: *"(**Whether a third value should be admitted for the horizontal mirror is Q26**, which owns that question — this row asks only about the narrowing.)"* — now consistent.
-
-**The symmetry story is single-voiced.** All seven sites that speak about declarability were read together and agree: §2.13.1's validation-invariants bullet (*"is **Q26**, which owns that question in full"*), fact 1 (above), fact 2 (even-row precondition, correctly filed to Q24 at Stub 7 / T-SCN-09), §2.13.5's and §2.13.6's Symmetry rows (both say the vertical mirror exists at no dimension and the horizontal one only on odd H, citing §2.13.1 and declaring `rot180` on 8 rows), Stub 7's `symmetry` field (narrow by scope, "Q26 asks which one is intended"), the reserved T-SCN-10 ("Blocked on Q26"), and the Q24/Q26 rows themselves. Q24 now asks only about the narrowing; Q26 owns declarability. No site implies otherwise.
-
-Both geometry proofs were re-derived independently, not read: μ(q, r) = (q + r − (H−1)/2, H−1−r) is integer-valued exactly when H is odd and is a true isometry (it sends (dq, dr) → (dq+dr, −dr), permuting the three terms of the axial metric); ρ(q, r) = (W − H/2 − q, H−1−r) has a half-integer constant on odd H, and the 9 × 9 case does put (1,1) at column 6.5.
-
-### 2. §4.6 — the whole chain re-derived from printed inputs. **Closed. No fourth fault found.**
-
-The corrected parenthetical now reads *"it sat $1.005 above what its own stated inputs produced ($267 − $265.995; the often-quoted $1.24 came from the retired $1.03 delta)"*. $267 − $265.995 = **$1.005** ✔, and the provenance claim checks: 315 × $0.69 + 47 × $1.03 = $217.35 + $48.41 = $265.76, and $267 − $265.76 = **$1.24** ✔ — so the retired figure is correctly attributed and is named, not used. This does not conflict with §4.6-A's *"$1.035 is the only escalation delta used anywhere in §4.6"*: no computation in the section runs on $1.03.
-
-Every figure in §4.6, recomputed from the two rate lines and the task count:
-
-- Per-task tokens 100k + 200k + 45k = 345k ✔; Sonnet $0.20 + $0.04 + $0.45 = **$0.69** ✔; Opus $0.50 + $0.10 + $1.125 = **$1.725** ✔; delta **$1.035** ✔.
-- 5 × 6 × 7 = **210 tasks** ✔; 210 × $0.69 = $144.90 ≈ $145 ✔; 210 × 345k = 72.45M ≈ 72M ✔.
-- 15% of 210 = 31.5 → **32** ✔; 32 × $1.035 = **$33.12** ✔; subtotal $144.90 + $33.12 = **$178.02** ✔, and the round-first path $145 + $33 = $178 ✔.
-- Substitution alternative: 32 × $1.725 = $55.20 ✔; $144.90 + $55.20 = $200.10 ≈ $200 ✔.
-- Part B: 2.5k + 1.5k + 0.4k = 4.4k ✔; Haiku $0.0025 + $0.00015 + $0.002 = $0.00465 ≈ $0.0047 ✔; 20 turns → 88k and $0.093 ≈ $0.09 ✔; 200 matches → 17.6M and $18.60 ≈ $19 ✔; Sonnet intro $0.0093/turn → $37.20 ≈ $37 ✔; Sonnet standard $3/$15 with cache at 0.1× → $0.01395/turn → $55.80 ≈ $56 ✔.
-- Headline: 72.45M + 17.6M = 90.05M ≈ 90M ✔; $178 + $19 = $197 and $178 + $37 = $215 ✔ (the $197–$215 band); 210 × 1.5 = **315** ✔; 15% of 315 = 47.25 → **47** ✔; 315 × $0.69 + 47 × $1.035 = $217.35 + $48.645 = **$265.995 ≈ $266** ✔; $266 + $19 ≈ $285 ✔; $266 + $37 ≈ $303 ✔, and $303 is indeed the largest figure the section produces.
-- The $267 root cause is correctly diagnosed: 1.5 × the rounded $178 = $267 exactly ✔.
-
-**There is no fourth fault hiding.** Two judgment calls are recorded rather than filed: the phrase *"the second arithmetic fault this table has surfaced"* counts the $225 double-application and the $267 headline, and does not count the $1.24 residue — defensible, since $1.24 was a mis-measurement of the second fault rather than a third one, and no other figure in the document states a fault count to contradict. And naming the retired $1.03 is a provenance statement, not a use.
-
-### 3. Q27's Blocks column — the new text is true. **Closed.**
-
-Current text (§4.7, Q27, Blocks): *"Nothing today, and nothing in §4.7: no stub or `T-` ID gates the directive strip, and Stub 7 deliberately keeps the guidance layer out of Stub 8's snapshot."*
-
-Checked exhaustively, since the instruction was that a false negative here is as bad as the old dead reference:
-
-- **Every `T-` ID in the document** was enumerated against the strip: T-HEX-01..07, T-MOVE-01..07, T-FAME-01..09, T-TURN-01..09, T-AI-01..06, T-SCN-01..10, T-UI-01..04, T-DATA-01..06, T-CAP-01..08, T-INT-01..05, T-SAVE-01..07, T-COMBAT/T-REPAIR @ `5ffa8d6`. None asserts anything about strip behavior, beat ordering, the last-call tag, or End Turn inertness. Stub 8's four invariants are forecast, reachable highlight, scoreboard binding and production menu.
-- **Stub 7's `guidedOpening` field** confirms the second clause verbatim: *"marked/locked is presentation state, not rules state, so it stays out of the Stub-8 snapshot."* Stub 8's snapshot field list carries no guidance field.
-- The one thing that *does* touch the guided opening from §4.7 is **T-SCN-06/07/08**, which price and name the lane (`guidedOpening.infantry` / `.objective`) the strip reads. That is the scenario **data**, not the strip: §4.11's *"the §2.11.6 guided opening ungated for however long movement slips"* is about those lane invariants, and it remains true alongside Q27's narrower claim. A Q27 ruling in either direction moves no `T-` ID, which is what the Blocks column asserts.
-- The rest of the row is faithful: the question restates §2.11.6-B's beat-1a text including the hover string `Move the marked Infantry first.`; the internal-to-§2 dependency it names is real (§2.11.6-B: *"Turn 1 is identical in all three columns because 1a and 1b cannot outlive it"*); and the stated fallback matches the assumption column.
-
-### 4. §3's evidence links and the "independently checkable" claim — **supported on the document's own terms.**
-
-The old parenthetical conceded the commit was local-only and contradicted the ledger's auditability claim in the same section; that contradiction is gone. The replacement — *"(Commit `5ffa8d6` is published: it is an ancestor of `main` at [`2fcbf32`](…/commit/2fcbf32) on the public remote, so every link above resolves and the ledger's 'independently checkable' claim is testable by clicking it.)"* — is a checkable assertion rather than a concession, and nothing in `source/` contradicts it. I have no network access, so I judge only what the gate can judge: the document no longer undercuts itself, and the claim it now makes is falsifiable by the reader it is addressed to, which is the property the legend promises.
-
-**On over-claiming, judged fresh rather than treated as closed.** I do not file it, and here is the reasoning rather than a bare ruling. The concern is that four Verified rows rest on one module and one commit. The section discloses exactly that, in the sentence immediately under the table: all four rows are named as coming from the same Assignment-3 headless Combat module at `5ffa8d6`. The row arithmetic is honest — T-COMBAT-01..10 (10) + T-REPAIR-01..07 (7) = the claimed **17/17**, with T-COMBAT-09..10 correctly shown as a *subset* cited by the Type-effectiveness row rather than as additional evidence, and §4.8's "16/16 pairs" is the pair count inside T-COMBAT-09, not a second test ID. Eight rows remain `*pending*` and map one-to-one onto Stubs 1–8 and §4.11 rows 1–8. The ledger's own rules ("human work counts as human") and §1's framing ("supporting evidence, not the pass/fail bar") keep the claim scoped. Two residual weaknesses are worth the Director's eye but are not violations under any type: the **Test suite** row's evidence is the test file certifying itself, and bar (b) of "agent-verified" — human review-gate sign-off — is asserted per-ledger, not cited per-row. Neither is a claim without a commit and passing test IDs, which is what `unverified-claim` covers.
+**Total: 0 violations. The `post-merge-10` finding is closed.**
 
 ---
 
-## Also verified this run (the orchestrator's four checks, plus a full re-sweep)
+## 1. Both halves of the repair — verified independently
 
-**The register, Q1–Q27.** Each ID is defined exactly once, in ascending order, one row each. The preamble's provenance ranges (Q1–Q10, Q11–Q13, Q14–Q20, Q21–Q22, Q23, Q24–Q25, Q26, Q27) partition 1..27 with no gap and no double filing. **Every Q citation elsewhere in the document resolves to the right question** — all 40-odd sites were checked individually, including the ones most likely to rot: §2.7's Q5/Q6, §2.11.1's two Q11 sites, §2.11.6-B's Q27, §2.13.1's Q24 (constraints) and Q26 (declarability), §2.13.1's Q21 pair, §2.13.5's Q19, Stub 7's Q7/Q24/Q26, T-SCN-06's Q4, T-SCN-07's Q22, T-SCN-08/09's Q25, T-SCN-10's Q26, §4.8's Q2, §4.10's Q12, §4.11's Q20. Ruled rows (Q7, Q23) are cited as rulings, not as open blocks.
+I rebuilt the odd-r adjacency and terrain of §2.13.2's ASCII map from the glyph
+rows and ran my own Dijkstra, rather than reading any figure off the prose.
 
-**Pinned extents.** One remains and it is currently accurate: §4.7's preamble, *"parameterized on a numbered open question (Q1–Q27, Open questions below)"*. It is correct against the register today, so it is not a violation — but it is the one citation in the document that goes stale the moment a Q28 is filed, and it is the class of thing the last three runs have been de-pinning. Reported, not filed. All test-ID extents reconcile with their listings, including §4.11's split of T-SCN into a structural half (01..03, 05, 07, 09) and a priced half (04, 06, 08), and the two reserved IDs (T-MOVE-07 on Q2, T-SCN-10 on Q26) that are deliberately unwritten.
+### Pair 1 — the *Ferrum Crossing* bullet
 
-**§2.11.6-B, all three branches, re-traced cell by cell** from the two selection rules rather than read off the table. Turn 1 is forced in every column (1a retires on the move, hands to 1b, whose retire condition is the turn boundary). Common: T2 beat 2 rule 1 → pip; T3 beat 3 rule 1; T4 beat 3 rule 2, tagged. Wandered: T2 beat 2 holds and yields; T3 beat 3 rule 1 (beat 2 has already held); T4 rule 2 selects beat 2, tagged, with the "How to read a cell" convention correctly resolving the turn-3-pip sub-branch to beat 3. Fast lane: beat 2 retires on the turn-1 pip without ever holding the line; T2 beat 3 rule 1; T3 rule 2 **untagged**; T4 rule 2 tagged. The twice/once/never enumeration is exhaustive over pip timing; the "no beat expires unheard" and "never quiet before end of turn 4" guarantees both hold (rule 2 has no exit, and the all-four-retired state is first reachable at end of turn 1 only in the fast lane with a turn-1 build, affordable at 200 Fame ≥ Infantry 100); the §2.11.6-D ledger's "turn 2 or turn 3 in every branch" is true (T3 / T3 / T2). Beat 1a's row carries the **Q27** citation and the register row matches it.
+- **`(9,4)F(8,5)(8,6)(7,7)(6,7)(5,7)` is adjacency-valid.** Every step is a legal
+  odd-r neighbour: (9,3)→(9,4) [row 3 odd], (9,4)→(8,5) [row 4 even],
+  (8,5)→(8,6), (8,6)→(7,7), (7,7)→(6,7), (6,7)→(5,7).
+- **It costs 6 MP, and 6 is minimal.** Terrain read off the map rows:
+  (9,4)`F`1 · (8,5)`p`1 · (8,6)`p`1 · (7,7)`p`1 · (6,7)`p`1 · (5,7)`F`1 = 6. The
+  axial distance (9,3)→(5,7) is (|−6| + |4| + |−2|)/2 = **6**, so a 6-hex,
+  all-cost-1 route is exactly the geodesic. No cheaper route exists under any
+  reading.
+- **"reaches column 5 only at the objective itself, on row 7" — true.** The
+  route's columns run 9, 8, 8, 7, 6, 5; column 5 occurs once, at (5,7).
+- **"below the river's southern end at (5,5) — the river spans rows 0–5 only"
+  — true, checked against the map and not the prose.** §2.13.2's key coordinates
+  give Water (5,0)(5,2)(5,3)(5,5) and Bridges (5,1)(5,4); map row `r6` puts `p`
+  at (5,6) and row `r7` puts `F` at (5,7). The southernmost river hex is (5,5),
+  and (5,7) lies two rows below it.
+- **"Excluding an edge can only RAISE a shortest path … so 6 stands under either
+  reading" — sound, and the witness qualifies.** The route touches neither Bridge
+  hex, so it survives edge removal at unchanged cost, and it was already minimal.
+- **"the OTHER opposing route … is already Bridge-free" — true as a set
+  minimum.** Under Q28 the opposing figure minimises over both East Infantry:
+  (9,3)→(5,7) = 6 and (9,1)→(5,7) = 7 via
+  `(9,2)(8,3)(8,4)(7,5)(7,6)T(6,7)(5,7)` (geodesic, axial distance 7). Neither
+  uses a Bridge. Minimum = 6, from (9,3).
+- **"West's cheapest route to North (6,2) — 6 MP from (1,3) — runs over the north
+  Bridge (5,1)" — true as a set minimum.** (1,3) = 6, (1,5) = 7; the minimum is
+  6 and its witness uses (5,1)`B`.
 
-**§2.13, re-counted rather than re-read.** All three ASCII maps were counted hex by hex against their distribution lines — Ferrum 75/8/2/4/2/4/4 = 99, Longwater 86/4/4/0/0/4/6 = 104, Causeway 52/4/2/6/2/2/4 = 72 — and every key coordinate matches the glyph at its cell. Every ρ-pair in §2.13.5 and §2.13.6 holds under the stated ρ, including all four starting-position pairs on each map. All six lane costs re-price from §2.3 costs and odd-r adjacency: Ferrum 5/5 (the East lane's Woods ring hex is genuinely mandatory — every Bridge-free approach to (6,2) is Woods), Longwater 4/4, Causeway 3/3 with the two-hex Mountain alternative at 4 MP, giving the claimed 1, 2 and 3 MP of slack. Home separations 8 / 10 / 6 and the N = 8 / N = 10 denominators reconcile, as do the 550-Fame producible force and the 83% / 76% Plains figures.
+### Pair 2 — the arithmetic and the restated argument
 
-**Cross-document consistency spot-checks that recompute:** §2.11.3's forecast (round(10 × 1.0 × 1.0 × 0.8) − 5 = 3, counter 0 out of range) against §3's formula; §2.11.5's production mock at a 250-Fame pool (`need 50` on the Tank); §2.11.2/§2.11.4's scoreboard mocks against each other (`+175/turn` = 1 factory + 3 towns = the 4/8 objectives shown; chevron on the enemy at 600 vs 450 per "higher wins"); §2.13.3's ~45 s/turn → 10–13 minutes once paced AI playback is counted, inside §1's envelope; the terrain count reconciled across §1, §2.3, §2.10 and the kb; the Q23 schedule holding at all four sites (§1, §2.10, §4.4, §4.11).
+- **14 − 5 = 9, and 9 is single-digit.** Confirmed.
+- **The 14 MP Bridge-free route is real and minimal.** Re-derived:
+  (2,3)1 (3,4)1 (3,5)1 (4,5)1 (5,6)1 (6,6)`m`3 (6,5)1 (6,4)`w`2 (6,3)`w`2
+  (6,2)`F`1 = **14**, every step adjacency-valid. Column 5 is Water or Bridge at
+  rows 0–5, so any Bridge-free crossing must pass through (5,6), (5,7) or (5,8);
+  the only non-Bridge approaches to (6,2) are the Woods hexes (6,1), (7,2) and
+  (6,3), all cost 2. Best decompositions from (1,3): 5 + 9 = 14 via (5,6),
+  6 + 9 = 15 via (5,7), 6 + 10 = 16 via (5,8). **14 is the minimum.**
+- **"5 against 14" holds as a T-SCN-11 print, not merely as a per-hex figure.**
+  See §6 — this needed the one claim the author explicitly declined to make, and
+  it was measured rather than assumed.
+- **"South still passes at 5 against 6, exactly as drawn" — true.** Both East
+  Infantry routes to (5,7) are Bridge-free, so the counterfactual moves neither.
+- **The restated argument is internally consistent.** "no invariant in this stub
+  reads a MARGIN — only the strict inequality" is correct: T-SCN-11's formula
+  line asserts `min … > the owning lane's cost`, and asymmetry (i) states **NO
+  CEILING** for it. T-SCN-06's ceiling binds the *guided* lane, not the opposing
+  route. Both seats do satisfy the strict inequality either way, so the claim
+  that no gate catches the counterfactual is exact.
 
-**`kb_rules.md` and `kb_setting.md` — no `kb-desync`.** Unit table, terrain table (including Bridge's −10% and Water's land-impassability), economy block and victory block compared field by field against §2.3, §2.4, §2.7 and §2.8: all values match. The `[unpinned]` markers still align with the register's unruled rows (Q4 capture N and interruption, Q5 exact awards, Q6 undamaged strike). The turn-cap block correctly states per-scenario data with *Ferrum Crossing* at 20 (Q7). §2.13.5's six factories do not desync the kb's hedged "typical ~4 factories total" under Q19. `kb_setting.md`'s tone bible governs §2.11.4's five result lines correctly — present tense, ≤ 30 words, faction voice only on the result screen, neutral system voice on the draw lines, no banned register.
+## 2. Every new sentence written this run
 
-**`sections/`.** All 13 files are inert and correctly headed: three superseded drafts (`ux.md`, `scenario.md`, `rules.md`, each carrying "⛔ SUPERSEDED — DO NOT RE-MERGE") and **ten** applied addenda (`tech.md`, `tech_post-merge-2..5`, `ux_post-merge-2..4`, `scenario_post-merge-2..3`, each carrying "✅ APPLIED ADDENDUM — DO NOT RE-APPLY"). Each file carries the required Placement / Draft / Change requests / Open questions / Grounding headings. No live draft, so no placement collision is possible. Two bookkeeping notes, neither a document defect: the task states **eleven** files as three drafts plus eight addenda — the actual count is **thirteen**, three plus ten; and the `post-merge-5` report recorded `sections/` as "empty but for `.gitkeep`", which is not true of the directory as it now stands. Nothing in `sections/` regressed, but the inventory the orchestrator is tracking is off by two addenda and should be corrected before it is used to decide anything.
+All four NEW blocks were read as written text, not as diffs — the last three
+findings each sat inside a sentence that had just been corrected. Beyond the
+claims above, the following were checked and hold:
 
----
+- "More than double" — 14 > 12. True.
+- "around the river's southern end, then up through the Woods ring" — the route
+  crosses at (5,6), then climbs (6,4)`w` / (6,3)`w`; (6,3) is one of the three
+  named ring hexes.
+- "The allowance binds ONE of this map's two objectives, the northern one."
+  True — only the North opposing figure moves under a Bridge-free reading.
+- **Pair 3 (Q17):** "which states as much explicitly: bridge control there is
+  *tempo, not a topological wall*". §2.13.2 reads "the southern pass exists
+  precisely so bridge control here is *tempo*, not a topological wall." Grounded,
+  and the surrounding Q17 clauses hold too — "opposite banks are distance 2,
+  inside Artillery range" (axial d((4,2),(6,2)) = 2), *The Causeway*'s Mountain
+  perches at range 2–3 covering the bridge hex and reaching the far landing at
+  range 3 (d((2,2),(4,2)) = 2, d((2,2),(5,2)) = 3), and *Longwater March* Water 0.
+- **Pair 4 (`EQUALITY FAILS`):** the tense is now correct and the claim is exact.
+  In the pre-fix set exactly one lane distinguishes `>` from `>=` — West's South
+  lane (5) against East's (9,5) Infantry (5). Re-derived:
+  (9,6)(8,7)(7,7)(6,7)(5,7), five cost-1 hexes, axial distance 5, so no cheaper
+  route exists. All five other lanes (Ferrum North 5/6, Causeway 3/5 ×2,
+  Longwater 4/8 ×2) pass under either operator. Fixture (b) is preserved and
+  agrees with §4.11's "tied 5 against 5".
+- No residual instance of the retracted framing survives: `double-digit` and
+  `states as explicitly` each return zero matches in the master.
 
-## Known-open items, judged as they stand
+## 3. The integer pairs and the print convention — consistent and unambiguous
 
-Not violations; each is correctly carried rather than silently resolved.
+T-SCN-11's convention, stated at its definition, has one governing rule —
+**"THE RELATION IS NAMED AT THE SITE, and integer order identifies nothing"** —
+plus one formatting rule for the bare form: owning-against-opposing is written
+bare and owning first, while measured-against-budget always writes its
+right-hand term as "the 6 MP ceiling", never as a bare integer.
 
-- **Q20, Q21, Q22, Q24, Q25, Q26, Q27 unruled.** Each states a conservative reading that is what ships and what the gates assert, per the register's stated convention, so a later ruling loosens rather than invalidates. Q4's interruption semantics, Q5's stacking, Q6, Q8 and Q9's target/build ties correctly state *no* reading and block their gates outright, and the register's own list of those blocked rows matches the rows themselves.
-- **§3's ledger at four built, eight pending.** The eight pending rows map one-to-one onto Stubs 1–8 and §4.11 rows 1–8. No row claims a status its evidence column does not carry.
-- **Title / lineage framing remains unowned.** It belongs to a `narrative-designer` that does not exist in this kit, and no agent in this kit has taken it — correctly, since taking it would be `scope-breach`. It stays a Director item.
+The two bare pairs written this run — **"5 against 14"** and **"5 against 6"** —
+are both bare and both owning-first (owning = 5 in each), so each parses
+unambiguously as owning-against-opposing. No new budget comparison was printed,
+so the bare/labelled discriminator stays intact.
+
+One site was examined closely and cleared: *"North's opposing figure goes from
+6 to 14 against an unchanged owning 5"* puts the opposing term first. That is
+**not** a breach, because it is not a bare pair — both roles are named inline
+("opposing figure", "owning 5"), which is precisely what the convention's
+governing rule demands, and the convention explicitly disclaims order as
+information-carrying. Recorded so the Director can see it was weighed rather
+than missed.
+
+## 4. Fixture (a)'s "1 MP margin each way" — the non-edit is correct
+
+The author's reasoning holds, and the corrected paragraph beside it does not
+read as a contradiction. Fixture (a) describes only the asserted
+(Bridge-permitting) reading, under which both margins are 6 − 5 = 1 — literally
+true. The counterfactual now lives entirely inside asymmetry (ii)'s `WHY`
+paragraph, which is labelled as a counterfactual throughout ("a Bridge-free
+reading", "What the counterfactual changes") and never re-quotes fixture (a)'s
+phrase. The two sites say different things about different readings, which is
+the correct outcome; editing fixture (a) would have been the error.
+
+Related tension, examined and cleared: asymmetry (ii)'s header still reads "on
+the shipped map that allowance is **LOAD-BEARING** rather than merely permitted"
+while the new text says no gate catches its absence. Not a contradiction — the
+paragraph defines the sense it intends in its own next lines ("STATED AS A
+REASON AND NOT A PERMISSION"; "the allowance is what keeps the NORTHERN opposing
+route honest"), and the bullet immediately below scopes it to one of two routes.
+No reader can come away believing a gate depends on it.
+
+## 5. The register, and §4.4 / §4.11
+
+- **Q1–Q29, each ID defined exactly once**, no gaps and no duplicates.
+  **Ten ruled:** Q7, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28.
+- **Every `Q<n>` cited in the body resolves to a register row** — checked
+  exhaustively across all occurrences in the master. Same for every `T-` ID:
+  T-HEX-01..07, T-MOVE-01..06 (07 reserved on Q2), T-FAME-01..09, T-TURN-01..09,
+  T-AI-01..06, T-SCN-01..09 + 11 (10 reserved on Q26), T-UI-01..04,
+  T-DATA-01..06, T-INT-01..05, T-SAVE-01..07, T-CAP-01..08, and the T-COMBAT /
+  T-REPAIR sets at `5ffa8d6`. No dead ID, and no ID cited without a definition.
+- **No pinned extent.** The only Q-range in the document sits in §4.7's register
+  preamble, which is the block the "single place their extent is stated" sentence
+  designates. Zero ranges elsewhere.
+- **Q4, Q5, Q6, Q8, Q9 state no reading and block their gates outright**, exactly
+  as the preamble lists them. **Q29 blocks nothing** ("no gate — every test runs
+  either way"). Q1–Q3 and Q10–Q19 carry stated conservative assumptions in force.
+- **§4.4 and §4.11 still describe one schedule.** Week 1 = rows 1–3; week 2 =
+  `{Move, Attack}` plus the §4.10 format and headless replayer, with T-INT-01/04
+  and T-SAVE-04 closing; week 3 = rows 4–5 then row 6, closing T-INT-02/03/05,
+  T-SAVE-01/03/05/06 and T-SAVE-02; week 4 = T-SAVE-07; week 5 = slot I/O only.
+  Rows 9 and 10's run/close splits match §4.4's cells term for term, and the
+  critical path `1 → 3 → 4 → 5 → 6/8` agrees with every row's `Depends on` cell.
+- **§4.7 Stub 7 accounting is exact:** ten written invariants — six structural
+  (T-SCN-01..03, 05, 07, 09) and four priced (T-SCN-04, 06, 08, 11) — matching
+  §4.11's "four of its ten written invariants".
+- **§3's ledger is unchanged and internally consistent:** four rows verified at
+  `5ffa8d6` (Combat 10/10, Test suite 17/17, Repair 7/7, Type-effectiveness 2/2
+  — and 10 + 7 = 17), eight rows `*pending*`, mapping one-to-one onto §4.7's
+  eight stubs. No row claims a system built or shipped without a commit and
+  passing test IDs, and Q29's conservative reading forbids a partial-pass flip.
+
+## 6. The unfiled candidate — non-filing upheld, on a corrected ground
+
+`tech-director` declined to file the Bridge-free cost of West's *second* Infantry
+from (1,5), reasoning that "no invariant computes the counterfactual and Pair 1
+keeps 'from that hex' scoping rather than claiming a set minimum."
+
+**The outcome is right; the reasoning is one step short.** Pair 1's bullet does
+keep the "from that hex" scoping, and that half of the defence stands. But
+Pair 2 prints **"North still passes, at 5 against 14"** — and a T-SCN-11 print is
+by construction a minimum over the opposing seat's whole CanCapture set (Q28,
+ruled). That sentence therefore *does* assert a set minimum, and it needs (1,5)
+to be no cheaper than 14.
+
+I measured it. From (1,5) the cheapest Bridge-free cost to each legal crossing
+hex is (5,6) = 5, (5,7) = 5, (5,8) ≥ 5, and the cheapest continuation to (6,2) is
+9 from either (5,6) or (5,7) — so **(1,5) → (6,2) Bridge-free costs exactly
+14 MP**, the same as (1,3). The printed minimum is correct, so no gap is being
+waved past and there is nothing to file. Had the two figures differed, this would
+have been a fourth finding inside a just-corrected sentence — which is exactly
+why the run was slowed to measure it rather than to accept the scoping argument.
+
+Recommendation, not a violation: if the Director ever wants the counterfactual
+fully priced in the document, that is a change request to §2.13.2's table (a
+Bridge-free column), as the draft says — and `scenario-designer`'s to price.
+
+## 7. Also examined and cleared (recorded, not filed)
+
+- **`kb_rules.md` and `kb_setting.md` are in sync.** No §2 text moved this run,
+  and both files were re-checked against §2.3, §2.4, §2.7, §2.8 and §2.11.4's
+  faction voicing. Every unit stat, terrain cost, defense percentage, income
+  figure, tiebreak key and victory tier matches, and every `[unpinned]` marker
+  corresponds to a live register row (Q4, Q5, Q6). No `kb-desync`, and no
+  `voice-drift` — the four pairs are technical spec prose in §4.7 and touch no
+  UI string.
+- **"all Plains" / "5 hexes of Plains"** for the West South lane (§2.13.1's lane
+  table, §2.11.6-B) describes a route whose objective hex (5,7) is a Factory.
+  Not filed: it is a document-wide shorthand for cost-1 terrain, used only where
+  every hex is cost 1; the Factory is MoveCost 1 (§2.3), the objective is named
+  as a Factory at the same site, and T-SCN-06 states the accounting explicitly.
+  No number is wrong and nothing downstream can misprice.
+- **`sections/tech_post-merge-11_tmp.md`**, named in the draft's Handoffs as an
+  artifact to delete, is absent from `sections/` — the housekeeping request was
+  fulfilled. Not a `dead-reference`: it is a completed instruction inside a
+  sealed addendum whose header disclaims its own currency.
+- **The snapshot md5 in the sealed addendum's Grounding** (`8357f971…`) is the
+  pre-merge hash and is explicitly disclaimed by the `APPLIED ADDENDUM` header.
+  Not filed.
+- **Re-derived and confirmed unchanged:** *Ferrum Crossing*'s terrain
+  distribution (75/8/2/4/2/4/4 = 99, counted glyph by glyph), *Longwater March*'s
+  (86/4/4/0/0/4/6 = 104) and *The Causeway*'s (52/4/2/6/2/2/4 = 72); every
+  ρ-pair list; the axial rotation constant `W − H/2` and the mirror map
+  `μ(q,r) = (q + r − (H−1)/2, H−1−r)`, both re-derived from the odd-r conversion
+  and both integer-valued exactly on the stated row parity, plus the 9 × 9
+  refusal at column 6.5; all eight *Ferrum Crossing* route costs and the two
+  structural facts drawn from them ("+1 MP over hex distance to North", "plain
+  geodesic to South"); Q21's four slack/margin pairs (1/1, 2/4, 3/2); every §4.6
+  figure including $0.69, $1.725, $1.035, $178.02, $200.10 and $265.995 with the
+  $1.005 and $1.24 reconciliations; §2.11.3's forecast arithmetic
+  `round(10 × 1.0 × 0.8) − 5 = 3`; the 550-Fame producible force; N = 8 and
+  N = 10; §2.11.6's four beats, three branches and twelve-row ledger; and §4.8's
+  schema values against §2.3 / §2.4 / §2.7.
 
 ---
 
 ## Verdict
 
-**PASS.** All four `post-merge-5` violations are closed at their sites and closed correctly, and no new defect was introduced by the remediation — which is the failure mode the last two rounds exhibited and the reason every neighbouring claim at each edit site was re-derived rather than re-read. §4.6's full chain reproduces from its printed inputs end to end with no fourth arithmetic fault, including the two figures the corrected parenthetical now names; Q27's Blocks column is true against every `T-` ID and every stub in the document; §2.13's symmetry story speaks with one voice at all seven sites, with Q24 narrowed and Q26 owning declarability; and §3 no longer contradicts its own auditability claim, which I judge supported on the document's own terms while recording, for the Director rather than as a violation, that all four Verified rows rest on one module and one commit and that the Test suite row's evidence is the test file itself. Nothing blocks merge. Two items should travel with this record and be fixed by the Director, not by an author: `sections/` holds thirteen files, not the eleven the run assumed, and §4.7's preamble still carries the one live pinned extent, `Q1–Q27`, which is accurate today and stale the moment a Q28 is filed.
+**PASS.** Every area passes, the total violation count is zero, and the single
+`post-merge-10` violation is closed by a repair that is correct in both halves
+and correct in every sentence it newly wrote. The most serious thing this run
+turned up is not a violation but a near miss worth naming for the record:
+Pair 2's `"5 against 14"` is a T-SCN-11 print and therefore silently asserts a
+minimum over West's whole Infantry set, which the author's own non-filing
+rationale explicitly declined to claim — the sentence is true only because West's
+second Infantry at (1,5) also prices at exactly 14 MP Bridge-free, a figure that
+appears nowhere in the document and that I measured independently against the
+§2.13.2 map. It holds, so nothing blocks; but the next editor who moves West's
+deployment or the river's southern end will move that unstated 14 with no gate,
+no fixture and no sentence in the document noticing. **Nothing is required before
+merge**: `source/gdd.md` at md5 `68991030a238c1804a3234db2fa0485f` is accepted as
+it stands, and the master now carries no filed violation. Two items remain open
+and are the Director's rather than this gate's — the title/lineage framing is
+unowned and needs a `narrative-designer` this kit does not have, and the eight
+`*pending*` §3 ledger rows still stand against a stock Unreal `Source/`, with
+Stub 7's priced half depending on Stub 3 as the longest live dependency.

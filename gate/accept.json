@@ -1,6 +1,6 @@
 {
-  "run": "post-merge-6",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\Stratocracy_Prototype_GDD.md  md5=68a57cf71d15290685e654f2e3fdcbac",
+  "run": "post-merge-11",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=68991030a238c1804a3234db2fa0485f",
   "verdict": "PASS",
   "sections": [
     {
@@ -14,12 +14,17 @@
       "violations": []
     },
     {
-      "file": "source/gdd.md §2.11 (UI/UX + onboarding)",
+      "file": "source/gdd.md §2.11 (UI/UX + onboarding, incl. §2.11.6-B beat schedule)",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §2.12–§2.13 (lineage, scenario & map design)",
+      "file": "source/gdd.md §2.12–§2.13.1 (lineage extraction, layout conventions, opening-capture invariant, symmetry facts)",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "source/gdd.md §2.13.2–§2.13.7 (Ferrum Crossing layout, eight-route table, stretch maps, summary)",
       "verdict": "PASS",
       "violations": []
     },
@@ -29,22 +34,22 @@
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.1–§4.5",
+      "file": "source/gdd.md §4.1–§4.3, §4.5, §4.6, §4.8–§4.10",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.6 (token budget)",
+      "file": "source/gdd.md §4.4 + §4.11 (milestones and build order — the schedule seam)",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.7 (gate plan + open-question register Q1–Q27)",
+      "file": "source/gdd.md §4.7 Stub 7 (T-SCN-11, asymmetry (ii), EQUALITY FAILS, fixtures (a)–(c)) — the four repaired sites",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.8–§4.11",
+      "file": "source/gdd.md §4.7 open-question register Q1–Q29 (incl. Q17)",
       "verdict": "PASS",
       "violations": []
     },
@@ -59,7 +64,12 @@
       "violations": []
     },
     {
-      "file": "sections/ (13 files: 3 superseded drafts, 10 applied addenda; no live draft this run)",
+      "file": "sections/tech_post-merge-11.md (this stage's draft; applied, sealed)",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/ (remaining 19 files: superseded drafts + sealed addenda; no live draft this run)",
       "verdict": "PASS",
       "violations": []
     }
