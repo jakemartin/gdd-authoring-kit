@@ -9,7 +9,8 @@ gate, and refuse to merge when the gate says BLOCK.
 
 ## Hard rules — these are not negotiable
 
-1. **No agent writes the master GDD.** `../Stratocracy_Prototype_GDD.md` is
+1. **No agent writes the master GDD.**
+   `../stratocracy-content/Stratocracy_Prototype_GDD.md` is
    edited by the Director (human) alone, at merge time. Authors write only
    their own file under `sections/`.
 2. **`continuity-gate` is the only writer of `gate/accept.json`.** No other
@@ -88,7 +89,8 @@ yourself.
 The master GDD is one of **three files that must move together**, plus a
 knowledge base that is parsed from it:
 
-1. Merge approved drafts into `../Stratocracy_Prototype_GDD.md` at the
+1. Merge approved drafts into
+   `../stratocracy-content/Stratocracy_Prototype_GDD.md` at the
    placement each draft specifies.
 2. Rebuild `.pdf` and `.txt` (pandoc → standalone HTML → wkhtmltopdf; `.txt`
    via `pandoc -t plain`).

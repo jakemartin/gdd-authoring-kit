@@ -13,7 +13,7 @@ PROJECT = ROOT.parent
 SRC = ROOT / "source"
 
 COPIES = [
-    (PROJECT / "Stratocracy_Prototype_GDD.md", SRC / "gdd.md"),
+    (PROJECT / "stratocracy-content" / "Stratocracy_Prototype_GDD.md", SRC / "gdd.md"),
     (PROJECT / "stratocracy-content" / "kb" / "rules.md", SRC / "kb_rules.md"),
     (PROJECT / "stratocracy-content" / "kb" / "setting.md", SRC / "kb_setting.md"),
 ]
