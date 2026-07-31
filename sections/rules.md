@@ -10,8 +10,8 @@
 > resequencing, the N = 8 scoreboard figures, the Q-register pointer repointings,
 > and several closed change requests.
 >
-> **The master GDD is the only source of truth.** Read `source/gdd.md`
-> (md5 `0eedea2dfd7b17a508e162427682ce64`). To change a merged section, author a
+> **The master GDD is the only source of truth.** Read `source/gdd.md` — do not
+> trust any hash quoted in this file. To change a merged section, author a
 > post-merge addendum of exact old→new replacement passages — as
 > `sections/tech.md` did for run `post-merge-1` — never a wholesale redraft.
 >

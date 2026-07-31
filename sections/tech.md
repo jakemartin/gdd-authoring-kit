@@ -1,21 +1,15 @@
-> # ⛔ SUPERSEDED — DO NOT RE-MERGE
+> # ✅ APPLIED ADDENDUM — DO NOT RE-APPLY
 >
-> This draft was merged into the master GDD and has since been **overtaken by
-> Director rulings and gate remediation applied directly to the master**. It is
-> kept only as the provenance record of what this author wrote.
+> Unlike the other three section files, this one is **not** a wholesale redraft.
+> It was rewritten for gate run `post-merge-1` as an addendum of exact old→new
+> replacement passages, and **all nine of those replacements have been applied to
+> the master GDD.** Re-applying them is a no-op at best — the Old blocks no longer
+> exist in the master — so nothing here will silently revert a ruling.
 >
-> **It is not a superset of what is merged.** Its Placement block claims wholesale
-> replacement of sections that have since moved on, so re-merging this file would
-> silently revert, among others: the Q7 turn-cap ruling, the Q23 week-2/3
-> resequencing, the N = 8 scoreboard figures, the Q-register pointer repointings,
-> and several closed change requests.
->
-> **The master GDD is the only source of truth.** Read `source/gdd.md`
-> (md5 `0eedea2dfd7b17a508e162427682ce64`). To change a merged section, author a
-> post-merge addendum of exact old→new replacement passages — as
-> `sections/tech.md` did for run `post-merge-1` — never a wholesale redraft.
->
-> Superseded as of gate run `post-merge-2`.
+> It is kept as the provenance record of the Stub-7 `guidedOpening` work and the
+> T-SCN-06/07/08 gates. **The master GDD is the source of truth**
+> (`source/gdd.md`). Further changes to a merged section go in a *new* addendum
+> file, never by editing the applied blocks below.
 
 # Technical design — post-merge-1 addendum (tech-director)
 
