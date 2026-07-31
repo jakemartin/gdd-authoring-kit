@@ -1,4 +1,23 @@
-# Scenario & map design — stage-2 draft (scenario-designer)
+> # ⛔ SUPERSEDED — DO NOT RE-MERGE
+>
+> This draft was merged into the master GDD and has since been **overtaken by
+> Director rulings and gate remediation applied directly to the master**. It is
+> kept only as the provenance record of what this author wrote.
+>
+> **It is not a superset of what is merged.** Its Placement block claims wholesale
+> replacement of sections that have since moved on, so re-merging this file would
+> silently revert, among others: the Q7 turn-cap ruling, the Q23 week-2/3
+> resequencing, the N = 8 scoreboard figures, the Q-register pointer repointings,
+> and several closed change requests.
+>
+> **The master GDD is the only source of truth.** Read `source/gdd.md`
+> (md5 `0eedea2dfd7b17a508e162427682ce64`). To change a merged section, author a
+> post-merge addendum of exact old→new replacement passages — as
+> `sections/tech.md` did for run `post-merge-1` — never a wholesale redraft.
+>
+> Superseded as of gate run `post-merge-2`.
+
+# Scenario & map design — post-merge-1 correction (scenario-designer)
 
 ## Placement
 
@@ -11,6 +30,16 @@ anchors. This section becomes the concrete referent for both, and for the
 stage-1 draft (the replay-cliff plan), which becomes subsection §2.13.4 here;
 map names, the asymmetric-shipping-map decision, and the stage-1 open rulings
 are carried forward unchanged for continuity.
+
+**This revision (post-merge-1) changes exactly three things.** (1) §2.13.5's
+criterion-2 sentence, which mis-stated the "objectives held" denominator —
+the gate's violation. (2) A new **opening-capture reachability** invariant in
+§2.13.1, the ruling requested by `ux-onboarding-designer` for §2.11.6-B's
+turn-2 beat. (3) Two Director edits already applied to the master (the
+§2.13.1 starting-force note and §2.13.5's Factories row, now pointing at Q15
+and Q19) are carried into this file **verbatim**, so a future re-merge cannot
+revert them. Nothing else in §2.13 is touched; the three layouts stand as
+verified.
 
 ## Draft
 
@@ -39,17 +68,55 @@ are carried forward unchanged for continuity.
   standard opening (one to a town, one to a neutral factory) doesn't consume
   the only capturer; the producible force is worth 550 Fame — about two
   turns of mid-game income — so losing the opening force is recoverable, not
-  match-ending. *The GDD never sizes the starting force; this number is
-  filed as a Change request, not silently adopted.*
+  match-ending. *No section outside §2.13 sizes the starting force; this
+  count is pending Director approval (Q15, §4.7), not silently adopted.*
 - **Home factory hex starts empty** in every deployment, so the turn-1
   build spawns on the factory itself (§2.7 spawn rule) instead of scattering.
 - **Validation invariants** (for the §4.2 `validate_scenario` tool — schema
-  handoff to tech-director): every land-passable hex reaches every factory
+  per §4.7 Stub 7): every land-passable hex reaches every factory
   (Bridges are the only Water crossings, §2.3, and there is no sea unit —
   connectivity is a build-time check, not a hope); all deployment hexes are
   free and land-passable; factory count in the map file equals the count the
   domination check uses; declared symmetry (mirror/rotation/none) is
   machine-verified.
+- **Opening-capture reachability** — the invariant the guided opening
+  (§2.11.6-B, turn 2) rests on, and the reason it can cite a scenario
+  guarantee at all. For **each seat**, at least one Infantry deployment hex
+  must have a land path to a **neutral** factory costing **≤ 2 × Infantry
+  Move = 6 movement points** (§2.4 Move 3) and crossing **no Bridge**: two
+  turns of movement then put that Infantry on the factory hex, and the
+  capture pip appears without making a contested crossing the first lesson.
+  The scenario file names that unit and that factory (`guidedOpening.infantry`,
+  `guidedOpening.objective`, §4.7 Stub 7) so the turn-1a *marked* Infantry is
+  the one already standing on the lane. Measured on the three maps as drawn
+  (cost in movement points, cheapest legal path, Bridge-free):
+
+  | Map | West lane | East lane |
+  |---|---|---|
+  | *Ferrum Crossing* | (1,5) → South **(5,7)**, **5 MP**, all Plains | (9,3) → North **(6,2)**, **5 MP** (4 hexes, one mandatory Woods ring hex) |
+  | *Longwater March* | (1,3) → **(4,2)**, **3 MP** | (11,3) → **(8,2)**, **4 MP** |
+  | *The Causeway* | (1,3) → **(3,2)**, **2 MP** | (6,5) → **(5,6)**, **3 MP** |
+
+  All three pass. Three things the invariant deliberately does *not* promise:
+
+  1. **"Capturing by turn 2", never "captured by turn 2."** With capture
+     N = 1 (§2.7, Q4) the Infantry stands on the factory at the end of turn 2
+     and the tile **flips on turn 3**. The turn-2 directive therefore retires
+     on the *pip*, which is exactly what §2.11.6-B already specifies.
+  2. **Slack is not uniform.** *Ferrum Crossing* carries only 1 MP of slack
+     against the 6, so a turn-1 move spent walking away from the lane pushes
+     the pip to turn 3 — still inside the guided window (turns 1–3). The
+     stretch maps carry 2–4 MP of slack.
+  3. **Uncontested, not merely reachable.** The designated lane is the seat's
+     *own* neutral — West → South, East → North on the shipped map — so the
+     first lesson is not a race. Player-first IGOUGO (§2.1) also means the
+     player occupies the hex before the AI's second turn.
+
+  Declared symmetry does not imply equal lane cost: an odd-r grid's row
+  offset means a mirrored or rotated layout can still price the two seats'
+  lanes 1 MP apart (*Longwater March*: 3 MP west, 4 MP east). The validator
+  therefore **measures and records each seat's cost as a number** rather than
+  inferring it from the symmetry flag.
 
 #### 2.13.2 The shipped scenario — *Ferrum Crossing* (§2.10 IN)
 
@@ -194,7 +261,7 @@ toolset) already sit in the GDD's stretch column and are not re-proposed.
 |---|---|
 | Dimensions | 13 × 9 = 117 hexes |
 | Starting units per side | 5 (standard force — one variable at a time; this map's variable is factory count) |
-| Factories | **6** — one home per side + 4 neutral *(above §2.7's "typical ~4", inside its "two or more neutral"; licensed via Change request)* |
+| Factories | **6** — one home per side + 4 neutral *(above §2.7's "typical ~4", inside its "two or more neutral"; pending Q19, §4.7)* |
 | Towns | 4 |
 | Symmetry | **Mirrored** — fair and admittedly dull; chosen so the factory-count dial is the only variable under test |
 | Estimated match length | **16–20 turns, frequently reaching the cap** |
@@ -216,8 +283,12 @@ Homes (1,4)/(11,4); neutrals (4,2)(8,2)(4,6)(8,6); towns
 Mountains. Deployment mirrors Ferrum Crossing's pattern around each home
 (flag on the outside edge, factory hex free). **No Water at all** — the map
 that teaches what the chokepoint map can't: open-field maneuver, Recon (move
-7) flanking wide, and expansion tempo deciding who holds 4-of-6 at the cap,
-so "objectives held" (§2.8 criterion 2) is a genuine 0–6 spread.
+7) flanking wide, and expansion tempo deciding who holds 4-of-6 **factories**
+at the cap. Criterion 2 counts factories *and* captured towns (§2.8), so this
+map's denominator is **N = 10** — 6 factories + 4 towns, against N = 8 on
+*Ferrum Crossing* (§2.11.4). The factory half of that spread is what the
+extra neutrals buy: a **0–6 factory swing inside a 10-objective sort**, where
+the shipped map can swing only 0–4.
 
 **Match-length reasoning:** 4 neutral factories scale income toward 600+
 Fame/turn (§2.7) — losses are replaced almost as fast as they land (a Tank
@@ -299,66 +370,104 @@ is consumed by balance (its primary §4.4 purpose), the set stays on paper.
 
 ## Change requests
 
+**None raised by this correction.** The reachability invariant added to
+§2.13.1 is arithmetic over existing numbers (Infantry Move 3, §2.4; capture
+N = 1, Q4; IGOUGO turn order, §2.1) and introduces no unit, terrain, or rule.
+
+*Status of the originating requests below, after the Stage-1/2 merge:* the
+starting-force request became **Q15** and the factory-count request became
+**Q19** in the §4.7 ledger, both with the assumption in force stated as
+drafted here. The rows stand as the record of where those questions came
+from; they are not re-filed.
+
 | Existing § | Current text | Proposed change | Why |
 |---|---|---|---|
-| §2.7 (starting-layout bullet) | Defines starting Fame (200) but never sizes the starting *force* | Add: "Each side also opens with a fixed starting force defined per scenario (§2.13); the shipped scenario fields 5 units per side (Flag Tank, 2 Infantry, Artillery, Recon)." | §2.9 and §1.5-#4 assume a starting force exists; no source number sizes it. The 5-unit count is this draft's proposal and needs Director approval, not silent adoption. |
-| §2.8 (turn cap) | "the turn cap (e.g. 20 turns)" | "the turn cap (a per-scenario value; 20 turns on the shipped scenario, §2.13)" | The cap drives every match-length estimate; "e.g." leaves the shipped value formally undefined. Per-scenario, because *The Causeway* (8–12 expected) reads better at ~15 while *Longwater March* wants the full 20. |
-| §2.7 (factories bullet) | "A typical small skirmish map has **~4 factories total**." | Append: "(scenarios may vary this — factory count is the match-length dial, §2.13)" | *Longwater March* uses 6: inside "two or more neutral", above "typical ~4"; one clause makes the variation licensed instead of drift. |
+| §2.7 (starting-layout bullet) | Defines starting Fame (200) but never sizes the starting *force* | Add: "Each side also opens with a fixed starting force defined per scenario (§2.13); the shipped scenario fields 5 units per side (Flag Tank, 2 Infantry, Artillery, Recon)." | §2.9 and §1.5-#4 assume a starting force exists; no source number sizes it. **Now Q15.** |
+| §2.8 (turn cap) | "the turn cap (e.g. 20 turns)" | "the turn cap (a per-scenario value; 20 turns on the shipped scenario, §2.13)" | The cap drives every match-length estimate. **Ruled at merge (Q7): per-scenario, 20 on *Ferrum Crossing*.** |
+| §2.7 (factories bullet) | "A typical small skirmish map has **~4 factories total**." | Append: "(scenarios may vary this — factory count is the match-length dial, §2.13)" | *Longwater March* uses 6: inside "two or more neutral", above "typical ~4". **Now Q19.** |
 | §2.10 (IN and STRETCH rows) | "**one hand-built scenario**" / "2nd–3rd scenario" | "one hand-built scenario (§2.13 *Ferrum Crossing*)" / "2nd–3rd scenario (priority order in §2.13: *Longwater March*, then *The Causeway*)" | Cross-references; makes the wk-4 stretch decision pre-made at zero scope cost. |
 | §2.9 (difficulty bullet) | "**Easy** = player +150 … **Hard** = player −100." | Append: "The same dial doubles as the per-seat balance corrective for the asymmetric shipped map (§2.13): if self-play shows a seat >~55%, offset that seat's starting Fame rather than reworking terrain." | The asymmetric map's handicap mechanism, using an existing dial — no new rule. §2.9 is rules-designer's lane; needs their sign-off. |
-| §2.4 (Recon row) | "ignores some terrain cost" | Specify exactly which terrains and at what cost (rules-designer's lane) | Un-validatable as written — whether Mountains gate Recon changes the flanking geometry of every map above. |
+| §2.4 (Recon row) | "ignores some terrain cost" | Specify exactly which terrains and at what cost (rules-designer's lane) | Un-validatable as written — whether Mountains gate Recon changes the flanking geometry of every map above. **Now Q2** (assumption: no discount implemented). |
 
 ## Open questions for the Director
 
-1. **Approve the 5-unit standard starting force** (2.13.1) — the one number
-   family in this draft with no source antecedent, alongside map dimensions
-   and town counts (all flagged above).
-2. **Capture N fixed at 1** for the shipped scenario (within §2.7's "start
-   N=1–2")? N=2 delays the income ramp a turn and adds ~1–2 turns to the
-   estimate; N=1 better serves Pillar 2 at this map size.
-3. **Recon/Air vs. Water — carried from stage 1, still the sharpest open
-   ruling.** §2.3 marks Water passable by "sea, air"; §2.4's "Recon/Air"
-   never says whether it *is* air. If Recon crosses Water freely, the
-   Causeway lockout and every bridge chokepoint leak. All three maps assume
-   the conservative reading: **Recon is a land unit with terrain-cost
-   discounts**, and bridges bind it. Needs a ruling (routed to
-   rules-designer).
-4. **Cross-Water Artillery fire at distance 2 is load-bearing.** With LOS
-   blocking a stretch goal (§2.2), bank-to-bank fire across a one-hex river
-   is legal at ship, and both river maps use it (it is part of what prices a
-   bridge lock on *Ferrum Crossing*). If LOS blocking ever ships, Water must
-   not block, or those maps need a redesign pass. Confirm.
-5. **Seat-select scope:** confirm that choosing your seat on the shipped map
-   is in scope as "scenario data + one menu affordance" (my read: yes — the
-   cheapest replay lever in this document), or the East seat moves to
-   stretch and the shipped replay ceiling drops from 6 configurations to 3.
+Numbered locally in the stage-2 draft; the merge assigned §4.7 IDs, recorded
+here so the two numberings never drift apart again.
+
+1. **The 5-unit standard starting force** (2.13.1) → **Q15**. Still owed a
+   ruling; the assumption in force is as drafted.
+2. **Capture N fixed at 1** for the shipped scenario → **Q4** (N = 1 ruled;
+   *interruption* semantics still unruled, which the opening-capture
+   invariant does not depend on — it only needs arrival, not completion).
+3. **Recon/Air vs. Water** → **Q16**. All three maps assume the conservative
+   reading: Recon is a land unit with terrain-cost discounts, bridges bind
+   it. Still the sharpest open ruling.
+4. **Cross-Water Artillery fire at distance 2** → **Q17**. Legal at ship; if
+   LOS blocking ever lands, Water must not block or both river maps need a
+   redesign pass.
+5. **Seat-select scope** → **Q18**. In scope, as §2.13.4 assumes.
+6. **Factory count as a per-scenario dial** → **Q19**, added at merge.
+   Verified: it states this section's position accurately — §2.7's "~4"
+   describes *Ferrum Crossing*, and *Longwater March*'s 6 is a deliberate
+   long-map dial. No correction needed.
+7. **New, from this correction — does the guided opening constrain turn 1's
+   lit set?** §2.13.1 now guarantees a ≤ 6 MP Bridge-free lane per seat, but
+   *Ferrum Crossing* has only 1 MP of slack, so a turn-1 move spent walking
+   away pushes the capture pip from turn 2 to turn 3. Either is inside the
+   guided window (turns 1–3) and §2.11.6-B already retires that directive on
+   the pip rather than on a turn number — so this needs no map change. It is
+   flagged only so the Director knows the turn-2 timing is *typical*, not
+   guaranteed, unless §2.11.6's turn-1a constraint narrows the lit set to the
+   lane. That call is `ux-onboarding-designer`'s, not mine.
 
 ## Handoffs
 
-- **rules-designer:** (a) the Recon/Water ruling (Open question 3); (b) the
-  ranged-fire-over-Water confirmation (Open question 4); (c) sign-off on the
-  §2.9 per-seat Fame corrective and the §2.7 starting-force sentence; (d)
-  the §2.4 Recon terrain-cost specification (Change request).
+- **rules-designer:** (a) the Recon/Water ruling (Q16); (b) the
+  ranged-fire-over-Water confirmation (Q17); (c) sign-off on the §2.9
+  per-seat Fame corrective and the §2.7 starting-force sentence (Q15);
+  (d) the §2.4 Recon terrain-cost specification (Q2).
 - **tech-director:** the scenario schema this section implies — map
   dimensions, terrain grid (glyph codes above), initial ownership
   (home vs. neutral per objective), per-seat deployment lists with a flag
   designation, seat-selection flag, per-scenario turn cap and capture-N —
-  plus the `validate_scenario` invariants listed in 2.13.1 (connectivity via
-  bridges, free spawn hexes, factory-count agreement with the domination
-  check, declared-symmetry verification).
-- **ux-onboarding-designer:** (a) seat-select + difficulty-select on match
-  start (the delivery mechanism for matches 4–6); (b) on the shipped map the
-  §2.8/§2.11 "objectives held X/N" scoreboard has **N = 8** (4 factories +
-  4 towns); (c) the attack forecast is the natural teacher of Bridge −10% —
-  the first forced crossing shows the penalty before commit; (d) *Longwater
-  March*, if it ships, is the scenario where the live scoreboard carries the
-  match — worth HUD emphasis.
+  plus the `validate_scenario` invariants in 2.13.1. **Two additions from
+  this correction:** (1) Stub 7 gains a `guidedOpening` object per seat
+  (`infantry` deployment hex, `objective` factory hex, and the measured
+  `costMP`), and `validate_scenario` asserts `costMP ≤ 2 × Infantry Move`
+  on a Bridge-free path — a cheap graph check on data the connectivity pass
+  already walks. (2) The declared-symmetry check should compare in cube /
+  axial coordinates, not by flipping the offset grid: an odd-r row shift is
+  not preserved by a left-right flip, which is why *Longwater March*'s
+  mirrored layout still prices its two lanes 3 MP and 4 MP. The validator
+  reports each seat's cost rather than inferring equality from the flag.
+- **ux-onboarding-designer — the requested ruling, in one line: yes, the
+  guarantee now exists, and §2.11.6-B's citation becomes valid.** Details:
+  (a) your distances were right as *hex* distances; in *movement points*
+  both seats' lanes cost **5 MP** on *Ferrum Crossing* (West (1,5) → (5,7),
+  all Plains; East (9,3) → (6,2), 4 hexes but one mandatory Woods hex on the
+  factory's ring), against 6 MP of Infantry movement over two turns — so the
+  Infantry **is standing on the factory at the end of turn 2** and the pip
+  appears then. (b) What is *not* true is completion: with N = 1 the tile
+  flips on turn 3, so the directive text must stay "Move Infantry onto the
+  Factory", never "capture it this turn". (c) The lane is Bridge-free and
+  uncontested by design, and the player moves first (§2.1), so the AI cannot
+  take the hex first. (d) The one caveat: 1 MP of slack means a wasted turn-1
+  move delays the pip to turn 3 — inside your guided window, and your row
+  already retires on the pip. If you want the turn-2 timing to be strict
+  rather than typical, narrow turn-1a's lit set to the lane; that is your
+  call and needs nothing from me. (e) Unchanged from stage 2: seat-select +
+  difficulty-select on match start; **N = 8** on the shipped map (4 factories
+  + 4 towns) and **N = 10** on *Longwater March* (6 + 4) for the
+  "objectives held X/N" row; the forecast is the natural teacher of
+  Bridge −10%.
 - **Director (merge checklist step 3):** `kb_rules.md` is stale against GDD
   §2.3/§2.8 — its terrain table is missing the **Bridge** and **Factory**
   rows and its outcomes table is missing **territorial domination**. The GDD
   wins; the KB needs its §2 re-parse at merge or the A#4 critic validates
-  content against dead rules. Title/lineage framing remains unowned (no
-  narrative-designer in this kit) — not touched here.
+  content against dead rules. Also: `source/gdd.md` is one sync behind the
+  master — it does not yet contain Q19, Q20, or the two reworded §2.13
+  passages, so `python sync.py` is owed before the next gate run.
+  Title/lineage framing remains unowned (no narrative-designer in this kit).
 
 ## Grounding
 
@@ -385,16 +494,32 @@ is consumed by balance (its primary §4.4 purpose), the set stays on paper.
 - **Income-ramp and reinforcement arithmetic** ← §2.7 (+100/factory,
   +25/town, unit costs 100–300, starting Fame 200, kill ≈ ½ cost).
 - **Capture timing in every estimate** ← §2.7 (Infantry-only capture,
-  N=1–2) + §2.4 movement + §2.3 costs.
-- **Turn cap 20 and tiebreak order** ← §2.8 ("e.g. 20 turns"; combat Fame →
-  objectives held → surviving HP → draw; mutual-passivity guard).
+  N = 1 per Q4) + §2.4 movement + §2.3 costs.
+- **Turn cap 20 and tiebreak order** ← §2.8 (per-scenario cap, 20 on the
+  shipped map per Q7; combat Fame → objectives held → surviving HP → draw;
+  mutual-passivity guard).
+- **Criterion-2 denominators (N = 8 shipped, N = 10 on *Longwater March*)**
+  ← §2.8 criterion 2 counts "the factories **and captured towns** a side owns
+  at the cap, as *X of N*"; 4 + 4 and 6 + 4 respectively, matching §2.11.4's
+  scoreboard. The **0–6 spread is over factories only** — the domination win
+  set (§2.8) and the thing the extra neutrals actually buy. *(Corrected at
+  post-merge-1: the stage-2 text attributed a 0–6 spread to criterion 2,
+  whose denominator on that map is 10.)*
 - **Factory count as the match-length dial** ← §2.7 (income slope) + §2.8
   (domination is defined over the factory set): count sets both the economy
   and the size of the win set — hence *Longwater March*'s 6-factory
-  cap-pressure design and its 0–6 objectives spread.
+  cap-pressure design and its 0–6 **factory** swing inside a 10-objective
+  sort (Q19: ~4 describes the shipped map).
+- **Opening-capture reachability ≤ 6 MP** ← §2.4 Infantry Move 3 × the two
+  turns §2.11.6-B's guided opening spends before its capture directive, over
+  §2.3 move costs (Plains 1, Woods 2, Factory 1) on the odd-r adjacency of
+  §2.2; Bridge-free because §2.3 makes a Bridge the contested hex and §2.11.6
+  teaches crossings later; uncontested-in-practice because §2.1 is IGOUGO
+  with the player first. Measured, not asserted: 5/5 MP (*Ferrum Crossing*),
+  3/4 MP (*Longwater March*), 2/3 MP (*The Causeway*).
 - **Asymmetry corrective via starting Fame** ← §2.9 already uses Fame
   offsets as the difficulty mechanism (Easy +150 / Hard −100); per-seat use
-  is a new application of an existing dial, filed as a Change request.
+  is a new application of an existing dial.
 - **Replay = configurations** ← Pillar 1 + §2.6 determinism + §2.9
   (tier-invariant AI) + §2.10 (closed roster/terrain): with variance and new
   mechanics both off the table, layout × seat × handicap is the only replay
@@ -402,7 +527,6 @@ is consumed by balance (its primary §4.4 purpose), the set stays on paper.
 - **One scenario ships; stretch at wk 4+, priority-ordered** ← §1 resolved
   decision 1, §2.10 scope table, §4.4 wk 4 ("additional scenarios only as
   stretch").
-- **Numbers with no source antecedent** — starting-force size, map
-  dimensions, town counts, *Longwater March*'s 6th factory, the fixed cap
-  values — are all flagged in Change requests / Open questions, per the
-  no-invention rule.
+- **Numbers with no source antecedent** — starting-force size (Q15), map
+  dimensions (Q1), town counts, *Longwater March*'s 6th factory (Q19) — are
+  all carried as numbered open questions, per the no-invention rule.

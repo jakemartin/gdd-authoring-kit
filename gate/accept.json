@@ -1,27 +1,189 @@
 {
-  "run": "stage-2",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\Stratocracy_Prototype_GDD.md  md5=4cdcff7ad4abbb3c93ad0036ead04faf",
-  "verdict": "PASS",
+  "run": "post-merge-2",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\Stratocracy_Prototype_GDD.md  md5=57bc80099a50193830e94ad1d8b191d6",
+  "verdict": "BLOCK",
   "sections": [
     {
-      "file": "sections/rules.md",
-      "verdict": "PASS",
-      "violations": []
+      "file": "source/gdd.md §1.6 + §3 (Revision Notes + Provenance ledger)",
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "stat-drift",
+          "draft_quote": "and where a rule was missing, it is filed as a numbered open question (Q1–Q18) instead of being invented.",
+          "source_quote": "state, the gate is parameterized on a numbered open question (Q1–Q22, Open questions below) — the Director rules, the gate then pins the ruling.",
+          "location": "§1.6 row 4 (against §4.7 preamble)",
+          "fix": "Change §1.6 row 4's register extent from (Q1–Q18) to (Q1–Q22); tech.md's Amendment 5 claimed to fix \"the two range citations that name the register's extent\" — there are three, and this one is two stages stale."
+        },
+        {
+          "type": "unverified-claim",
+          "draft_quote": "**Evidence** cites the git commit + passing test IDs so any row is independently checkable.",
+          "source_quote": "*(Commit `5ffa8d6` is present locally; a `git push` publishes the linked commit for external audit.)*",
+          "location": "§3 provenance ledger",
+          "fix": "Four rows are marked Agent-verified ✓ against github.com/jakemartin/stratocracy-crew/commit/5ffa8d6 links that do not resolve — push the commit, or strike \"independently checkable\" and mark the Evidence column locally-verified-pending-push."
+        }
+      ]
+    },
+    {
+      "file": "source/gdd.md §4.7 Open questions (Q register Q1–Q22)",
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "contradiction",
+          "draft_quote": "**Rows marked *unruled* state no reading and block their gate outright** (Q4's interruption semantics, Q5's stacking, Q6, Q8, and Q9's target- and build-choice ties); those gates cannot be written until the Director answers.",
+          "source_quote": "| **Q20** | Save/replay milestone split. … | §4.4's milestone table; T-INT-02 and T-SAVE-07 sequencing | Unruled. §4.4 stands as written; §4.11 records the conflict without resolving it. This is a scheduling decision, adjacent to the §4.4-vs-§4.11 critical-path question. |",
+          "location": "§4.7 Open-questions preamble (against Q6 and Q20)",
+          "fix": "The new *unruled* marker is applied inconsistently — Q6 is named in the header but its cell reads \"Unpriced, so no gate asserts it\" and is never marked, while Q20 IS marked \"Unruled.\" and is not named, and applying the header's rule to Q20 would falsely declare T-INT-02 and T-SAVE-07 blocked; mark Q6 and either exclude Q20's marker or state that a scheduling row blocks no gate."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "This is a scheduling decision, adjacent to the §4.4-vs-§4.11 critical-path question.",
+          "source_quote": "**Open questions (Director rulings owed).** Every gap found while writing the §4.7 gates (Q1–Q10), the stage-2 additions (Q11–Q13), the rules- and scenario-side rulings folded in here (Q14–Q20), and the two gaps found while gating §2.13.1's opening-capture invariant (Q21–Q22) so that each question carries exactly one ID across the whole document.",
+          "location": "§4.7 Q20",
+          "fix": "\"the §4.4-vs-§4.11 critical-path question\" carries no Q ID anywhere in Q1–Q22 — give it one and cite it, or delete the citation, because the preamble asserts every question carries exactly one ID across the whole document."
+        }
+      ]
+    },
+    {
+      "file": "source/gdd.md §4.4 + §4.11 (Milestones + Build order)",
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "contradiction",
+          "draft_quote": "| 2 | Engine presentation + UI wiring (select/move/attack) onto the wk-1 skeletons, the one scenario, baseline objective-seeker AI → **working vertical slice.** |",
+          "source_quote": "| 6 | Opponent AI (Stub 6) | 5 | Yes | T-AI-01..06 + self-play smoke |",
+          "location": "§4.4 wk 1–2 (against §4.11 rows 4–6 and §2.10)",
+          "fix": "§4.11 makes the baseline AI (row 6) depend on row 5, which depends on row 4 Capture & Fame economy, and §2.10 states capture + Fame production \"land wk 3, not wk 1–2\" — so §4.4's week-2 AI and week-1 \"win\" cannot be built as scheduled; re-sequence §4.4 or file the ordering conflict as a numbered open question rather than leaving it as prose in §4.11."
+        }
+      ]
     },
     {
       "file": "sections/ux.md",
-      "verdict": "PASS",
-      "violations": []
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "contradiction",
+          "draft_quote": "The first match runs on the one shipped scenario at **Easy** by default (player +150 opening Fame, §2.9) with a **guided opening**: scripted directives across turns 1–3, then hands-off.",
+          "source_quote": "| 2 *(standing)* | None on selection. … | `Move the Infantry onto the ringed Factory. Only Infantry captures.` | Capture; the Infantry-only rule (§2.7) | A capture pip appears — on whatever turn that happens; hard-expires at end of turn 4 |",
+          "location": "§2.11.6 intro (against §2.11.6-B beat 2)",
+          "fix": "The standing-directive fix pushed guidance into turn 4 but left three statements still bounding it at turns 1–3 (§2.11.6's \"then hands-off\", §2.11.6-B's heading \"Guided opening (turns 1–3)\", §1.6 row 2's \"scripted turn-1–3 guided opening\") — restate the window as turns 1–3 with a turn-4 backstop in all three, or move the hard expiry to end of turn 3."
+        },
+        {
+          "type": "contradiction",
+          "draft_quote": "The Turn column is the *earliest* turn a beat can appear; the strip shows one directive at a time, oldest outstanding first, so a beat that retires early simply advances the next one. The strip disappears for good once all four beats have retired, and unconditionally at the end of turn 4.",
+          "source_quote": "| Fame income & build | Fame is abstract; player hoards, never connects factories → army | Income toasts; `BUILD` pulse when affordable; greyed rows with shortfall (§2.11.5) | Turn 3 directive completes: a bought unit stands on the board |",
+          "location": "§2.11.6-B (against §2.11.6-D concept ledger)",
+          "fix": "\"oldest outstanding first\" + beat 2 hard-expiring at end of turn 4 + the strip vanishing at end of turn 4 means beat 3 can never display when beat 2 hangs, so the concept ledger's Fame-income confirmation is unreachable — state the queue's behaviour when beat 2 outstands, or let beat 3 pre-empt it."
+        },
+        {
+          "type": "stat-drift",
+          "draft_quote": "| Objectives 3/6      2/6   |",
+          "source_quote": "**Objectives** as *X of N* over all factories + capturable towns (§2.8 criterion 2), N supplied by the scenario (§2.13) — **N = 8** on *Ferrum Crossing* (4 factories + 4 towns), as the mock shows.",
+          "location": "§2.11.4 and §2.11.2 mocks",
+          "fix": "Both mocks in this file still read 3/6 and 2/6 with `+125/turn` against the merged §2.11.4's N = 8, §2.11.2's 4/8 and 3/8, and `+175/turn` — carry the merged figures in, because Placement says this file \"Replaces §2.11 wholesale\" and a re-merge would revert them."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "**Turn counter** against the cap, always. (`/ 20` uses the §2.8 example value; the cap must be fixed before this ships — change request below.)",
+          "source_quote": "| **Q7** | ~~Turn cap value.~~ **RULED (this revision).** The cap is **per-scenario data**, stored in Stub 7's `turnCap`; *Ferrum Crossing* ships **20** turns. | — | Ruled. §2.8, §2.11.4 and §2.13.2 now agree, and T-TURN-04 and Stub 7 read a value rather than an example. |",
+          "location": "§2.11.4 (against §4.7 Q7)",
+          "fix": "§2.8 no longer contains an example cap and Q7 is RULED — replace the \"example value\" wording with the merged citation of §2.13.2 and Stub 7 `turnCap`, and retire the §2.8 turn-cap row from this file's Change-requests table."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "| **Z** | Undo move *(only if the §2.5 change request is accepted; otherwise unbound)* |",
+          "source_quote": "| **Z** | Undo move *(only if Q11 (§4.7) is ruled to grant undo; otherwise unbound)* |",
+          "location": "§2.11.1",
+          "fix": "Repoint the `Z` row and the MOVED-state footnote (\"Under the pending **move-undo change request** (re-filed below)\") at Q11 (§4.7), as the merged §2.11.1 already does."
+        }
+      ]
     },
     {
       "file": "sections/scenario.md",
-      "verdict": "PASS",
-      "violations": []
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "contradiction",
+          "draft_quote": "Declared symmetry does not imply equal lane cost: an odd-r grid's row offset means a mirrored or rotated layout can still price the two seats' lanes 1 MP apart (*Longwater March*: 3 MP west, 4 MP east).",
+          "source_quote": "factory count in the map file equals the count the domination check uses; declared symmetry (mirror/rotation/none) is machine-verified.",
+          "location": "§2.13.1 (against §2.13.5 and §2.13.6 Symmetry rows)",
+          "fix": "A hex-space mirror is distance-preserving, so a map whose two lanes cost 3 MP and 4 MP is not mirror-symmetric on the board, and §4.7's T-SCN-05 forbids the loaded state from holding (col, row) so the machine-verified check can only run in axial — where *Longwater March* (\"Mirrored\", woods (6,3)/(6,5) have no images) and *The Causeway* (\"180° rotational\", town (1,1) maps to (6,7) not (7,7)) both fail; name the coordinate space the check runs in and redeclare or redraw both stretch maps."
+        },
+        {
+          "type": "invented-fact",
+          "draft_quote": "| *The Causeway* | (1,3) → **(3,2)**, **2 MP** | (6,5) → **(5,6)**, **3 MP** |",
+          "source_quote": "T-SCN-07  opening-capture naming (structural; no pathing, so this half of the check lands with rows 1-2): exactly one guidedOpening entry per side; `infantry` is the hex of a starting placement of THAT side whose unitId is the CanCapture row and whose isFlag is false;",
+          "location": "§2.13.1 lane table (against §2.13.6)",
+          "fix": "§2.13.6 states no starting positions and no deployment rule, so (1,3) and (6,5) are asserted as Infantry deployment hexes with no antecedent and T-SCN-07 cannot be evaluated against The Causeway — state the map's deployment, noting that (6,5) is the axial 180° image of (1,3) while §2.13.5's \"mirrors Ferrum Crossing's pattern\" construction would give (7,5)."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "| Turn cap | **20 turns** (fixes §2.8's \"e.g. 20\" for this scenario) |",
+          "source_quote": "**Turn cap → attrition tiebreak.** If neither flag has fallen by the turn cap (**20 turns** on the shipped scenario — the cap is per-scenario data, set in the scenario file's `turnCap` field, §2.13.2 and §4.7 Stub 7), the match resolves as a battle of attrition.",
+          "location": "§2.13.2",
+          "fix": "§2.8 no longer contains \"e.g. 20\" — carry the merged cell text (\"the §2.8 per-scenario cap, Stub 7 `turnCap`\") into this file, since Placement promises Director edits are carried verbatim so a re-merge cannot revert them, and this one was not."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "capture at N=1 (fixed from §2.7's \"start N=1–2\" range — Open question 2) flips income the following turn.",
+          "source_quote": "capture at N=1 (fixed from §2.7's \"start N=1–2\" range — Q4, §4.7) flips income the following turn.",
+          "location": "§2.13.3",
+          "fix": "Repoint \"Open question 2\" to Q4 (§4.7); the merged register states each question carries exactly one ID across the whole document."
+        },
+        {
+          "type": "contradiction",
+          "draft_quote": "`kb_rules.md` is stale against GDD §2.3/§2.8 — its terrain table is missing the **Bridge** and **Factory** rows and its outcomes table is missing **territorial domination**.",
+          "source_quote": "**Both Town and Factory are capturable** (by Infantry only). **Factory** is also the build/spawn point and a repair point (§2.7).",
+          "location": "kb_rules.md Terrain / Victory & outcomes",
+          "fix": "Delete the stale kb-drift handoff — kb_rules.md at md5 0c1884f9e06619b35ae7608c824e8b93 carries Bridge, Factory, both-capturable and the territorial-domination Decisive row — and drop the accompanying claim that \"source/gdd.md is one sync behind the master … does not yet contain Q19, Q20\", which the current MANIFEST contradicts."
+        }
+      ]
     },
     {
       "file": "sections/tech.md",
-      "verdict": "PASS",
-      "violations": []
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "dead-reference",
+          "draft_quote": "Asserting the existential over the NAMED hex is deliberate — see the note above the stub.",
+          "source_quote": "Acceptance: T-AI-01..06, plus a self-play smoke run: N headless AI-vs-AI games\n         all terminate at or before the cap with a valid result tier.",
+          "location": "§4.7 Stub 7, T-SCN-06",
+          "fix": "The note this points at lives only in tech.md's Amendment-3 commentary and was never inside the replacement block, so nothing precedes Stub 7 in the merged GDD but the end of Stub 6 — add the note to §4.7 above Stub 7, or inline the reasoning into T-SCN-06."
+        }
+      ]
+    },
+    {
+      "file": "sections/rules.md",
+      "verdict": "BLOCK",
+      "violations": [
+        {
+          "type": "contradiction",
+          "draft_quote": "| §2.8 | \"the turn cap (e.g. 20 turns)\" | Pin the cap: \"the turn cap (20 turns)\" | *Re-filed from stage 1 (unmerged).* The `T-CAP-` suite needs a constant; §1, §2.4, and §2.7 already scale every economy number to \"~20-turn matches\". An \"e.g.\" cap is not machine-checkable. |",
+          "source_quote": "| **Q7** | ~~Turn cap value.~~ **RULED (this revision).** The cap is **per-scenario data**, stored in Stub 7's `turnCap`; *Ferrum Crossing* ships **20** turns. | — | Ruled. §2.8, §2.11.4 and §2.13.2 now agree, and T-TURN-04 and Stub 7 read a value rather than an example. |",
+          "location": "§4.7 Q7 / §2.8",
+          "fix": "Retire this change request: Q7 ruled the cap is per-scenario data read from `turnCap`, and pinning it as a global constant reverses the ruling that §2.8, §2.11.4, §2.13.2 and kb_rules.md now all depend on."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "(e.g. a Tank kill = +150 — see change request to make this exact); an\n  **undamaged strike** (attacker takes no counter) pays a small bonus (see\n  open question 1); destroying the enemy **flag pays +500 and ends the\n  match**.",
+          "source_quote": "(e.g. a Tank kill = +150 — see Q5, §4.7, to make this exact); an\n  **undamaged strike** (attacker takes no counter) pays a small bonus (see\n  Q6, §4.7); destroying the enemy **flag pays +500 and ends the\n  match**.",
+          "location": "§2.7",
+          "fix": "Repoint to Q5 and Q6 (§4.7); likewise §2.8's delete-test \"(see change request)\" is now \"(§1.6 row 5)\", and this file's locally numbered Open questions 1–4 duplicate Q6, Q14, Q2 and Q4 — the register requires exactly one ID per question."
+        },
+        {
+          "type": "dead-reference",
+          "draft_quote": "| §2.10 | \"5 terrains\" (IN row) | \"6 terrains + the Factory tile\" (the draft already carries this) | Reconciles the scope table to §2.3, which has shipped 6 movement terrains + Factory since the Bridge/Factory fold. The stale count is drift inside the GDD itself. |",
+          "source_quote": "| **IN** (core; phased wk 1–3 per §4.4) | Grid; 4 units; **6 terrains + the Factory tile**; move + attack; **multiple factories** (home-per-side + contested neutrals, ~4) + capture + Fame production *(these land wk 3, not wk 1–2)*; heuristic AI; **one hand-built scenario**; win-by-flag; functional UI |",
+          "location": "§2.10 / §1 / §2.4",
+          "fix": "Drop the three already-merged change requests — §2.10 no longer says \"5 terrains\", §1 no longer says \"four units, five terrains\", and §2.4 already reads \"(Pillar 3; PX-3)\" — a Current-text column that quotes text the GDD does not contain cannot be adjudicated."
+        },
+        {
+          "type": "contradiction",
+          "draft_quote": "`kb_rules.md` (a) terrain table is missing the **Bridge** and **Factory** rows and states \"only Town is capturable,\" contradicting §2.3; (b) victory table omits §2.8's territorial domination as a Decisive trigger; (c) the gate-verified **Repair** rule (§2.7, §3 ledger 2026-07-29) is absent from the economy section; (d) kb says \"Move cost is per land unit\" where the GDD says per movement class.",
+          "source_quote": "Notes: Move cost is **per movement class**; Recon ignores some terrain cost. … **Both Town and Factory are capturable** (by Infantry only). **Factory** is also the build/spawn point and a repair point (§2.7).",
+          "location": "kb_rules.md Terrain / Victory & outcomes / Economy",
+          "fix": "All four kb-drift claims are now false — kb_rules.md carries Bridge and Factory rows, both-capturable, the territorial-domination Decisive row, the full Repair bullet, and \"per movement class\" — delete the handoff so the Director's merge-checklist step 3 is not driven by a stale diagnosis."
+        }
+      ]
     }
   ]
 }

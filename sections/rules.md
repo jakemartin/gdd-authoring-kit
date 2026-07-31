@@ -1,3 +1,22 @@
+> # ⛔ SUPERSEDED — DO NOT RE-MERGE
+>
+> This draft was merged into the master GDD and has since been **overtaken by
+> Director rulings and gate remediation applied directly to the master**. It is
+> kept only as the provenance record of what this author wrote.
+>
+> **It is not a superset of what is merged.** Its Placement block claims wholesale
+> replacement of sections that have since moved on, so re-merging this file would
+> silently revert, among others: the Q7 turn-cap ruling, the Q23 week-2/3
+> resequencing, the N = 8 scoreboard figures, the Q-register pointer repointings,
+> and several closed change requests.
+>
+> **The master GDD is the only source of truth.** Read `source/gdd.md`
+> (md5 `0eedea2dfd7b17a508e162427682ce64`). To change a merged section, author a
+> post-merge addendum of exact old→new replacement passages — as
+> `sections/tech.md` did for run `post-merge-1` — never a wholesale redraft.
+>
+> Superseded as of gate run `post-merge-2`.
+
 # Rules — stage-2 draft (rules-designer)
 
 ## Placement

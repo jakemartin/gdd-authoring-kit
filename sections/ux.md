@@ -1,10 +1,37 @@
-# UX, UI & onboarding — stage-2 draft (ux-onboarding-designer)
+> # ⛔ SUPERSEDED — DO NOT RE-MERGE
+>
+> This draft was merged into the master GDD and has since been **overtaken by
+> Director rulings and gate remediation applied directly to the master**. It is
+> kept only as the provenance record of what this author wrote.
+>
+> **It is not a superset of what is merged.** Its Placement block claims wholesale
+> replacement of sections that have since moved on, so re-merging this file would
+> silently revert, among others: the Q7 turn-cap ruling, the Q23 week-2/3
+> resequencing, the N = 8 scoreboard figures, the Q-register pointer repointings,
+> and several closed change requests.
+>
+> **The master GDD is the only source of truth.** Read `source/gdd.md`
+> (md5 `0eedea2dfd7b17a508e162427682ce64`). To change a merged section, author a
+> post-merge addendum of exact old→new replacement passages — as
+> `sections/tech.md` did for run `post-merge-1` — never a wholesale redraft.
+>
+> Superseded as of gate run `post-merge-2`.
+
+# UX, UI & onboarding — post-merge-1 fix rev.2 (ux-onboarding-designer)
 
 ## Placement
 
 **Replaces §2.11 wholesale.** The current §2.11 is a two-bullet stub ("UI (the real time cost)" + "Art (minimal)"); this draft expands it into a full UX section, §2.11.1–§2.11.8. Every element named in the current stub (pan/zoom, selection, reachable-hex highlight, attack-target highlight, attack forecast, info panel, turn banner, end-turn, production menu, flag marker, live standings scoreboard) is retained and specified; the art bullet survives unchanged as §2.11.7.
 
 This draft **supersedes and integrates the stage-1 onboarding draft**: the guided opening, one-shot lesson table, and concept ledger are carried forward (as §2.11.6), while the forecast-card and scoreboard specs that stage-1 sketched inside the onboarding plan now live in their proper homes (§2.11.3, §2.11.4) and the onboarding text references them instead of duplicating them. The stage-1 change requests are still unresolved in `source/gdd.md` and are re-filed below.
+
+**Post-merge-1 revision, rev. 2 — scope.** Stage 1 + 2 are already merged. This pass fixes **one** gate violation (`dead-reference`, §2.11.6-B turn 2) and changes **nothing else** in §2.11; every other line of this file is the stage-2 text as gated.
+
+Rev. 2 reflects the Director's ruling on rev. 1: my *timing* mechanism (standing directive, retire on the capture pip, hard-expire end of turn 4, Turn column = earliest turn) was accepted; my *target* change (nearest capturable tile) was reversed — beat 2 goes back to a **neutral factory** — and the §2.13.1 **opening-capture reachability** invariant I had declined was granted. §2.11.6-B now cites that invariant instead of routing around it, and binds the marked unit and ringed objective to the scenario file's `guidedOpening.infantry` / `guidedOpening.objective` fields (§2.13.1; the fields themselves are `tech-director`'s to add to §4.7 Stub 7). Three edits to the merged §2.11.6-B:
+
+- **Edit 1 — the beat-2 table row** (reworked in rev. 2): target is the designated neutral factory again; the standing retire condition is kept.
+- **Edit 2 — the line after the table** (unchanged from rev. 1, accepted as written): `After turn 3 the strip disappears for good.` → the "Turn column is the *earliest* turn" rule.
+- **Edit 3 — new prose** immediately after Edit 2 (rewritten in rev. 2): now cites §2.13.1's invariant, carries the corrected **movement-point** lane costs, and states the capturing-vs-captured distinction.
 
 ## Draft
 
@@ -229,10 +256,16 @@ The first match runs on the one shipped scenario at **Easy** by default (player 
 |---|---|---|---|---|
 | 1a | Only one marked Infantry selectable; others dimmed (hover: `Locked this turn.`) | `Select the marked Infantry. Lit hexes are its true reach. Click one to move.` | Selection; the highlight is the real move set (§2.5) | Move completes |
 | 1b | End Turn pulses | `End turn. The enemy moves; then you.` | IGOUGO (§2.1) — the player watches a full AI turn | Enemy turn ends |
-| 2 | None. Targets the nearest neutral factory (scenario guarantee — Handoffs) | `Move Infantry onto the Factory. Only Infantry captures.` | Capture; the Infantry-only rule (§2.7) | Capture pip appears |
+| 2 *(standing)* | None on selection. The scenario's designated neutral factory (`guidedOpening.objective`, §2.13.1) is ringed from turn 1; its info-panel line appends `Only Infantry captures.` | `Move the Infantry onto the ringed Factory. Only Infantry captures.` | Capture; the Infantry-only rule (§2.7) | A capture pip appears — on whatever turn that happens; hard-expires at end of turn 4 |
 | 3 | None. Fame ≥ 100 guaranteed by 200 start + home income (§2.7) | `Spend Fame at your Factory. Infantry costs 100.` | Fame → factory → unit | A unit spawns |
 
-After turn 3 the strip disappears for good.
+The Turn column is the *earliest* turn a beat can appear; the strip shows one directive at a time, oldest outstanding first, so a beat that retires early simply advances the next one. The strip disappears for good once all four beats have retired, and unconditionally at the end of turn 4.
+
+**Why beat 2 is a standing directive, not a turn-2 deadline.** Its target is guaranteed by §2.13.1's **opening-capture reachability** invariant: for each seat, at least one Infantry deployment hex has a Bridge-free land path to a **neutral factory** costing ≤ 6 movement points — two turns at Infantry Move 3 (§2.4) — and the scenario file names that unit and that factory in `guidedOpening.infantry` and `guidedOpening.objective`. The directive strip reads exactly those two fields: `guidedOpening.infantry` is the Infantry marked in beat 1a, `guidedOpening.objective` is the factory ringed from turn 1. Nothing is measured at runtime and no "nearest objective" heuristic is used — the lane is authored, machine-validated, and recorded as a number by `validate_scenario` (§4.2), so the onboarding and the map can never disagree about which factory the player was told to take.
+
+What the invariant does *not* buy is a safe turn-2 deadline, and that is why beat 2 retires on an event rather than a turn number. Beat 1a hands the player a free move in any direction — that is its whole lesson, and the onboarding must not punish the player for using it. On *Ferrum Crossing* both lanes cost **5 movement points**, not 5 and 4 hexes: West (1,5) → South (5,7) is 5 hexes of Plains at cost 1, and East (9,3) → North (6,2) is 4 hexes but one is a mandatory Woods ring hex at cost 2 (§2.3). Against the 6 MP budget that is **1 MP of slack**, the tightest of the three maps (§2.13.1's table; the stretch maps carry 2–4). A single turn-1 step spent walking off the lane therefore pushes the pip to turn 3 — and a hard turn-2 retire condition would strand the strip on a directive the player had already been made unable to satisfy that turn. The standing directive absorbs precisely that: it appears on turn 2, persists until the pip appears, and hard-expires at end of turn 4, one turn past the guided window. Ringing the objective from turn 1 biases beat 1a's free move onto the lane without constraining it, so in the common case the slack is never spent and the pip lands on turn 2 as designed.
+
+**"Capturing" by turn 2, never "captured."** The invariant promises the Infantry is *standing on* the factory at the end of turn 2, not that the tile is yours: under Q4's N = 1 reading the tile flips at the start of turn 3 (§2.7). So the directive reads `Move the Infantry onto the ringed Factory` — never "capture it" — and it retires on the **capture pip**, the arrival receipt, not on the ownership flip. The flip gets its own confirmation one turn later via the `+100 Fame — Factory` toast, which is where the concept ledger's Capture row already ends. This wording is also correct if N is ever ruled 2: the pip is the arrival event either way.
 
 **C. Event-driven one-shots** (once each, at first relevance): first attack hover → `Check the forecast. It is exact — what you see is what resolves.`; first Artillery strike at range 2–3 → `No counter at this range. Artillery strikes beyond reply.`; first Recon-vs-Artillery forecast → `Recon closes fast. Artillery cannot answer at range 1.`; first Tank-vs-Recon forecast at range 1 → `Armor wins the adjacent fight.`; first Water hover with a unit selected → `Impassable to land. Cross at the Bridge.`; first Bridge hover → `The only crossing. −10% defense — do not stall on it.`; first combat Fame → `+150 Fame. Kills count at the cap. Income does not.` *(amount = actual award)*; first undamaged strike → `+[N] Fame — undamaged strike.`; first repair blocked by adjacency → `No repair — enemy adjacent. Break contact to repair.`; first repair tick → `+[N] HP — repaired at Factory.`; plus the two cap-approach banners (§2.11.4).
 
@@ -270,8 +303,10 @@ Flat/low-poly color-coded hexes, simple unit meshes or billboarded icons, genera
 | Existing § | Current text | Proposed change | Why |
 |---|---|---|---|
 | §2.5 Movement & pathfinding *(re-filed from stage-1, unresolved)* | No mention of undoing a move | Add: "A move may be undone at no cost until the unit acts (attack / capture / build). With fog cut (§2.10), undo reveals no hidden information." | Safe experimentation is the cheapest teacher; a mis-clicked 7-move Recon teaches fear of clicking. §2.11.1 specifies both semantics so the UI ships either way — but the rule needs adjudication. |
-| §2.7 Capture *(re-filed)* | "hold to capture over N turns (start N=1–2)" | Fix N | N=1 is "captured on arrival"; N=2 needs the progress pip and a "hold" verb. The pip design covers both, but directive and tip strings can't lock until N does. |
+| §2.7 Capture *(re-filed)* | "hold to capture over N turns (start N=1–2)" | Fix N in §2.7's own text | Q4 (§4.7) now reads **N = 1** for the shipped scenario and §2.13.1 relies on it; §2.7 still carries the range, so the two disagree on the page. §2.11.6-B is written to survive either value — the retire condition is the arrival pip — but §2.7 should stop stating a range the ledger has already closed. |
 | §2.8 Turn cap *(re-filed)* | "the turn cap (e.g. 20 turns)" | Fix the cap value | The scoreboard renders `TURN X / cap` permanently and the cap−5 banners need a number. "e.g." can't ship on a HUD. |
+
+*No new change request arises from the post-merge-1 fix. It changes no rule and no number; §2.13.1's granted invariant is cited here, not authored here.*
 
 ## Open questions for the Director
 
@@ -279,13 +314,14 @@ Flat/low-poly color-coded hexes, simple unit meshes or billboarded icons, genera
 2. **AI playback pace.** ~0.5 s per action with click-to-skip is proposed (§2.11.2). Any preference for a settings-exposed speed, or is skip-only enough for the prototype? (Recommendation: skip-only; a slider is polish.)
 3. **First-match default difficulty** *(carried from stage-1)*: default a fresh save to Easy with the guided opening, no difficulty menu before match one? (Recommendation stands: yes — one fewer decision before the player has context.)
 4. **Directive during the AI economy phase** *(carried)*: fire a one-time `Enemy builds at Factory` callout during the first watched AI turn? Cheap, teaches the shared economy, but adds one interrupt.
+5. **Beat-2 expiry telemetry** *(new, rev. 2)*: beat 2 hard-expires unfired at end of turn 4 if the player never reaches the objective. Should that expiry be silent (recommendation: **yes** — a nag line at turn 4 punishes the one player who most needs encouragement), or should the §4.1 save log record it, so playtest can measure how often *Ferrum Crossing*'s 1 MP of slack actually costs the beat?
 
 ## Handoffs
 
-- **tech-director:** the widget inventory in §2.11.8 is the UMG scaffolding list; data bindings needed from the headless module: combat **forecast/preview function** (pure query, same formula as resolution — the card must call the real function, never a UI-side copy); path preview polyline for a candidate destination; per-side combat-Fame and objectives-X/N and total-HP for the scoreboard; unacted-unit query; production affordability + spawn-hex/boxed-in query; repair-eligibility query; AI turn **action list** for paced playback; first-time boolean flags in the save slot; event hooks (first-attack-available, first-combat-Fame, repair-blocked, cap−5). A combat log, if ever, rides the replay format — tech's call, not a UI ask.
-- **scenario-designer:** the guided opening keeps its three map guarantees — (1) a neutral factory reachable by a starting player Infantry by end of turn 2; (2) the Bridge on or beside the natural advance path; (3) enemy Artillery, Recon, and Tank all present early enough that the three triangle one-shots can fire in match one. Also needed: the scenario's objective count N for the scoreboard's X/N.
-- **rules-designer:** adjudicate the three re-filed change requests (move-undo, capture N, cap value); confirm that "capture by presence, no button" is the intended §2.7 reading.
-- **Director:** open questions 1–4; and the stage-1 note stands that the cap value feeds both the scoreboard and the onboarding banners.
+- **tech-director:** the widget inventory in §2.11.8 is the UMG scaffolding list; data bindings needed from the headless module: combat **forecast/preview function** (pure query, same formula as resolution — the card must call the real function, never a UI-side copy); path preview polyline for a candidate destination; per-side combat-Fame and objectives-X/N and total-HP for the scoreboard; unacted-unit query; production affordability + spawn-hex/boxed-in query; repair-eligibility query; AI turn **action list** for paced playback; first-time boolean flags in the save slot; event hooks (first-attack-available, first-combat-Fame, repair-blocked, cap−5). **Added in rev. 2, and the only new ask:** the directive strip reads `guidedOpening.infantry` and `guidedOpening.objective` off the scenario record (§2.13.1) — those two fields do not yet exist in §4.7 Stub 7 and are yours to add; the strip also needs a **capture-pip-appeared** event hook and a small ordered outstanding-beat queue (four booleans plus an index) so a beat that retires early advances the next. Note what this ask *replaces*: rev. 1 asked for a runtime nearest-capturable-tile search, and that is withdrawn — both values are now authored data, so §2.11.6 adds nothing to §2.5's pathfinding budget. A combat log, if ever, rides the replay format — tech's call, not a UI ask.
+- **scenario-designer:** the MP correction is taken and matters — §2.11.6-B now states *Ferrum Crossing*'s lanes as **5 MP on both seats**, names East's mandatory Woods ring hex as the reason its 4 hexes cost 5, and uses the resulting **1 MP of slack** as the stated justification for the event-based retire condition. The guided opening's map guarantees are now: (1) §2.13.1's **opening-capture reachability** invariant — granted, cited, no longer a request from me; (2) the Bridge on or beside the natural advance path; (3) enemy Artillery, Recon and Tank present early enough that the three triangle one-shots can fire in match one; plus the scenario's objective count N for the scoreboard's X/N. One standing request for every future map: fill `guidedOpening.infantry` / `guidedOpening.objective` and record the measured lane cost, because §2.11.6-B's turn-4 expiry is the only failure mode if a lane ever exceeds 6 MP — the strip will not error, it will give up quietly, which is the worst kind of onboarding bug to catch by eye.
+- **rules-designer:** adjudicate the three re-filed change requests (move-undo; N in §2.7's own text; cap value); confirm that "capture by presence, no button" is the intended §2.7 reading. Note that beat 2's retire condition is the *capture pip* — the arrival event — so §2.11.6-B is correct under N = 1 (tile flips turn 3, per §2.13.1) and under N = 2 alike, and no directive string needs rewriting when §2.7's range is finally pinned.
+- **Director:** open questions 1–5; and the stage-1 note stands that the cap value feeds both the scoreboard and the onboarding banners.
 
 ## Grounding
 
@@ -305,4 +341,8 @@ Flat/low-poly color-coded hexes, simple unit meshes or billboarded icons, genera
 | End screen = tier + same rows + faction line | §2.8 categorical tiers; setting guide (faction voice only on result screens, ≤30 words, no banned register) |
 | No minimap, no combat log | Pillar 4 / earn-your-pixels: small single-screen map (§2.7 skirmish scale); determinism + forecast make history redundant |
 | Onboarding by constraint + one-shots + concept ledger | §2.1–§2.8 across the ledger; §4.4 wk-5 onboarding milestone; §2.9 Easy = +150 Fame, identical AI |
+| **Beat 2 targets a neutral factory, and can now cite a guarantee for it** | §2.13.1 opening-capture reachability — a Bridge-free land path of ≤ 6 MP (2 × §2.4 Infantry Move 3) for each seat, machine-checked by §4.2 `validate_scenario`. Capture is taught on the economy's anchor tile (§2.7 factory income +100/turn), not displaced onto an incidental objective |
+| **Marked unit and ringed objective read from `guidedOpening.infantry` / `guidedOpening.objective`** | §2.13.1 names both fields on the scenario record (§4.7 Stub 7); authored data means the strip and the map cannot disagree, and no runtime search is added to §2.5's pathfinding budget |
+| **Beat 2 is standing — retires on the capture pip, hard-expires end of turn 4** | §2.13.1's measured slack: *Ferrum Crossing* is 5 MP on both lanes against a 6 MP two-turn budget, so one turn-1 step off the lane moves the pip to turn 3; §2.1's free-order loop means beat 1a's direction is the player's, so the retire condition must be an event, not a turn number |
+| **Directive says "move onto", not "capture"; retire = pip, not the flip** | §2.7 capture-by-presence with Q4's N = 1 — the Infantry stands on the factory at end of turn 2 and the tile flips turn 3 (§2.13.1); the `+100 Fame — Factory` toast is the separate confirmation, and the wording survives an N = 2 ruling unchanged |
 | Everything is UMG widgets, toasts, string tables, boolean flags | §4.4 solo-dev budget; §4.5 "UI underestimated" risk; §3 UI-Scaffolder skeletons |
