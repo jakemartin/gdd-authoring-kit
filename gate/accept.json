@@ -1,40 +1,25 @@
 {
-  "run": "post-merge-21",
+  "run": "rubric-round-2d",
   "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=3b9024f384162b32959416b66f5f1137",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "source/gdd.md §4.7 — the two-senses-of-*blocked* passage (the post-merge-20 remediation)",
+      "file": "sections/tech_rubric-round-2.md",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.7 — the Blocks-column sentence, the provenance chain (31 IDs, each exactly once), the register preamble and rows Q1–Q31 (15 ruled / 16 open / 31 total)",
+      "file": "sections/rules_rubric-round-2.md",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §4.7 spec stubs + §4.8–§4.11 — the written-and-blocked / reserved-and-unwritten / reserved-by-decision vocabulary and its cross-references",
+      "file": "sections/ux_rubric-round-2.md",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/gdd.md §§1–3, §4.1–§4.6 — untouched this round, anchors re-verified in place",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/kb_rules.md (md5 unchanged, byte-identical to the copy verified at post-merge-19)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/kb_setting.md (md5 unchanged)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "sections/ (24 files; no new file this stage, the sealed addendum is byte-unchanged, so no placement collision is possible)",
+      "file": "sections/scenario_rubric-round-2.md",
       "verdict": "PASS",
       "violations": []
     }
