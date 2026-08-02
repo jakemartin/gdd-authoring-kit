@@ -1,10 +1,10 @@
 {
-  "run": "driver-built-5",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=83fb9acbc19b8c6cb7adb037ea50d150",
+  "run": "row4-playable-3",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=6a446c9408cbaf838a57f3326617e4d3",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_driver-built.md",
+      "file": "sections/tech_row4-and-provisional-playable.md",
       "verdict": "PASS",
       "violations": []
     }
