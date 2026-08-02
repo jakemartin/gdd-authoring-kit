@@ -1,5 +1,11 @@
 # Technical design — rubric round 2 addendum (tech-director)
 
+> ✅ **APPLIED ADDENDUM — DO NOT RE-APPLY.**
+> All replacement pairs in this file were applied verbatim to the master GDD
+> and merged. Re-applying them would fail (the OLD anchors no longer match) or,
+> worse, double-apply an insertion. Gate record: run `rubric-round-2d`, PASS,
+> zero violations. Later changes to these sections need a NEW addendum file.
+
 Three targets, eleven replacement pairs, all in §3 and §4. Nothing here redrafts a
 section. Every **OLD** block below was searched against `source/gdd.md` and
 returns exactly one match.

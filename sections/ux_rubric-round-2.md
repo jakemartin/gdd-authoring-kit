@@ -1,5 +1,11 @@
 # UX, UI & onboarding — rubric-round-2 addendum (ux-onboarding-designer)
 
+> ✅ **APPLIED ADDENDUM — DO NOT RE-APPLY.**
+> All replacement pairs in this file were applied verbatim to the master GDD
+> and merged. Re-applying them would fail (the OLD anchors no longer match) or,
+> worse, double-apply an insertion. Gate record: run `rubric-round-2d`, PASS,
+> zero violations. Later changes to these sections need a NEW addendum file.
+
 **This is an addendum, not a draft.** §2.11 is merged and carries Director
 rulings that `sections/ux.md` never saw. Nothing here redrafts a section.
 Apply the pairs below and nothing else; `sections/ux.md` stays superseded.

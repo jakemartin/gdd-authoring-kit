@@ -1,5 +1,11 @@
 # Rules — rubric-round-2 addendum (rules-designer)
 
+> ✅ **APPLIED ADDENDUM — DO NOT RE-APPLY.**
+> All replacement pairs in this file were applied verbatim to the master GDD
+> and merged. Re-applying them would fail (the OLD anchors no longer match) or,
+> worse, double-apply an insertion. Gate record: run `rubric-round-2d`, PASS,
+> zero violations. Later changes to these sections need a NEW addendum file.
+
 This file is an **addendum**, not a draft. Every section it touches is already
 merged. Each change is an exact OLD → NEW replacement pair; each OLD block was
 verified to occur **exactly once** in `source/gdd.md` before it was written

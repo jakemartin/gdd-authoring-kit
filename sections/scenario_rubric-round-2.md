@@ -1,5 +1,11 @@
 # Scenario & map design — rubric-round-2 addendum (scenario-designer)
 
+> ✅ **APPLIED ADDENDUM — DO NOT RE-APPLY.**
+> All replacement pairs in this file were applied verbatim to the master GDD
+> and merged. Re-applying them would fail (the OLD anchors no longer match) or,
+> worse, double-apply an insertion. Gate record: run `rubric-round-2d`, PASS,
+> zero violations. Later changes to these sections need a NEW addendum file.
+
 ## Placement
 
 This is an **addendum to merged §2.13**, not a redraft. It files **three**
