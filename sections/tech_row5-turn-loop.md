@@ -1,5 +1,17 @@
 # Technical design — row 5 built (tech-director)
 
+> ✅ **APPLIED ADDENDUM — DO NOT RE-APPLY.**
+> All eleven replacement pairs were applied verbatim to the master GDD and merged
+> on 2026-08-02. Re-applying them would fail — the OLD anchors no longer match.
+> All eleven are straight replacements; none is an insertion, so no anchor is
+> retained by design. Gate record: run `row5-2`, PASS, zero violations, after
+> `row5-1` (4 violations, all in pair 3 and all in merging text — three accepted
+> and fixed, one `placement-collision` withdrawn as a false positive and
+> re-derived as such by `row5-2`). Master GDD md5
+> `10b9a7ab4c5fbb4a7464faea37821122` → `94c67ebe95a09414485cc2a07822f9b5`. The
+> merge precondition below was met: the crew commit was pushed first.
+> Later changes to these sections need a NEW addendum file.
+
 Eleven replacement pairs. Seven are in **§3** — three in the italic *Status: live
 tracker* line, one in the ledger table, three in the populated-rows paragraph —
 two are in **§4.5**'s *Specification outruns the build* row, and two are in
