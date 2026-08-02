@@ -1,186 +1,244 @@
-# Continuity gate — run `rubric-round-2d`
+# Continuity gate — run `post-merge-22`
 
-**Top-level verdict: PASS — 0 violations across four sections.**
+**Artifact under test:** `source/gdd.md`, the merged master, md5
+`d3f6913b1ecf228c19811328db33b27d` (pre-merge `3b9024f384162b32959416b66f5f1137`).
+`source/MANIFEST.txt` present; the md5 above is taken from its `gdd.md` line.
+`source/kb_rules.md` md5 `e99ae4ec2c63dcadd6b5e5d5a66067bd` and
+`source/kb_setting.md` md5 `b3e9e89daaef1cdeb333e3fb4368d1c0`, both byte-unchanged
+from before the merge.
 
-`source/MANIFEST.txt` present. `source/gdd.md` md5 `3b9024f384162b32959416b66f5f1137`;
-`source/kb_rules.md` md5 `e99ae4ec2c63dcadd6b5e5d5a66067bd`; `source/kb_setting.md`
-md5 `b3e9e89daaef1cdeb333e3fb4368d1c0` — all three unchanged from `rubric-round-2b`
-and `-2c`, so nothing beneath any of the four files has moved.
+**Top-level verdict: PASS. Zero violations across twelve checked areas.**
 
-Four files in scope, **19 replacement pairs** (tech 11, rules 2, scenario 3, ux 3).
-No OLD or NEW block changed this pass. `scenario_rubric-round-2.md` is the only
-file that moved at all, and only on its reporting surfaces. The three prior PASS
-verdicts are re-recorded, not re-litigated; the whole of this pass is the one
-clause `rubric-round-2c` blocked on, plus the self-sweep the author volunteered
-alongside it.
-
----
-
-## The filed violation — closed on the merits
-
-`rubric-round-2c` filed one `dead-reference`: the zero-citation row asserted
-"**§4.11's row-7 and row-10 paragraphs cite §2.13.5 and §4.10, never §2.13.6**"
-in a document where §4.11 carries no `2.13` at any depth. The author **deleted**
-the positive half rather than repairing it. The row now reads:
-
-> **§2.8** and **§4.11**. Both were named as citing sites in my round-1 filing;
-> neither contains the string. §4.11 (lines 2526–2578) contains no occurrence of
-> `2.13` at all. **Q16 does not cite it either** — its Blocks cell reads *"All
-> three §2.13 maps; the terrain schema"*.
-
-Verified independently, not from the author's report:
-
-- **The negative is exact.** A document-wide sweep for `2.13` in any form returns
-  **116 hits, last at line 2301**. §4.11 opens at line **2526** (`### 4.11 Build
-  order`) and runs to the end of the document at **2578**. Zero occurrences in
-  range — a strictly stronger statement than "cites §2.13.6 zero times", and the
-  one the gate named as the correct form of the point.
-- **Nothing positive is asserted about §4.11's citations.** The clause naming
-  what §4.11 cites instead is gone. What remains is the negative plus one piece
-  of evidence *for* the negative: Q16's Blocks cell, quoted verbatim. Source line
-  **2287**: `| **Q16** | Recon/Air vs. Water. … | All three §2.13 maps; the
-  terrain schema | Recon is a **land** unit …` — character-for-character match,
-  and the cell visibly carries `§2.13` without the `.6`, which is exactly the
-  distinction under test.
-- **Grammar and sufficiency.** The row is a complete four-sentence unit; the
-  deletion left no fragment. It states everything the finding it supports needs
-  — Pair 3 strands nothing in §2.8, §4.11 or Q16 — and states more than the
-  round-2c version did, since "no `2.13` at all" subsumes "no `2.13.6`".
-
-For completeness on the facts the round-2c filing turned on, both re-derived
-this pass: §4.11's row-7 paragraph's only §2 citation is **§2.11.6 at line
-2568**; `§4.10` occurs inside §4.11 only at lines **2529**, **2532** and in the
-row-10 table cell at **2550**, never inside the row-7 paragraph (2552–2569) or
-the row-10 paragraph (2570–2577). The author's account of both agrees with mine.
-
-## The volunteered self-sweep — both line numbers check
-
-The author swept its own file for the same defect class, found one sibling in
-the `tech-director` handoff, and instead of deleting it **located the strings
-and attached line numbers**. This is the class that has failed three times in
-this file, so both were verified against source character by character.
-
-| Claim as filed | Source, at the line given | Ruling |
-|---|---|---|
-| *"row 7's **structural** half for the `scenarioId`/`scenarioHash` it loads"* — **(line 2550)**, attributed to §4.11 **row 10(b)** | Line 2550, row 10's Depends-on cell, part (b): "(b) *Headless replayer* — rows 1–3, plus row 7's **structural** half for the `scenarioId`/`scenarioHash` it loads; it runs T-SAVE-01/02/03/05/06 over week 2's `{Move, Attack}` log." | **Exact.** Quote verbatim, line correct, and the sub-part attribution `10(b)` is correct — it is part (b) of that cell, not (a) or (c). |
-| *"Row 7 is still not ON the critical path (nothing in the chain waits on it)"* — **(lines 2565–2566)** | Line 2565 ends `… and not merely agree with the repo. Row 7 is`; line 2566 opens `still not ON the critical path (nothing in the chain waits on it), but` | **Exact.** The sentence soft-wraps across exactly those two lines; the range is right and the quote is verbatim across the wrap. |
-
-The two supporting claims attached to them also hold: §4.10's save header does
-carry both fields (line **2470**, `| `scenarioId` / `scenarioHash` | string |
-The §4.7 Stub-7 scenario file and its hash |`, inside §4.10 which opens at line
-**2447**), and row 7's ledger row is scheduled to flip after movement — source
-line 2569, "the scenario row flips after movement, not before," with row 3 being
-Movement & pathfinding in the same table.
-
-**Same claims, or new assertions?** The two line numbers appear in three places
-— the two collision-report bullets, the `tech-director` handoff, and the
-Grounding row "Stub 7 is core-side". All three carry the **same two claims** with
-the **same two loci**; no new assertion is introduced by the repetition, and no
-locus contradicts another. The Grounding row is the compressed index form of the
-collision bullets, pointing at the same evidence.
-
-**Two things examined and deliberately not filed**, recorded so the ruling is
-auditable:
-
-- The Grounding row labels lines 2565–2566 "the row-7 paragraph". That paragraph
-  actually runs 2552–2569. The line numbers locate the load-bearing *sentence*
-  inside it, which is what the citation is for, and the collision bullet attaches
-  the identical numbers unambiguously to the quoted string. A reader following
-  2565–2566 lands on exactly the text the claim rests on. Same ruling as the
-  1249/1250 wrap cleared at `rubric-round-2c`: the conclusion under test is exact
-  at the line given. Not a defect.
-- The summary says "every positive claim left in the file carries the line number
-  it was verified at." Read as a universal over the whole file that is
-  overstated — §4.4's wk-2 and wk-4 quotes, §2.13.2's `turnCap` and §4.10's save
-  header are cited by section, not by line. Read in its own context — positive
-  claims *of the class just discussed*, i.e. positives volunteered in support of
-  a negative finding — it is true, and I checked every such site in the file to
-  confirm it: the zero-citation row, Pair 3's note and the Grounding sweep row
-  are now purely negative, and the handoff's two positives serve a different
-  proposition and both carry line numbers. This is a claim about the draft's own
-  presentation, not about `source/gdd.md`; no reading of it leaves the Director
-  holding a false fact about the master document. Loose universal, same class as
-  the Pair 2 metonymy cleared last round. Not filed.
-
-## Everything else, re-confirmed rather than re-litigated
-
-Per the brief, the cleared material was checked only for invalidation by the
-prose edit, and none of it moved:
-
-- **The pairs.** All three OLD blocks re-matched against source this pass and
-  each occurs exactly once: Pair 1 at lines **1305–1306** (§2.13.7's closing cut
-  line, verbatim), Pair 2 at **1114–1115** with row 7–8 reproduced unchanged as
-  the anchor (verbatim), Pair 3 at **1203**. Pair 2's NEW cell `Stretch P2 (wk
-  4)` is still character-for-character §2.13.7's Status cell at line **1303**.
-- **The §2.13.6 sweep.** Unchanged text, and its figures still agree with the
-  independent derivation recorded at `rubric-round-2c`: 12 occurrences on 11
-  lines, 11 citations on 10, split 1 to §2.13.2 (line 1073) and 10 to §4.7, Q17
-  counted twice at line 2288, §2.8 / §4.11 / Q16 at zero.
-- **Placement collisions.** Nineteen pairs, nineteen non-overlapping sites. The
-  prose edit touches no placement. No collision within `scenario_` or against
-  `tech_`, `rules_`, `ux_`.
-- **kb-desync.** Both KB files unchanged at the same md5s and carrying no match
-  for `stretch`, `Causeway` or `Longwater`. Nothing this round makes either wrong.
-- **Voice and format.** Declarative present tense throughout the rewritten
-  passage; no UI string authored. All required headings still present in
-  `scenario_` (Placement, the pairs surface, Change requests, Open questions for
-  the Director, Grounding).
+This is a post-merge run: the object is the merged document, not the drafts. The
+four `*_rubric-round-2.md` addenda were read only to recover what each pair was
+*intended* to do, never as the object of the gate.
 
 ---
 
-## `sections/tech_rubric-round-2.md` — **PASS**, 0 violations
+## Landing check — all 19 pairs
 
-Byte-unchanged. Checked only for invalidation: `scenario_`'s corrected handoff
-now asserts nothing about what §4.11 cites, and `tech_` never claimed §4.11 cites
-§2.13.6, so the correction disturbs nothing on the tech side. `tech_`'s two
-§2.13.6 citations remain the bare label form Pair 3 preserves — "(a) *The
-Causeway* §2.13.6 (Stretch P2)" and "*The Causeway* §2.13.6 (Stretch P2)". The
-PASS stands for the third consecutive run.
+Nineteen OLD/NEW pairs were declared: tech 11 (Pairs 1, 2, 3, 4–8, 9, 10, 11),
+scenario 3, ux 3, rules 2. All nineteen are present in the merged document, at
+the placement each pair specified, and every NEW block matches its addendum
+character-for-character where I compared them (§2.10, §2.13.7, §2.13.4, §2.13.6,
+§1.7, §4.11's legend, §3's role rows and placing note).
 
-## `sections/rules_rubric-round-2.md` — **PASS**, 0 violations
+No pair landed twice and none landed partially. Seven phrases unique to a
+replacement seam — `Claude Code is the agent client`, `Reading this table`,
+`The stretch condition`, `Beneath the tier`, `The cut line`, `Critical path:`,
+`Status: live tracker` — return exactly seven matches between them, i.e. one
+each. No duplicated sentence, orphaned fragment or broken table row was found at
+any seam.
 
-Byte-unchanged. Its two closures depend on §2.13.7's Status cells (lines
-1302–1303) and Q13's in-force reading, none of which the prose edit touches. The
-PASS stands, and the co-merge requirement stands with it.
+Heading nesting is intact. §1.7 sits at `##`, matching §1.5 and §1.6, between
+§1.6's table and the `---` divider that precedes `## 2. Game Mechanics`. The
+full heading list runs 1 → 1.5 → 1.6 → 1.7 → 2 → 2.0…2.13.7 → 3 → 4 → 4.1…4.11
+with no gap, no duplicate and no level error.
 
-## `sections/ux_rubric-round-2.md` — **PASS**, 0 violations
+---
 
-Byte-unchanged, passed at all four runs. It places nothing in §2.13 and cites
-§2.13.6 nowhere. The PASS stands.
+## §1.7 — new subsection
 
-## `sections/scenario_rubric-round-2.md` — **PASS**, 0 violations
+Every claim in the five-row table was checked against the register row it
+summarises.
 
-Fourth pass, and the first clean one. The three pairs have been correct
-throughout and are correct now; every round since `rubric-round-2b` has been
-about the accuracy of the file's own verification prose, and that is now exact.
-The blocked clause is gone rather than reworded, the negative it was run to
-establish is stated in its strongest true form, and the one sibling the author
-found in its own sweep is not merely asserted but pinned to two line numbers
-that both hold on inspection. No OLD or NEW block changed; nothing downstream
-needs to move.
+- Row 1 (Q8): the four §2.7 sites, §2.9's economy phase, T-FAME-02/04 and the
+  two `kb/rules.md` lines match Q8's own cell verbatim. The two sentences §1.7
+  quotes as the *finding* — "both players have income from turn 1" and "plus
+  home-factory income from turn 1" — are correctly absent from the merged §2.7,
+  which now reads "both players draw income from **turn 2**, the first accrual".
+  §2.13.2's "100 of the 200 starting Fame" is present as quoted.
+- Row 2 (Q23, Q20): critical path `1 → 3 → 4 → 5 → 6/8`, the week-3 slice, the
+  week-2 format, the amendment, "the third disagreement", and the Q29
+  registration all match §4.4, §4.11 and the Q20/Q23 cells.
+- Row 3 (Q22, Q28): "five of six lanes clear and one exact tie", (9,5) → (9,1),
+  "5 against 6 in both seats", fixture (b), and "the register now states that
+  limit once" all match Q22, Q28, §2.13.2 and the register preamble.
+- Row 4 (Q6): the six uncited sites are enumerated with the same grouping Q6
+  uses (§2.11's standings row and its tooltip counted as one), giving four
+  in-document plus two in `kb/rules.md`. All six were located and confirmed
+  corrected.
+- Row 5 (§4.6): re-derived independently. $0.69, $1.725, $1.035, 210 × $0.69 =
+  $144.90, 32 × $1.035 = $33.12, subtotal $178.02, 315 × $0.69 + 47 × $1.035 =
+  $265.995 ≈ $266, $266 + $37 = $303, and the stated $1.005 gap to the retired
+  $267. Every figure holds.
+
+§1.7 **restates no register count or extent**, as instructed. It says only
+"§4.7's register is the authoritative record of which rows exist and what each
+was ruled; the five entries below are the ones that changed the *game* or its
+evidence" — a count of its own rows, not of the register. It therefore does not
+collide with §4.7's rule that "the register below is the single place their
+extent is stated".
+
+§1.5, §1.6 and §1.7 read as one non-overlapping history: First → Final, Final →
+Production, Production → the ruling cycle. §1.7's opening ("the crew was
+forbidden to invent one and filed it instead as a numbered open question in
+§4.7's register") matches §1.6 row 4's "where a rule was missing, it is filed as
+a numbered open question in §4.7's register instead of being invented." Nothing
+in the document cites §1 content by position, so §1.7's insertion breaks no
+reference; `§1.5 #1`, `§1.5 #5` and `§1.6 row 5` all still resolve to the rows
+they name.
+
+## §2.10 against §2.13.7, §4.4 and §4.11 — the round's decisive settlement
+
+**The condition is stated in §2.13.7 alone.** A document-wide sweep for the
+ordering clause returns one hit: line 1361, inside §2.13.7. Every other site
+that names the set carries labels only — §2.10's STRETCH row (`P1, wk 4` /
+`P2, wk 4` plus an explicit pointer, "shipping under the conditions §2.13.7
+states, which that section states alone"), §2.13.4's ladder rows, §2.13.5's and
+§2.13.6's headers, and §2.13.7's own summary table. §2.13.7's "four clauses"
+count is exact: no forward pull, no blocking core, *The Causeway* only after
+*Longwater March*, and the week-4 balance condition.
+
+§4.11's cut-line bullet quotes "the set stays on paper" **with attribution to
+§2.13.7** rather than restating the condition in its own words, which is the
+behaviour §2.13.7 asks for and produces no second owner.
+
+**§2.10's placements agree with what §4.4 and §4.11 schedule.** Checked one by
+one: guided opening wk 5 = §4.4's "onboarding"; §4.10 format + headless replayer
+wk 2 = §4.4 wk 2 and §4.11 row 10(a)/(b); minimal single-slot save/load wk 5 =
+§4.4's "save-slot UI and its slot I/O"; capture + Fame production wk 3 = §4.4
+wk 3 and rows 4–5; scenario file + headless validator = §4.4 wk 2's "loading,
+validating and rendering" and §4.11 row 7. The IN/STRETCH split of the MCP
+toolset (wrapper stretch, wrapped validator core) matches §4.11 row 7's
+"MCP tool wraps it in-editor, manual fallback stands" and Stub 7's closing note.
+
+The four "Reading this table" bullets each check out against their cited source:
+§1's *Scope at a glance* and §4.5's MVP line; §4.4's stated rule *a format is a
+test instrument; slot I/O is a feature*; §4.11's row-7 and row-8 dependency
+cells, §2.8's `turnCap` and §2.11.6's `guidedOpening`; and §2.13.7's ownership of
+the stretch condition.
+
+## §3 and §4.5 — the four re-derived figures
+
+All four were recomputed from the merged document rather than accepted.
+
+- **4 verified ledger rows.** Combat resolution, Test suite, Repair,
+  Type-effectiveness carry ✓. All four cite `Combat.cpp` / `test_combat.cpp`
+  @ `5ffa8d6`, so §4.5's "all four inside Combat" holds.
+- **8 `*pending*` rows.** Hex grid, Movement, Capture & Fame, Turn loop,
+  Opponent AI, Data tables, Content/scenario, UI.
+- **69 written acceptance IDs (§4.7–§4.11).** Counted from the ten acceptance
+  sets: T-HEX 7 + T-DATA 6 + T-MOVE 6 + T-FAME 9 + T-TURN 9 + T-AI 6 + T-SCN 10
+  + T-UI 4 + T-INT 5 + T-SAVE 7 = 69. T-MOVE-07 and T-SCN-10 are correctly
+  excluded as reserved-and-unwritten; T-COMBAT, T-REPAIR and T-CAP are correctly
+  excluded as living outside §4.7–§4.11.
+- **Week 1 due rows 1–3, unmet at 2026-08-01.** §4.4 week 1 names §4.11 rows 1–3
+  (grid and hex math, the §4.8 tables, movement and pathfinding); all three read
+  `*pending*` in the §3 table. The "three days past the last code commit" line is
+  consistent with the Director-supplied 2026-07-29 gate-verification date.
+
+§3's claim that only row 2, row 10(a)'s format spec, T-INT-01/04 and the
+parallel UMG skeletons proceed meanwhile is correct against §4.11: row 2 "runs
+in parallel immediately", row 10(a) has "no deps at all", T-INT-01/04 "depend on
+no rules row at all", and §4.4 week 1 starts the UMG skeletons in parallel.
+Everything else in §4.11 traces back through rows 1–3.
+
+§4.5's risk row states **no count** of the cut line and defers to §4.11's table
+as authoritative, matching §4.7's head note. No site in the document pins a †
+count, so nothing can go stale there.
+
+## §4.11's cut line and its legend
+
+Nine IDs carry †: T-DATA-05 (row 2); T-SCN-08, 09, 11 (row 7); T-UI-03, 04
+(row 8); T-INT-02, 05 (row 9); T-SAVE-06 (row 10). The legend's five bullets
+partition exactly those nine and additionally explain why T-SAVE-07 is unmarked.
+The † glyph appears nowhere else in the document, so it collides with no other
+footnote convention.
+
+The legend's supporting facts check out: T-DATA-05's fallback tables are 4 unit
+rows × 11 columns and 7 terrain rows × 10 columns, both counts correct against
+§4.8; T-SCN-08's fixtures (a)/(b) are the two stretch maps and (c) the synthetic
+refusal; T-SCN-11 keeps its two shipped-map fixtures including the failing one;
+T-SCN-09's asserting branch is stretch-only because the shipped map declares
+`none`; T-UI-01/02 are headless and 03/04 in-editor per Stub 8's acceptance
+line; T-INT-01/04 run on every gate run per §4.9's acceptance line; T-INT-03 is
+correctly held unmarked on the rule that no marked ID may guard a rules
+invariant, against §4.9's "an invalid command returns a rejection reason and
+changes nothing". T-SAVE-07's unmarked status is consistent with §2.13.7's slip
+condition, under which self-play still runs.
+
+Nothing in the legend contradicts §4.4, §2.13.7 or §4.9 about what runs when.
+§4.4's week-2/week-3 run-versus-close split matches §4.11 rows 9 and 10 exactly,
+including which IDs close in which week.
+
+## §2.11.6's re-derived Fame guarantee, in its merged surroundings
+
+Beat 3's constraint holds against the two sections this merge did not touch.
+§2.9 gives Easy = player +150, Normal = even 200/200, Hard = player −100; §2.7
+converts those to a player opening of 350 / 200 / 100 with the AI on 200 at
+every tier. §2.11.6's default is Easy, so 350; the floor across pickable tiers is
+Hard's 100, which is not below Infantry's 100. "Builds are Fame's only sink" is
+correct — repair is free and capture costs nothing. The guarantee that an
+outstanding beat 3 means nothing has been spent depends on spend implying spawn,
+which holds for the player because §2.11.5 disables Build while a factory is
+boxed in (Q31), so queue time and spawn time are the same instant. The
+no-turn-1-income clause matches §2.7's Q8 ruling.
+
+## Cross-reference sweep after the structural edits
+
+- The §2.13.6 heading change broke nothing: every citation of §2.13.6 in the
+  document (§2.13.2, §2.13.1, Stub 7's T-SCN-09 and asymmetry (ii), Q17,
+  §2.13.7, §4.11's legend) refers to the section by number or quotes its body,
+  never its heading text.
+- No pointer into §2.10's old table shape survives. Q1's "§2.2 and §2.10 never
+  state the prototype map's size or shape", Q13's "§2.10 does not scope one",
+  Q23's quotation of "these land wk 3, not wk 1–2", §4.4's quotation of the same
+  string, and the §2.10-IN citations in §2.13.2 and §2.13.7 all still resolve
+  against the new table.
+- §1.7's insertion shifted no reference: nothing in the document cites §1 by
+  position.
+- All new cross-references resolve: §4.5 → §4.7 head and §4.11's table; §4.7
+  head → §4.5's MVP line and §2.13.7's stretch maps; §4.11's legend → §4.7 head;
+  §2.10's note → §1, §4.4, §4.5, §4.11 rows 7, 8 and 10, §2.8, §2.11.6, §2.13.7;
+  §2.11.4 and §2.11.6 → `kb/setting.md`.
+
+## Record: `kb/rules.md` needed no re-sync — confirmed, both halves independently
+
+**Half one — what `kb_rules.md` parses.** Read in full. Its four content blocks
+are Units (§2.4), Terrain (§2.3), Economy — Fame (§2.7, with the §2.9 handicap),
+and Victory & outcomes (§2.8, with §2.13.2's turn cap). Nothing in the file
+derives from §2.10, §2.11, §2.13.4/.6/.7, §3, §4.5, §4.7 or §4.11. The header's
+own claim — "§2.3 terrain, §2.4 units, §2.7 economy, §2.8 victory" — is accurate
+to the file's contents.
+
+**Half two — what this merge touched.** The nineteen pairs land in §1.7, §2.10,
+§2.11.4, §2.11.6, §2.13.4, §2.13.6, §2.13.7, §3, §4.5, §4.7 and §4.11, and
+nowhere else. None of §2.3, §2.4, §2.7 or §2.8 was opened. §2.9 and §2.13.2,
+which `kb_rules.md` also draws two figures from, were likewise untouched.
+
+Both halves hold, so `kb/rules.md` is not stale and the downstream critic is not
+validating against dead rules. No `kb-desync` violation is filed.
+
+`kb_setting.md` was also checked, because §2.11.4 and §2.11.6 now cite it by
+name. Every constraint they attribute to it is present in it verbatim: the
+≤ 30-word result line and ≤ 40-word codex blurb, "Faction voice appears only in
+result-screen text", the terse-tactical-briefing register, substance over drama,
+the banned-register list, the two faction voice blocks as characterised, and the
+pipeline note that retrieves a faction block only for result-screen content.
+§2.11.6's statement that one-shot tips "are not a length category it names" is
+correct — the file names two length categories and neither is a one-shot tip.
+Neither citation asserts anything the file does not say, so `kb/setting.md`
+needs no re-sync either.
 
 ---
 
 ## Verdict
 
-**PASS**, on all four files, with zero violations in any of them.
-`tech_rubric-round-2.md`, `rules_rubric-round-2.md` and `ux_rubric-round-2.md`
-are byte-unchanged and could not be invalidated by an edit confined to
-`scenario_`'s reporting prose inside §2.13 — I confirmed the one surface where
-they touch, `scenario_`'s `tech-director` handoff, and it now asserts nothing
-`tech_` contradicts. `scenario_rubric-round-2.md` closes its last violation by
-deletion rather than repair, which is the right instrument: the zero-citation row
-now states only the negative, and states it as "§4.11, lines 2526–2578, contains
-no occurrence of `2.13` at all", which I verified against a document-wide sweep
-whose last `2.13` hit is line 2301. The self-sweep it volunteered is the part
-that could have introduced a fourth error and did not — both quoted strings
-appear verbatim at the lines given, row 10(b)'s dependency text at line 2550 and
-the row-7 critical-path sentence wrapping across 2565–2566, and the same two
-claims carry the same two loci in all three places they appear. Nothing must
-happen before merge on the gate's account: the round is mergeable as it stands,
-in one commit, with `rules_`'s §2.10 pair and `scenario_`'s Pairs 1–3 landing
-together or not at all, since Pair 1's exclusivity sentence is false if the §2.10
-edit does not land with it. Two items remain in the Director's hands and are not
-gate findings: the §4.7 Stub-7 scope question flagged in `scenario_`'s collision
-report, and the cosmetic `§4.4 wk 4` / `wk 4` asymmetry between §2.13.5's and
-§2.13.6's headers.
+**PASS.** All nineteen replacements are in place, in the right sections, whole
+and unduplicated; the merged document holds together across the interactions the
+draft-by-draft round could not see. The round's decisive settlement survived the
+merge intact — the stretch condition is stated in §2.13.7 and only there, every
+other site carries labels and a pointer, and §2.10's IN/STRETCH placement agrees
+item for item with what §4.4 and §4.11 schedule. The four figures §3 and §4.5
+assert about the build's position were re-derived from the merged document rather
+than accepted: 4 verified rows, 8 `*pending*`, 69 written acceptance IDs, and
+week 1's rows 1–3 unmet at 2026-08-01 all hold, and the 69 in particular sums
+exactly across the ten acceptance sets. The nine † marks are partitioned
+completely by their legend and contradict nothing about what runs when.
+`kb/rules.md` needed no re-sync, and both halves of that claim were verified
+independently rather than one inferred from the other. Nothing must happen before
+merge, because the merge has already happened and it is clean; this record exists
+to say so. The one item still owed to the Director is unchanged and unrelated to
+this run: the title / lineage framing remains unowned, awaiting a Tier-2
+`narrative-designer`.
