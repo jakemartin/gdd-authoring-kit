@@ -1,65 +1,10 @@
 {
-  "run": "post-merge-22",
+  "run": "week1-build-9",
   "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=d3f6913b1ecf228c19811328db33b27d",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "source/gdd.md §1.7 (new subsection, rules Pair A)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §2.10 (scope table + Reading-this-table note, rules Pair B)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §2.11.4 (kb/setting.md citation, ux Pair 2)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §2.11.6 (beat 3 Fame constraint + tone-bible citation, ux Pairs 1 and 3)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §2.13.4 and §2.13.6 (label-only stretch rows, scenario Pairs 2 and 3)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §2.13.7 (sole stretch-condition paragraph, scenario Pair 1)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §3 (ledger status line + two role rows + placing note, tech Pairs 1, 10, 11)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §4.5 (Specification outruns the build risk row, tech Pair 2)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §4.7 (cut-line head note, tech Pair 3)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/gdd.md §4.11 (nine \u2020 marks + cut-line legend, tech Pairs 4-8 and 9)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/kb_rules.md (re-sync necessity check)",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "source/kb_setting.md (re-sync necessity check)",
+      "file": "sections/tech_week1-build.md",
       "verdict": "PASS",
       "violations": []
     }
