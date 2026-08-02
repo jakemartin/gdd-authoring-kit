@@ -1,151 +1,228 @@
-# Gate report — run `row4-playable-3`
+# Continuity gate — run `row5-2`
 
-- Master: `source/gdd.md`, md5 `6a446c9408cbaf838a57f3326617e4d3` (from
-  `source/MANIFEST.txt`, present — no `sync-missing`).
-- Sections gated this run: one — `sections/tech_row4-and-provisional-playable.md`.
-  Every other `.md` in `sections/` either carries the "✅ APPLIED ADDENDUM — DO
-  NOT RE-APPLY" banner (27 files) or is a stage-1/stage-2 original already merged
-  (`rules.md`, `scenario.md`, `ux.md`); none was produced by this stage.
-- **Top-level verdict: PASS.** Zero violations.
+`source/MANIFEST.txt` present (no `sync-missing`). `gdd.md` md5
+`10b9a7ab4c5fbb4a7464faea37821122`, unchanged from `row5-1`. One file gated:
+`sections/tech_row5-turn-loop.md` (eleven OLD/NEW replacement pairs) — and no
+other.
+
+**Top-level verdict: PASS. Total violations: 0.**
+
+Every pair was judged as **merging text**; the pair headings, placement table,
+grounding note, merge precondition and the "None" answers under Open questions /
+Change requests / Handoffs were judged as **non-merging apparatus**. Neither
+category yields a violation. Where a risk is named below, it is labelled with the
+category it lands in.
 
 ---
 
-## `sections/tech_row4-and-provisional-playable.md` — PASS (0 violations)
+## `sections/tech_row5-turn-loop.md` — **PASS** (0 violations)
 
-The three `row4-playable-2` `contradiction` findings are closed, and closed the
-way the finding asked — by deletion, not by substitution.
+### The four `row5-1` findings
 
-1. **"No bare *now* remains in §3's status paragraph…"** — the sentence is gone
-   from the file. It has no successor: nothing in the front matter now asserts
-   the paragraph is clear of unbound markers, and the *now* the table
-   deliberately keeps ("that row **now** states the arithmetic") is still carried
-   as a **Kept** row with its reason.
-2. **The §4.11 row that denied the site** — replaced. The table now reads
-   `| §4.11 preamble | "rows 1 and 3 have **since** flipped" | Carried forward,
-   not removed: pair 14 rewrites it to "rows 1, 3 and 4 have since flipped"… |`,
-   which quotes `source/gdd.md` line 2640 exactly and gives it a disposition
-   that matches pair 14's own NEW.
-3. **The two undisposed survivors** — both now have rows, and both dispositions
-   check out against source. `| §3 status | "the row 2 module, whose ledger row
-   is **still** unflipped" | Kept. True of row 2 at 647d4df…` matches line 1466;
-   `| §3 populated | "`crew/tasks.py` is **still** written against the Combat
-   spec alone" | Kept…` matches line 1483, and its stated reason — the file is
-   byte-unchanged `5ffa8d6` → `647d4df` — is Fact I at Fact I's own extent.
+| `row5-1` finding | State at `row5-2` |
+|---|---|
+| 1 · `placement-collision` (doubled `**` at pair 3's join) | **Withdrawn — and the withdrawal is correct.** Re-derived below. |
+| 2 · `dead-reference` (§4.10 save header cited for `sideToMove`) | **Fixed.** |
+| 3 · `dead-reference` (bare `` `Combat.h` ``) | **Fixed.** |
+| 4 · `dead-reference` (bare `` `Economy.h::killAward` ``) | **Fixed.** |
 
-### The completeness test, run explicitly
+**Finding 2.** Pair 3 now reads: *"read off two sites that keep the turn number
+and the side to move as separate fields — §4.7 Stub 8's UI snapshot `match
+{turn, turnCap, sideToMove, resultTier or null}`, and §4.10's canonical state
+hash, which serializes `GameState` in a fixed field order beginning turn
+counter, side to move"*. Both sites verified against `source/gdd.md`:
+`sideToMove` occurs **exactly once** in the document, in §4.7 SPEC STUB 8's
+snapshot field list; §4.10's canonical-state-hash paragraph reads *"serialize
+the `GameState` in a fixed field order — turn counter, side to move, per-side
+`fameTotal`/`fameCombat`, …"*. §4.10's file-layout table is no longer cited for a
+`match` group it does not carry.
 
-No completeness claim survives in any form. The one sentence that could be read
-as a successor is:
+**Findings 3 and 4.** Pair 3's NEW block now carries `cpp_reference/Combat.h`
+and `cpp_reference/Economy.h::killAward`. A search of the whole addendum returns
+no surviving bare `Combat.h` or `Economy.h` in any form.
 
-> The table records the markers this addendum examined in the four paragraphs it
-> moves, and what it did with each.
+### Re-derivation of the withdrawn finding — the `row5-1` gate was wrong
 
-This is a caption on the table, not an assertion about the document: its scope is
-"the markers this addendum examined", so it makes no claim that the four
-paragraphs contain no other marker, and it hands the next author no clean bill on
-anything the table omits. That distinction matters here, because the paragraphs
-do carry unbound present-tense claims the table does not list — "the editor pass
-is not yet due" and "T-DATA-05 … has not run" (line 1466), "stays unverified"
-(line 1483), "**Row 2 is not green:**" (line 2644). Each remains true at
-`647d4df`, none is inside any OLD block, and none is claimed clear. Had the
-sentence read "the markers **in** the four paragraphs", it would have been false
-against those four and would have blocked. It does not.
+I reach the **opposite** conclusion to `row5-1` and agree with the
+orchestrator's byte-level check. Evidence, taken with a byte/line-oriented tool
+(anchored ripgrep), not a Markdown-aware one:
 
-The rest of the file's self-account was re-tested against the same standard and
-each claim is bounded by a check that exists: "Each **OLD** block … returns
-**exactly one** match" (verified, below); "No NEW block contains a fenced block"
-(verified — no pair's NEW contains a fence, so three backticks is correct and the
-four-backtick ruling does not engage); "every NEW block for pairs 1–13 is a
-single line" (verified — GDD lines 1466, 1474, 1483, 1537 are each one source
-line); "no pair here deletes, edits or weakens it" of the 2026-08-02 ruling
-(verified — the ruling sentence appears in no OLD block); "§4.8's bare
-`Combat.h` at line 2440" (verified at line 2440, and exempt by ruling).
+- Addendum line 40 against `not the first of those\.\*$` — the `$` anchor matches
+  immediately after the asterisk, so the OLD block's final two bytes are `.` `*`
+  and no byte follows on that line:
 
-### Re-derived from scratch, not taken on report
+      40:and a setter for the turn number is not the first of those.*
 
-The author reports the diff as confined to the live-marker section plus two
-hedging words. That report is not gate-bindable and was not relied on: all
-fifteen pairs were re-derived against md5 `6a446c9408cbaf838a57f3326617e4d3`
-independently of what did or did not move.
+- `source/gdd.md` against `not the first of those\.\* Legend:` — **1
+  occurrence**. The asterisk-inclusive OLD block is unique and is followed by
+  ` Legend:`.
+- Pair 3's NEW block against `no file format is defined or read\.\*$` — **1
+  occurrence**; the NEW block terminates in exactly one `*`.
 
-- **All fifteen OLD anchors match `source/gdd.md` exactly once.** Pairs 1–7 on
-  line 1466, pair 8 on 1474, pairs 9–11 on 1483, pairs 12–13 on 1537, pairs 14–15
-  on 2639–2644. Each was confirmed verbatim against the source line and its
-  distinctive span counted document-wide: one occurrence each. Pair 8's row is
-  unique against the two other "Capture & Fame economy" strings (lines 1686,
-  2661); pair 12's is unique against the §3 cross-reference to *Specification
-  outruns the build* on line 1466.
-- **No placement collision.** On line 1466 the seven spans occur in pair order
-  and are disjoint (1 → 2 → 3 → 4 → 5 → 6 → 7, pair 5 ending where pair 6 begins,
-  with no overlap); likewise 9 → 10 → 11 on line 1483 and 12 → 13 on line 1537.
-  Pairs 14 and 15 are separated by lines 2641–2642, untouched. Every OLD is an
-  exact string, so every placement merges mechanically. The Placement table's
-  fifteen rows agree with the pairs.
-- **No dead references.** §3 (line 1375), §4.4 (1513), §4.5 (1527), §4.7 (1577),
-  §4.8 (2410), §4.9 (2487), §4.10 (2558), §4.11 (2637) all exist; the §4.7
-  heading does read "…that read `*pending*` at 2026-08-01", which is what pair 14
-  states in the document; Stubs 1 and 3 (lines 1625, 1658) carry no
-  built-annotation, which is what the "Not in scope" note claims of Stub 4;
-  §4.11's row-5 cell does read "4 + verified Combat/Repair @ 5ffa8d6", which is
-  where pair 15 reads row 5's second dependency; `crew/tasks.py` occurs exactly
-  once in the document, inside the paragraph pair 10 extends.
-- **No curly quotes** anywhere in the file. No fenced block inside a NEW block.
-- **Path form.** Every cited path is full, including pair 7's
-  `cpp_reference/Economy.h` where Fact F says only `Economy.h`. The single bare
-  name is `Combat.h` in the "Not in scope" note, which quotes §4.8's known
-  pre-existing defect and is exempt by ruling.
-- **Arithmetic.** 69 unchanged; green 27 = 7 + 5 + 6 + 9, split 18 at `c224825`
-  and 9 at `647d4df`; unclosed 42 = 69 − 27; "the 41 in rows 5–10" = 50 − 9;
-  verified ledger rows 6 → 7 (pair 12) consistent with pair 8's flip and pair 9's
-  "Seven rows carry a ✓ … an eighth carries evidence without one"; pair 10's
-  "**Data tables** is the eighth row" agrees with both.
-- **Entry points.** Pair 3 binds the document's own **seven** to `9f87ecd`, with
-  "that commit" taking its antecedent from the untouched driver sentence
-  immediately before it. Pair 7's **eight** at `647d4df` matches Fact K
-  set-for-set — the seven listed plus `cpp_reference/test_economy.cpp`, six test
-  harnesses, one combat duel simulator, one debug REPL — and is stated at Fact
-  K's extent, entry points in the tracked tree at that commit. The eighth is the
-  file Fact C probes `EXISTS`.
-- **Pair 7's substantive claims** each land on a fact: 9/9 under clang++ and
-  MSVC and the no-uncovered-ID/Q29 consequence (Fact B), the five cited sources
-  (Fact C), week 3 and therefore ahead of the milestone table (Fact D, confirmed
-  in the document at line 1519), "owns the economy and not the turn" and the four
-  ruled-question invariants (Fact E), the command list, the debug-setter caveat
-  and `GATE-DRV-01..07` still 7/7 and still not `T-*` (Fact F), 18 → 27 and 69
-  standing (Fact G), and the shortened list of what still cannot be done —
-  turn structure, AI, scenario file — against Fact H. The Q4/Q5/Q6/Q8 readings
-  quoted there are the register's own text: T-FAME-02 and T-FAME-04 (Q8),
-  T-FAME-05 (Q4), T-FAME-07 (Q5, "500, not 650"; Q6, absence). Stub 4 does carry
-  nine invariants.
-- **The qualification.** Pair 7's OLD is the eight-word tail plus the italic
-  close; the ruling sentence is neither quoted, edited nor weakened, and the
-  amendment is written as a dated Director judgement rather than a check result.
-- **Row 4's attribution** is the Claude Code session, at pair 10, attached to the
-  paragraph's existing second authoring sentence, with the `crew/tasks.py` diff
-  written at its own extent — "it is not evidence about what any run did".
-- **No `kb-desync`.** No pair touches §2, so the §2 parse in `source/kb_rules.md`
-  is unaffected; the Fame figures pair 7 names are quoted from the existing §4.7
-  register text, unchanged.
-- **Format** is the accepted addendum shape — numbered pairs, Placement,
-  Grounding, Open questions, Change requests, Handoffs — as ruled clean on the
-  previous two runs. Change requests: none, correctly, since no number moves in
-  prose that is not already a Director-supplied fact.
+Applied, §3's status line closes `…no file format is defined or read.* Legend:`
+— one italic open at `*Status:`, one italic close. Correct. The `row5-1`
+report's own quotation of the OLD block, which dropped its final byte, was the
+defect, not the addendum.
+
+Same class, checked while I was there: pair 3's NEW introduces a nested italic
+run, `*both players draw income from turn 2*`, inside the outer italic status
+line. That is already the line's own convention — the unedited text carries
+`§2.6's *the forecast the player sees is exactly what resolves*` in the same run
+— and the delimiter runs pair to each other, not to the outer run. No finding.
+
+### What was checked and cleared
+
+**Uniqueness and disjointness.** Pairs 1–3 are disjoint spans of GDD line 1466;
+pairs 5–7 of line 1483; pairs 8–9 of line 1537; pairs 10 and 11 of §4.11's
+preamble (lines 2639–2640 and 2646–2649). No OLD block is a substring of
+another, and no two pairs target the same span. Only one file is in this stage,
+so no cross-section collision is possible. The placement table's claim that
+pairs 1–3, 5–7 and 8–9 are order-independent disjoint spans is accurate.
+
+**Commit substitution — complete and consistent.** Every row-5 binding names
+`ad77b13` and nothing else: pair 2 (`at ad77b13 only rows 6–8 hold none`), pair 3
+(the record, the `main()` count, the closing state), pair 4 (ledger evidence
+cell), pair 6 (populated-rows record and the `crew/tasks.py` extent), pair 8
+(§4.5's green split), pair 11 (§4.11's green-rows sentence). The three `caa8267`
+survivals are each a parent/ancestor reference and each correct against Fact P —
+pair 1's parent link, pair 7's parent link plus the widened ancestor list
+`5ffa8d6, c224825, 9f87ecd, 647d4df, caa8267`, and the grounding note's
+byte-identity clause (apparatus). The `647d4df` survivals in merging text are
+each bound to row 4 or to the driver sandbox and stay true there: pair 3's *"the
+same free sandbox it was at `647d4df`"*, pair 8's *"**9** at `647d4df`, where
+T-FAME-01..09 closed row 4"*, pair 11's *"row 4 at `647d4df`"*.
+
+**Arithmetic, re-derived from §4.11 rather than accepted.** Written IDs by row:
+7 + 6 + 6 + 9 + 9 + (6 + 10 + 4 + 5 + 7) = **69**, and no new ID is written.
+Green: 18 + 9 + 9 = **36**. Unclosed: T-DATA-05 + **32** in rows 6–10 = **33**;
+36 + 33 = 69. Rows 6–10's 32 = T-AI 6 + T-SCN 10 + T-UI 4 + T-INT 5 + T-SAVE 7,
+which also confirms the OLD text's 41 for rows 5–10. Verified ledger rows 7 →
+**8**; evidence-carrying rows 8 → **9**, so Data tables becomes the *ninth* row
+in pairs 5 and 6 on the same "row carrying evidence" ordinal §3 already uses.
+`main()`-defining tracked sources 8 → **nine** = seven harnesses + one duel
+simulator + one REPL, and *"the eight named above"* resolves: seven are listed
+by name in the driver sentence and the eighth,
+`cpp_reference/test_economy.cpp`, in the row-4 sentence.
+
+**Tense bindings.** Every claim bound to `647d4df` stays bound there; every claim
+bound to `ad77b13` is true there per Facts P and Q. Pair 3 correctly does *not*
+repeat the row-4 tail's *"no way to … play a match"* — a turn structure now
+exists — and states only what `ad77b13` does not have.
+
+**Fact M compliance.** No OLD block contains the "Playable via debug commands"
+ruling or its amendment; no NEW block states, implies or pre-empts a re-ruling,
+and none restates that the ruling has re-opened.
+
+**Cross-checks against unedited source.** §2.8's *"one guard, one three-key
+comparison, and one grade"*; Stub 5's T-TURN-04..07 content; T-TURN-08's *"this
+gate asserts the turn loop calls it at the right moment with the right board
+facts, nothing more"*; Q7 ruled as per-scenario data; Q10 open, naming
+`isFlag`/Stub 7; Q29's conservative reading; T-FAME-07's flat 500 flag award;
+§2.7's *"both players draw income from **turn 2**"*; §4.4's week-3 row for §4.11
+rows 4–5; §4.11 row 6's dependency cell reading `5`; the Repair row's
+T-REPAIR-01..07 @ `5ffa8d6`. All agree with the addendum as written.
+
+**Lane and knowledge base.** All eleven pairs land in §3, §4.5 and §4.11 —
+`tech-director`'s lane, no scope breach. Nothing touches §2, so `kb_rules.md` is
+unaffected; its turn-cap and cap-resolution blocks stay correct as parsed. No
+`kb-desync`.
+
+**Register.** Declarative and present-tense, matching §3's existing evidence
+prose sentence for sentence. No UI strings are written, so no faction-voice or
+system-voice surface is touched.
+
+---
+
+## The addendum's own highest-risk new phrases
+
+Named as requested. **None is filed as a violation** — each is grounded and each
+is true as written. Ranked by how likely it is to be the one that is wrong.
+
+1. **"the module refuses a cap below 1 rather than substituting a default"**
+   (pair 3, *merging*). The addendum's only new *behavioural* claim. Nothing in
+   §2.8, §2.11.4, Q7 or Stub 7's `turnCap` row states a lower bound or a
+   refusal, so once merged this sentence is the document's first and only
+   statement of one, resting on Fact E alone. If §3 prose is ever read as
+   normative, this is the line that becomes a rule nobody ruled.
+2. **"`g++` is not installed on this machine"** (pair 3, *merging*). Deictic:
+   the GDD has no antecedent for "this machine", and §3 records a few hundred
+   words earlier that Combat was certified at `5ffa8d6` *"on a live
+   `g++`/`clang++` compile+run"*. Both are true — different harness, different
+   time — but the sentence invites the reading that they are not.
+3. **"the §2.8 facts arrive as a caller-supplied `BoardSnapshot`"** (pair 3,
+   *merging*). `BoardSnapshot` occurs nowhere in `source/`; it is a source-code
+   identifier entering the GDD on Fact E's word, and it is the load-bearing half
+   of the "it owns **no board**" claim.
+4. **"§2.11.4 displays the counter as `N / turnCap`"** (pair 3, *merging*).
+   §2.11.4 literally renders `TURN 12 / 20`; `N / turnCap` is the addendum's
+   abstraction of it. Defensible — §2.11.4's bullet says the widget *"reads
+   `turnCap` from the scenario rather than hardcoding a number"* — but it is a
+   paraphrase presented as a citation, and stated reading 2 rests entirely on it.
+5. **"an AI or a scenario file (rows 6–8)"** (pair 3's closing sentence,
+   *merging*). Two systems, three row numbers; row 8 is UI binding. Fact L
+   phrases it this way and pair 2 has already said correctly that rows 6–8 are
+   the rows holding no code, so it reads through — but the parenthetical does
+   not enumerate what it appears to enumerate.
+6. **"the first four links of the critical path are evidence rather than
+   schedule"** and **"row 6 (Opponent AI) is blocked on nothing but itself"**
+   (pairs 2, 8, 11, *merging*). The only claims here that depend on §4.11's
+   *table body*, which this addendum deliberately does not edit. True today;
+   they are the phrases that will need re-cutting first when row 6 lands.
+7. **"no file format is defined or read"** (pair 3, *merging*). True of the
+   build at `ad77b13`, in a document whose §4.10 and Stub 7 both define file
+   formats on paper. Context carries it; nothing else does.
+8. **The grounding note's "Fact H backs every figure in pair 8 and pair 3's 69,
+   27 → 36 and 8-verified-rows clauses"** (*apparatus*). Pair 3 has no
+   8-verified-rows clause; pair 8 carries the "**8** verified ledger rows"
+   figure and pair 5 carries the ✓-count. Fact H backs both and "every figure in
+   pair 8" already covers the figure, so the attribution is loose rather than
+   wrong. Same paragraph: pairs **5, 9 and 10** are never named in the grounding
+   note. Each is an arithmetic or consequential edit checkable against the
+   merged document itself, which is why none is filed — but a grounding note
+   that skips three of eleven pairs is one edit away from the exact defect
+   `row5-1` filed.
+
+## The three items held back from this file
+
+A view was asked for; none is a finding against this addendum.
+
+- **§4.11's row-9 dependency cell** — *"re-open when rows 4–5 add
+  `Capture`/`Build`/`EndTurn`"*. Correctly held back: it sits in the table body
+  this addendum does not touch, row 9 holds no code, and a gate that has never
+  run cannot re-open. Note for the Director that after this merge it is the
+  document's only remaining future-tense clause whose antecedent is fully
+  satisfied, and it belongs to whoever files rows 9–10.
+- **§4.8's bare `Combat.h`** — correctly held back. §3's lineage parenthetical
+  scopes its "every path this table cites was probed" claim to the ledger table,
+  so §4.8 lies outside it and this addendum does not widen the claim.
+- **The T-CAP / T-TURN two-family seam** — correctly held back from a
+  subject-scoped file, and it should reach the Director **at this merge** rather
+  than the next. Row 5 flipping is what makes it bite: §2.8 phrases its own
+  invariants as T-CAP-01..08, no T-CAP ID appears in any acceptance set, and
+  this addendum's own *"T-TURN-04, 05, 06 and 07 encode §2.8's procedure
+  exactly"* is precisely the bridge between the two families — asserted in §3
+  prose, gated nowhere.
 
 ---
 
 ## Verdict
 
-**PASS.** The file may merge. The `row4-playable-1` `stat-drift` and all three
-`row4-playable-2` `contradiction`s are closed, and closed by deletion rather than
-by a tighter assertion: the sweep's completeness claims are gone, the two
-surviving `still` clauses and the §4.11 "have since flipped" marker each have a
-stated disposition, and the only remaining sentence about the table is a caption
-scoped to what the author examined, which asserts nothing about markers the table
-omits. Nothing in the front matter was taken on trust — all fifteen OLD anchors
-were re-matched against md5 `6a446c9408cbaf838a57f3326617e4d3` and each occurs
-exactly once, the spans are disjoint and in order, the arithmetic closes at
-69/27/42 and 6 → 7, pair 7's eight entry points match Fact K set-for-set, every
-path is full, and no NEW block contains a fence. Nothing further is required
-before merge; the Director should apply the fifteen pairs at the placements
-listed and then rebuild the derived files and re-run `python sync.py` per the
-merge checklist.
+`sections/tech_row5-turn-loop.md` passes with zero violations, so run `row5-2`
+is **PASS** and the addendum is clear to merge. All three accepted `row5-1`
+findings are fixed in place: both citations now carry their `cpp_reference/`
+paths, and stated reading 1 is re-sourced to §4.7 Spec Stub 8's `match` snapshot
+and §4.10's canonical state hash — the document's only two sites that hold the
+turn number and the side to move as separate fields. The withdrawn
+`placement-collision` is confirmed withdrawn on my own byte-exact re-derivation:
+pair 3's OLD block does include the closing `*`, that asterisk-inclusive string
+occurs once in `source/gdd.md`, and the merge yields exactly one italic close,
+so the `row5-1` gate — not the addendum — was wrong. The commit substitution to
+`ad77b13` is complete and consistent across §3, §4.5 and §4.11, the three
+`caa8267` survivals are each a correct parent or ancestor reference, and the
+69 / 36 / 33 / 8 / 9 arithmetic re-derives unaided from §4.11's acceptance sets.
+Before merge, one thing must still happen, and it is the addendum's own stated
+precondition rather than a waiver of mine: **`ad77b13` must be pushed before
+this addendum is applied**, because pairs 1, 3, 4, 6 and 7 add commit links to
+it and pair 7 keeps the document's standing claim that every commit link
+resolves; the Director should take the T-CAP / T-TURN seam as a noted item at
+the same time.

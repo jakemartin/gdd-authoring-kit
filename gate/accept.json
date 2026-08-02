@@ -1,10 +1,10 @@
 {
-  "run": "row4-playable-3",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=6a446c9408cbaf838a57f3326617e4d3",
+  "run": "row5-2",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=10b9a7ab4c5fbb4a7464faea37821122",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row4-and-provisional-playable.md",
+      "file": "sections/tech_row5-turn-loop.md",
       "verdict": "PASS",
       "violations": []
     }
