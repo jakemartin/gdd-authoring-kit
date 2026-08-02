@@ -1,158 +1,157 @@
-# Gate report — run `week1-build-9`
+# Gate report — run `compiler-gap-2` (re-gate of `compiler-gap-1`)
 
-**Source of truth:** `source/gdd.md`, md5 `d3f6913b1ecf228c19811328db33b27d`,
-per `source/MANIFEST.txt` (present; no `sync-missing`).
+**Source of truth:** `source/gdd.md`, md5 `97ccf0e9cc8c3f72adfaca10bd42d862`,
+per `source/MANIFEST.txt` (present; no `sync-missing`). The md5 the draft states
+in its own header matches it byte for byte.
 
-**Sections gated this stage:** one — `sections/tech_week1-build.md`. Every other
-file in `sections/` carries an applied-addendum banner and is history, not this
-stage's output; none was gated.
+**Sections gated this stage:** one — `sections/tech_compiler-and-playable-gap.md`.
+Every other file in `sections/` carries an `✅ APPLIED ADDENDUM — DO NOT
+RE-APPLY` banner (spot-verified on the most recent, `sections/tech_week1-build.md`,
+line 3) and is history, not this stage's output. None was gated.
 
-**Top-level verdict: PASS.**
+**Top-level verdict: PASS.** Zero violations.
 
 ---
 
-## `sections/tech_week1-build.md` — PASS, 0 violations
+## `sections/tech_compiler-and-playable-gap.md` — PASS, 0 violations
 
-### Mechanical half — re-verified in full
+### The clause that blocked `compiler-gap-1` — cleared
 
-All thirteen **OLD** anchors were located in `source/gdd.md` and each returns
-**exactly one** match:
+The prior run filed one `unverified-claim` against Pair 1's commentary for
+claiming the gate *"has **always** detected one compiler"*, a history no cited
+check reaches. The clause now reads, at lines 23–25:
 
-| Pair | GDD line(s) | Anchor status |
-|---|---|---|
-| 1 | 1459 | unique, byte-identical |
-| 2 | 1460 | unique, byte-identical |
-| 3 | 1464 | unique, byte-identical |
-| 4 | 1457–1458 (adjacent) | unique, byte-identical |
-| 5 | 1465–1466 (adjacent) | unique, byte-identical |
-| 6 | 2446 | unique as a full line (`Combat.cpp::effectiveness` also occurs at 1466; the anchor line does not) |
-| 7 | 2476–2477 | unique, byte-identical |
-| 8 | 1453, second half, inside the closing italic marker | unique, byte-identical; the trailing `*` is not consumed |
-| 9 | 1470 | unique, byte-identical |
-| 10 | 1524 | unique, byte-identical |
-| 11 | 1564 | unique, byte-identical |
-| 12 | 2618–2620 | unique, byte-identical |
-| 13 | 1443 | unique (1 occurrence document-wide) |
+> Documentation-only: the gate detected one compiler at both commits Fact A
+> checks, `5ffa8d6` and `c224825`, so the old text understated it rather than
+> describing a tooling change.
 
-- **Curly quotes:** a document-wide search of `source/gdd.md` for `’ ‘ “ ”`
-  returns **zero** matches. Every anchor is straight ASCII. The draft's own
-  grounding row on this point is correct.
-- **Internal anchors:** `](#` returns **zero** matches document-wide, so pair 11's
-  heading rewrite breaks no link target. Confirmed independently.
-- **Nested fences (Director ruling 1):** pair 13 alone uses four-backtick
-  delimiters (draft lines 449/451 and 453/468) and its inner three-backtick block
-  (456/463) is fully enclosed. No other pair's NEW block contains a fence. Every
-  NEW block has exactly one unambiguous boundary.
-- **Placement collisions:** none. Pairs 1–5 take five separate lines of the
-  ledger table in the source's actual row order (Combat resolution, Test suite,
-  Hex, Movement, Capture & Fame, Turn loop, Opponent AI, Data tables, Repair,
-  Type-effectiveness, Content/scenario, UI — verified at lines 1457–1468), so
-  pair 4 sits above pairs 1–2 and pair 3 sits immediately above pair 5 without
-  either OLD block spanning another pair's anchor. Pair 13 inserts at 1443,
-  above pair 8's 1453 and pair 9's 1470. Pairs 6, 7, 10, 11, 12 are in four other
-  sections. Every placement names a line, not a region.
-- **kb-desync:** none. No pair touches §1, §2, the Q register, §4.4, or §4.11's
-  build-order rows and † legend, so nothing here can make `kb_rules.md` — the
-  parse of §2 — wrong.
-- **Required headings:** Placement, Change requests, Open questions and Grounding
-  are all present; the thirteen numbered pairs are the draft, as in every prior
-  addendum this gate has accepted for this file. No `format-breach`.
+Fact A's bound:
 
-### Substantive half — merging text, checked hardest
+> Verified byte-identical at `5ffa8d6` and `c224825` via
+> `git show <commit>:crew/tools.py`. **Extent: two commits, not the whole
+> history.**
 
-Every claim inside a NEW block was checked against `source/gdd.md` or the
-Director-supplied fact set, and every one resolves:
+The clause now names exactly the two commits the check covers, in the past
+tense, and reaches no further. It also no longer contradicts the file's own
+Grounding note (lines 114–116), which states the same bound. The standing
+**Extent** ruling is satisfied.
 
-- **Path form (Director ruling 2).** Every path in every NEW block is written in
-  full. Pair 9's run-`-8` defect is repaired at the right site: the block now
-  reads "resolve to two tracked files, `cpp_reference/Combat.good.cpp` and
-  `cpp_reference/test_combat.cpp`, which the cells now name in full" — no
-  `cpp_reference/` stated once and distributed across five bare names. Pair 4's
-  Test suite cell writes all three week-1 harnesses out in full. Pair 3 writes
-  all three CSVs in full. The header's "Two constructions in this file rely on
-  that exemption — pair 9's OLD anchor, and the Target 4 sentence that quotes it"
-  is now **accurate**: those are the only two prefix-distribution constructions
-  left, and both are exempt.
-- **Pair 7 (Director ruling 3).** NEW text carries no citation. `python run.py`
-  survives byte-identical from the OLD anchor and is ruled in bounds; **not
-  filed.** Pair 4's "All re-runnable via `python run.py`" is the same case —
-  byte-derived from its own OLD anchor (line 1458), a command, repo-root — and is
-  likewise not filed. Pair 7's "each §4.7 stub joins **them**" points back at
-  "sources", not at a directory, so ruling 2's pronoun clause is not engaged.
-- **Absolutes (Director ruling 4).** A document-wide search of the draft for
-  `no path fragment`, `names nothing`, `nothing at all`, `of any kind`,
-  `no file and no directory` and `contains no` returns **zero** matches. All
-  seven surviving statements about pair 7 and pair 13 use the sanctioned narrow
-  form "cites no path" (draft lines 262, 267, 275, 439, 560, 587, 658). The three
-  over-claims filed at run `-8` are gone, not merely softened. "The element is
-  gone rather than narrowed" (line 273) is bound by its definite article to the
-  single path-shaped element named in the preceding clause and does not assert
-  the NEW text is free of path fragments; **in bounds, not filed.**
-- **The bare-citation tally.** Counted independently from `source/gdd.md`: line
-  1457 carries two (`Combat.cpp`, `test_combat.cpp`), 1458 one, 1465
-  `Combat.cpp::repairAmount`, 1466 `Combat.cpp::effectiveness`. **Five citations,
-  four cells, two tracked files.** Pair 9's NEW states exactly that. The three
-  units are kept distinct everywhere they appear.
-- **Probe coverage.** After the pairs apply, every path the ledger table cites is
-  probed at the commit its own row names: pairs 1–3 and pair 4's week-1 half at
-  `c224825` (fact E), pairs 4–6's Combat half at `5ffa8d6` (fact D). The five
-  rows still reading `*pending build*` cite no path. Pair 9's "every path this
-  table cites was probed at the commit its own row names" is therefore true as
-  written.
-- **Absence claims.** "Neither bare name has ever existed in this repository at
-  any commit" rests on fact C's whole-history enumeration, which is the extent
-  that claim needs; "The `build/` directory is not tracked at all" rests on fact
-  F (0 at both commits, 0 ever added). Both carry their stated extent.
-- **`Test Engineer` in pair 9.** Checked as a candidate `contradiction`, since
-  the same sentence says the week-1 modules were **not** a live CrewAI run.
-  It is **not** one: `source/gdd.md` line 1383 gives the Test Engineer's
-  instrument as "**Claude Code + test harness**", and line 1407's test-first
-  workflow is "Director writes a spec → Test Engineer writes tests against it →
-  Systems Engineer implements until tests pass" — precisely the shape fact A
-  describes. The `python run.py` pipeline attribution is grounded in line 1458
-  and line 2477 ("the `g++`/`clang++` + `python run.py` gate runs (§3 ledger)"),
-  which the OLD pair-7 anchor extends to "each §4.7 stub as it lands". **Not
-  filed.**
-- **Arithmetic.** Re-derived from §4.11's Acceptance cells, not from the draft:
-  T-HEX 7, T-DATA 6, T-MOVE 6, T-FAME 9, T-TURN 9, T-AI 6, T-SCN 10 (01..09 + 11),
-  T-UI 4, T-INT 5, T-SAVE 7 = **69**. Rows 4–10 = **50**. Rows 1–3 = **19**, of
-  which **18** are green at `c224825`, leaving **69 − 18 = 51**. Pairs 8, 10 and
-  12 and the informational table all state these consistently. Six `✓` rows and a
-  seventh carrying evidence without one is correct after pairs 1–3.
-- **Cross-references.** Verified live, not assumed: Q29's "full acceptance set at
-  one commit" (line 2649, the T-DATA-05 † bullet, which is *below* the preamble
-  pair 12 replaces — so pair 12's "its † bullet below" resolves); T-DATA-05 as the
-  in-editor Unreal Automation parity pass (lines 2399, 2461, 2467); T-MOVE-07
-  reserved on Q2 (lines 1663–1666, 2363); row 4 depends on row 3 alone (line
-  2634); row 7 depends on rows 1, 2, 3 (line 2637); row 10(a) "no deps at all;
-  write it first" (line 2640); "the scenario row flips after movement, not
-  before" (line 2704); §2.3 is the terrain/move-cost section (line 141), so pair
-  13's "not the §2.3 rule" resolves. No dead reference.
-- **Compiler set.** "Under clang++ and MSVC both" is fact B verbatim; the residual
-  tension with the three `g++`/`clang++` sites is **filed as a change request**,
-  not written into their prose. That is the correct handling and is not a
-  violation.
-- **Voice.** Declarative, present-tense, matching the register of §3 and §4.11.
-  Pair 13's inserted block mirrors the existing T-COMBAT-07 example's format. No
-  `voice-drift`.
+### Independent re-sweep for absolutes of the same shape
+
+Not taken on the author's report. Grepped the draft case-insensitively for
+`always|never|whole history|since week|all four|every`:
+
+- `always`, `never`, `whole history`, `since week` — **zero occurrences.**
+- `every pair below uses three backticks` (line 7) — a claim about this file,
+  true on inspection: all four pairs use three-backtick delimiters.
+- `not under all four` (line 37), `would read as requiring all four` (line 62),
+  `it does not require all four` (line 77) — all three are the *negative* of the
+  overreach, which is the ruling, not a claim beyond it.
+- `everything after it` (lines 89, 93) — this is the GDD's own wording inside
+  the Pair 4 anchor and its NEW continuation, not a new claim.
+
+No absolute in the file now exceeds a cited check.
+
+### What the edit could have disturbed — re-verified
+
+| Check | Result |
+|---|---|
+| `source/MANIFEST.txt` present | Yes; md5 in draft header matches |
+| OLD anchors byte-exact | 4 / 4, unchanged |
+| OLD anchors unique | 4 / 4, one match each |
+| Curly quotes / smart punctuation | None |
+| Placement collision | None |
+| kb-desync | None |
+| Fence rule | Satisfied |
+| Path form | Satisfied |
+
+**Anchors re-read at their lines in `source/gdd.md`, not taken from the prior
+report:**
+
+- **Pair 1** → lines 1582–1583, §4.7 head. Byte-exact. `engine dependencies,
+  compiled by the same` returns **1** match document-wide.
+- **Pair 2** → lines 2490–2492, §4.9 item 1. Byte-exact, including the short
+  line 2491 (`lands — where the ``g++``/``clang++`` + ``python run.py`` gate`).
+  `sources live canonically in the crew repo` returns **1** match.
+- **Pair 3** → lines 2541–2542, T-INT-04 inside the §4.9 spec stub.
+  Byte-exact. `T-INT-04  no engine deps` returns **1** match. The fence at
+  lines 2527/2549 contains no backticks anywhere between them, so Pair 3's
+  backtick-free NEW text is correct; its 12-space continuation indent matches
+  T-INT-02's at lines 2536–2538, so it merges without reflowing the stub.
+- **Pair 4** → line 1466, §3's italic *Status: live tracker* line. The fragment
+  `What week 1 did **not** close is everything after it: rows 4–8 hold no code,`
+  is byte-exact and returns **1** match. The NEW text rejoins the source line at
+  `and since §4.11's critical path runs 1 → 3 → 4 → 5 → 6/8` without a seam.
+
+**No NEW block, OLD anchor or placement row moved.** Confirmed rather than
+assumed: all four OLD blocks still match `source/gdd.md` at the same four line
+ranges the prior run recorded (1582–1583, 2490–2492, 2541–2542, 1466); all four
+NEW blocks are unchanged in substance and still carry the three-backtick
+delimiters the header claims; the four-row Placement table (lines 100–105) still
+names §4.7, §4.9 item 1, §4.9 T-INT-04 and §3. The single edit is confined to
+prose that does not merge.
+
+**Curly quotes.** Grepped the draft for `[“”‘’—–]`. Every hit is an em dash or
+an en dash (`4–8`, `1–3`), both of which match the GDD's own register; zero
+smart quotes and zero smart apostrophes — `§4.4's` on line 93 uses a straight
+apostrophe.
+
+**Placement collision.** Pairs 2 and 3 are both in §4.9 and do not overlap:
+line 2491 is prose above the spec stub, line 2542 is inside the fence that opens
+at line 2527. No other stage produced a section, so no cross-file collision is
+possible.
+
+**kb-desync.** All four pairs land in §3, §4.7 and §4.9. `source/kb_rules.md` is
+a parse of §2; grepped for `clang|g++|compiler|debug command|T-INT|run.py|main()|Playable`
+— **zero occurrences**. `source/kb_setting.md` likewise zero. Nothing in the
+knowledge base goes stale.
+
+### The three Director rulings — still satisfied after the edit
+
+**Ruling 1 (any ONE detected compiler).** `clang` occurs at exactly four lines
+in `source/gdd.md`: 1483, 1582, 2491, 2542. Pairs 1–3 take the last three, which
+are the three named sites. Line 1483 is §3's populated-rows paragraph, which
+Fact B protects — the draft leaves it untouched and quotes it accurately
+(*"on a live `g++`/`clang++` compile+run"*, *"under clang++ and MSVC both"*).
+Pair 3's NEW states the semantics outright, as an acceptance ID must:
+*"Any one of them compiling clean satisfies this invariant; it does not require
+all four."*
+
+**Ruling 2 (§4.4 stays a plan).** Confirmed by anchor line numbers, not by the
+Placement prose: §4.4 spans lines 1513–1526 and no anchor falls inside it. §4.4's
+week-1 cell (line 1517) is *quoted* by Pair 4 and not edited.
+
+**Ruling 3 (the unmet goal, stated negatively).** Pair 4's NEW records the
+negative and carries its extent on its face — *"at `c224825` five tracked
+sources define `main()`"* — matching Fact C's stated extent. All five paths are
+written in full per the path-form ruling. No compensating positive is
+volunteered.
+
+### Grounding claims re-checked against `source/gdd.md`
+
+- `Playable via debug commands` — **1** occurrence, line 1517, inside §4.4's
+  week-1 cell, exactly as the draft says.
+- `selfplay`, `duel simulator`, `entry point` — **0** occurrences each
+  (`self-play` with a hyphen occurs widely, but that is the balance-sim concept,
+  not the file). So no other site in the document restates what Pair 4 corrects.
+- `No pair touches §1, §2, §4.4, §4.5, §4.8, §4.11 or the Q register` — true by
+  the anchor line numbers above.
 
 ---
 
 ## Verdict
 
-`sections/tech_week1-build.md` **PASSES** with **zero violations**, and the
-run-level verdict is **PASS**. Nothing must happen before merge: the thirteen
-pairs may be applied at the placements given, with the bar-(b) sign-off decision
-and its five coupled fallback sites resolved by the Director at merge time as the
-draft's own fallback table sets out. On the standing question — the apparatus is
-now generating more risk than it retires. Across nine runs the thirteen
-replacement pairs have drawn exactly two findings, both real and both repaired
-(run `-6`'s group label, run `-8`'s `cpp_reference/` prefix-distribution in pair
-9); every other finding has been in self-descriptive commentary that never
-merges — headers counting their own exemptions, summaries restating pair 7's
-scope in three places, grounding rows narrating their own extent. Those sites
-have no reader downstream of the merge, and each is a fresh surface for an
-absolute to creep back onto. Stripping the file to the thirteen pairs, the
-placement table, the change requests, the open questions and a grounding note
-that cites the fact sections by letter would retire that surface without
-weakening a single thing that merges.
+**PASS.** The one violation `compiler-gap-1` filed is fixed and fixed in the
+right place: Pair 1's commentary now bounds the gate's behaviour to `5ffa8d6`
+and `c224825`, the two commits Fact A checks, and an independent sweep for
+absolutes of the same shape — `always`, `never`, `whole history`, `since week` —
+returns nothing anywhere in the file. The author's claim that no NEW block, OLD
+anchor or placement row was touched is confirmed rather than accepted: all four
+OLD anchors were re-read at lines 1582–1583, 2490–2492, 2541–2542 and 1466 and
+are still byte-exact and still unique document-wide, the NEW blocks still carry
+three-backtick delimiters over backtick-free content, the Placement table still
+names four sites in three sections, and the file remains free of smart
+punctuation, placement collisions and kb-desync. Nothing further is owed before
+merge: the Director may apply all four pairs at the placements stated, then
+rebuild `.pdf`/`.txt`, re-sync `../stratocracy-content/kb/rules.md`, and re-run
+`python sync.py`.

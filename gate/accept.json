@@ -1,10 +1,10 @@
 {
-  "run": "week1-build-9",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=d3f6913b1ecf228c19811328db33b27d",
+  "run": "compiler-gap-2",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=97ccf0e9cc8c3f72adfaca10bd42d862",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_week1-build.md",
+      "file": "sections/tech_compiler-and-playable-gap.md",
       "verdict": "PASS",
       "violations": []
     }
