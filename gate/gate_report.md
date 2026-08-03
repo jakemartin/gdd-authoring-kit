@@ -1,299 +1,219 @@
-# Gate report — run `row5-rulings-3`
+# Gate report — run `row5-flags-3`
 
-- `source/MANIFEST.txt`: **present**, resolved against the kit root
+- `source/MANIFEST.txt`: **present**, three lines, resolved against the kit root
   `E:\MultiAgent\gdd-authoring-kit`. No `sync-missing`.
-- `gdd.md` md5 at this run: `ca397f4f2eca447b451fca2ca2393092` — matches the
-  MANIFEST line and the md5 both drafts declare in their Placement headers.
-- Files gated: `sections/rules_row5-rulings-and-t-cap-05.md` (6 pairs),
-  `sections/tech_row5-rulings-t-turn-10.md` (13 pairs).
+- `gdd.md` md5 at this run: `7dc635b4f06589f89b46e2fa1b7ad86b` — matches the
+  MANIFEST line and the md5 all three drafts declare in their Placement headers.
+  Unchanged from `row5-flags-1` and `row5-flags-2`.
+- Files gated: `sections/rules_row5-act-order.md` (**2** pairs),
+  `sections/tech_row5-act-order.md` (**1** pair),
+  `sections/ux_row5-act-order.md` (**8** pairs). **Eleven** pairs total.
 
 ## Top-level verdict: **PASS**
 
-| File | Verdict | Violations |
+| Section | Verdict | Violations |
 |---|---|---|
-| `sections/rules_row5-rulings-and-t-cap-05.md` | **PASS** | 0 |
-| `sections/tech_row5-rulings-t-turn-10.md` | **PASS** | 0 |
+| `sections/rules_row5-act-order.md` | **PASS** | 0 |
+| `sections/tech_row5-act-order.md` | **PASS** | 0 |
+| `sections/ux_row5-act-order.md` | **PASS** | 0 |
 
-Both round-3 fixes are confirmed on the bytes, and both were made by deletion or
-restoration rather than substitution, as the standing rule requires.
-
----
-
-## What was re-derived independently, not accepted
-
-Nothing below rests on the orchestrator's report or on an earlier run of mine.
-Every figure was re-run against `source/gdd.md` at the md5 above.
-
-### 1. TECH pair 7 — the insertion risk, checked first and hardest
-
-Pair 7 had text restored into it, so it was the pair most likely to have flipped
-from replacement to insertion. Re-derived:
-
-- `**20 IDs remain unclosed**` occurs **once** in the master, at line 1558 — the
-  pair's own anchor. `**21` occurs at line 1571 only, in §4.6's token table, and
-  nowhere in §4.5.
-- Pair 7's OLD carries `**20 IDs remain unclosed**`; its NEW carries
-  `**21 IDs remain unclosed**` and carries the string `20 IDs` nowhere.
-- Therefore the NEW does **not** contain the OLD. **Pair 7 is a replacement.**
-
-The restored clause is byte-identical on both sides: `— so everything on the
-critical path but row 8 is evidence rather than schedule.` appears in pair 7's
-OLD and in pair 7's NEW, and the identical phrase `evidence rather than
-schedule` occurs at exactly two master sites — line 1487 (§3) and line 1558
-(§4.5). Restoring it is what keeps those two sections stating one fact in one
-voice, which is what K2 blocked on. Confirmed.
-
-### 2. Pair census
-
-Re-derived by substring test on the current bytes of both drafts:
-
-| File | Pairs | Replacements | Insertions |
-|---|---|---|---|
-| rules | 6 | 5 | 1 (pair 6, §2.13.3 — NEW contains OLD as a prefix) |
-| tech | 13 | 12 | 1 (pair 11, Stub 5 — NEW contains OLD as a prefix) |
-| **total** | **19** | **17** | **2** |
-
-This agrees with the orchestrator's independent count. All 19 OLD anchors were
-located in the master and each matches exactly once. No NEW text is already
-present in the master — in particular `T-TURN-10` occurs **zero** times in
-`source/gdd.md` today, and `21 IDs` occurs zero times.
-
-**Cross-file overlaps: zero.** RULES occupies lines 235–238, 353–356, 375, 383,
-388–391, 1160–1161. TECH occupies line 1487 (×5), 1558 (×2), 1727–1731,
-1753–1754, 1758–1759, 1778–1779, 1781, 2705. Disjoint, and disjoint within each
-shared line as well.
-
-### 3. The five §3 sentences after harmonisation
-
-The class was re-derived by property, not by phrase — the failure recorded at
-J2/K5. `§4.5's 69` occurs 4× and `§4.5's 69-ID` 1×, all on line 1487; a bare
-`\b69\b` sweep returns those five plus two inside pair 6's own OLD at 1558 and
-three unrelated dollar figures in §4.6 (`$0.69` at 1569, 1572, 1596). **The
-class is exactly five and all five are paired.**
-
-Anchor uniqueness after harmonisation, checked as instructed:
-
-- No OLD is a substring of any other. Pairs 2, 3 and 5 are separated by their
-  green-count deltas (`18 → 27`, `27 → 36`, `42 → 49`); pair 4 by its
-  `IDs close: ` prefix *and* its delta `36 → 42`; pair 1 shares no text with the
-  other four beyond `§4.5's 69`, and is distinguished by `-ID count does not
-  move`.
-- Byte order along line 1487 confirmed: the driver clause (pair 1) precedes all
-  four row clauses, which then run 18 → 27, 27 → 36, 36 → 42, 42 → 49. Pair
-  numbering matches.
-- The harmonised name `written-ID count` is vocabulary the master already
-  carries — line 2444, Q32: *"A ruling that mints an ID for one of the checks
-  would move §4.5's written-ID count"*. K6's rationale checks out.
-
-### 4. `T-TURN-10`'s three states, and §4.5's green count
-
-Fact E requires WRITTEN, UNBLOCKED, ASSERTING, NOT GREEN. Every sentence in both
-files that touches the ID was checked against that:
-
-- tech pair 6 NEW: *"it is **written, unblocked and asserting, and not green**,
-  because the code that satisfies it does not exist yet"* — correct, all four.
-- tech pair 7 NEW: *"`T-TURN-10`, written this revision, unblocked and asserting
-  — the code it gates does not exist yet, so it has not run and is not green"* —
-  correct.
-- tech Placement head: *"`T-TURN-10` is **written, unblocked and asserting, and
-  not green**"* — correct.
-- rules pair 5 NEW, on the parallel `GATE-CAP-PARTIAL` case: *"**It has not run,
-  so T-CAP-05 is asserting and not green.**"* — correct, and it matches the
-  master's own register text at line 2398: *"row 8 holds no code, so that gate
-  has not run — it asserts, and it is not green."*
-
-No passage calls `T-TURN-10` unwritten, blocked, or pending a ruling.
-
-**The green count does not move.** Pair 6's NEW reads *"**49** of the 70 are
-green"* against the OLD's *"**49** of the 69 are green"* — 49 unchanged. `49`
-occurs at exactly two master sites (1487 and 1558) and both are inside pairs
-whose NEW preserves it. Arithmetic closes: 1 + 3 + 1 + 16 = 21, and 49 + 21 = 70.
-
-### 5. Locators that were checked rather than trusted
-
-Given three locator errors this session, every citable locator in either
-Grounding was run:
-
-- rules Grounding cites `Driver.good.cpp` lines 552–554, 557, 569 and
-  `Economy.good.cpp` lines 157, 169. **All five verified in the binding unit.**
-  The driver comment at 552–554 reads *"the tick runs AFTER income, so an
-  objective whose capture completes at the start of turn T pays its new owner
-  from T+1"*; `accrueIncome` is called at 557 and `captureTick` at 569;
-  `fresh.turnsHeld = 1` is at 157 and `if (prog->turnsHeld >= s.captureTurns)`
-  at 169. The flip-counted reading in pair 6 is correct.
-- rules' §2.1 claim — *"A grep for `at most once|acts once|acted this turn|once
-  per own turn|move or act` across the whole document returns a single hit"* —
-  **verified: one hit, line 1758, §4.7's `T-TURN-01` line.** Writing no pair for
-  §2.1 is right; §2.1's pseudocode at lines 126–127 already states C2.
-- rules' §2.8 range claim — *"Within §2 the only site carrying a `T-TURN-` range
-  is this one"* — **verified**: `T-TURN-\d+\.\.\d+` returns 354 (§2.8), 1487,
-  1496, 1504, 1558, 1781, 2705. Line 354 is the only one inside §2.
-- I8's cross-file assumption re-run from scratch: pair 11's anchor
-  `T-TURN-09  determinism` is at line 1778, and the enclosing fence opens at
-  line 1752 with `SPEC STUB 5: Turn loop & win / tiebreak`. **`T-TURN-10` lands
-  in Stub 5**, so rules pair 2's `..10` range change is correct.
-- tech Grounding's quotes from Q8(b) and Q8(c) verified verbatim at line 2420;
-  §2.7's *"**One build per factory per turn**, for the player and the AI alike
-  (§2.9)"* verified at line 233; §3's row-4 clause *"never advances a turn and
-  never decides whose turn it is, taking the turn number as an argument, which
-  is why it could land before row 5"* verified on line 1487; §4.7's register
-  quote verified at 2398–2399.
-- tech's claim that §4.5's *"**9** at `ad77b13`, where T-TURN-01..09 closed row
-  5"* sits between pairs 6 and 7 — **verified**, it is inside the per-commit
-  green list that separates the two OLDs, and no pair reaches it.
-
-### 6. Cross-file semantic consistency
-
-The two files describe the same three rulings from different sections. Checked
-pair against pair:
-
-- **Per-turn limit.** rules pair 1 (*"the per-turn limit binds for the rest of
-  that turn either way"*) and tech pair 11 (*"BOTH dispositions of the first
-  build count against the allowance"*) state the same rule. tech pair 8 removes
-  the clause from `T-FAME-04` and says where it went; rules leaves §2.7's own
-  line 233 rule sentence untouched, which is correct — the rule stays, only the
-  ID's coverage moves.
-- **Suite range.** rules pair 2 (`gates within T-TURN-01..10`) and tech pairs 12
-  and 13 (`T-TURN-01..10`) agree. tech's handoff quotes §2.8's OLD without
-  dictating a NEW, so `gates as` → `gates within` is rules' call and does not
-  cross a lane.
-- **Alias map.** tech's handoff states *"The alias map's eight rows need no new
-  row"*; rules changes an existing row and adds none. Agreed.
-- **`T-CAP-05`.** rules pairs 4 and 5 agree with the master's own three
-  statements of the same fact — lines 2333, 2396–2398, 2426 — and keep *"No
-  `T-TURN-` ID asserts it"*, which is what those sites say.
-- **Lanes.** No pair in either file lands in the other's sections. §3 pairs are
-  scoped to the five sentences I5 widened scope to; no ledger table row is
-  touched, and no pair flips, unflips, or re-opens row 5 (C7 satisfied).
-
-### 7. `kb_rules.md`
-
-rules discloses the drift: *"§2.7, §2.8 and §2.13.3 change here, so the parse of
-§2 drifts on merge (F)."* Confirmed live — `kb_rules.md` line 66 carries *"hex;
-if the factory is boxed in, the build waits. **One build per factory per*",
-which is the §2.7 bullet rules pair 1 edits. No `kb-desync`.
-
-tech needs no such note: `kb_rules.md` contains no `T-TURN-`, `T-CAP-`,
-`T-FAME-`, no acceptance range and no ID count, so nothing tech writes reaches
-it. Verified by grep, not assumed.
-
-### 8. Items correctly left open — not filed
-
-I6, I7, J7 and K3 were checked and none is a gap. Specifically: tech's four
-Director questions, the Stub 8 second-flag change request, the `per-unit act
-flags` §3 phrase, the `T-FAME-04` handoff, rules' two §2.13.3 tuning change
-requests, and rules' Open Question 1 on the alias caption's singular. K3's
-row-level vs ID-level filing is correct and is not counted against the file.
+Total: **0 violations**. Four at `row5-flags-1`, one at `row5-flags-2`, none
+here.
 
 ---
 
-## Highest-risk remaining phrases across both files
+## Re-derived, not accepted
 
-Zero violations does not mean zero exposure. Ranked, most likely to become a
-filed violation first.
+**Anchors — eleven of eleven, each unique.** Every OLD was matched as a literal
+against the current bytes of `source/gdd.md`, independently of the claim that
+the OLDs are byte-identical to the last run:
 
-**R1 — TECH / §3 line 1504. The K3 residual has a third site that neither file
-names.** K3 pairs §4.5 with §3's `evidence rather than schedule` sentence, and
-tech Open Question 4 names §4.11's preamble and §4.5. Neither names §3's *other*
-row-5 sentence on line 1504:
+- `rules` pair 2 — `  for each of your units (any order):`, two leading spaces,
+  L126. `rules` pair 1 — `     select → move (within range, terrain-costed) →
+  act (attack / capture / build) → done`, five leading spaces, L127. The fence
+  runs L124–L131: **six body lines, eight including both delimiters**, and pair
+  1 is the **third** body line, pair 2 the **second** — which is what Placement
+  says.
+- `tech` pair 1 — the seven-line `T-TURN-01` block, L1773–1779, matched once as
+  a multiline literal.
+- `ux` pairs 1–8 — L509, L512–515, L522, L531, L587, L599, L608, L712. Each
+  counted **1**. Pair 8's anchor deserved the second look it got: `Move the
+  marked Infantry first.` occurs twice in the document (L712 and Q27's entry at
+  L2471), but the full OLD — `End Turn is inert until that Infantry has moved
+  (hover: …)` — occurs only at L712; Q27 words it `End Turn is inert during beat
+  1a until the marked Infantry has moved`, so there is no near-miss. **No
+  problem anchor.** This confirms the byte-identical claim rather than relying
+  on it.
 
-> **Turn loop & win / tiebreak** joined at `ad77b13` — T-TURN-01..09, **9/9
-> under clang++ and MSVC both** — and it leaves **no ID uncovered** either: no
-> in-editor half and no reserved ID, so its full acceptance set closes at one
-> commit and Q29 is satisfied rather than blocking.
+**Classifications — confirmed by substring test on the bytes, not on the
+authors' words.** `rules`: 2 replacements. `tech`: 1 replacement (`at most once,
+per` occurs zero times in the NEW). `ux`: pair 3's NEW and pair 8's NEW each
+contain their OLD verbatim as a prefix → **insertions**; pairs 1, 2, 4, 5, 6, 7
+each drop OLD bytes the NEW does not carry → **replacements**. Pair 7 is the one
+worth stating: the OLD's `from the MOVED state` does not survive into the NEW's
+`from either the SELECTED or the MOVED state`, so the NEW does not contain its
+OLD. **Stage total: 11 pairs, 9 replacements, 2 insertions**, and `ux`'s own
+count of 8 pairs / 6 replacements / 2 insertions holds.
 
-and the tally two sentences later in the same paragraph:
+**Placements — no collision.** Three files, three disjoint regions: §2.1
+(`rules`), §4.7 Stub 5 (`tech`), §2.11 (`ux`). Inside §2.1 the two anchors are
+adjacent but disjoint body lines, order-independent. Inside §2.11 the four
+§2.11.1 anchors are four disjoint regions in file order — lead-in above the
+fence, the fence's first four transition lines, the last sentence of the
+footnote below it, a table row below that. The two change requests that both
+target §4.7 Stub 8's `hasActed` field are **requests, not pairs**, and each
+names the other, so there is nothing to file.
 
-> Six IDs are still recorded as **uncovered** rather than omitted, in **two
-> states that are not the same state**. … Four are **written and not green**:
-> **T-DATA-05** … and **T-SCN-08**, **T-SCN-09** and **T-SCN-11**.
+**`kb_rules.md` — no `kb-desync`, and none was owed.** `kb_rules.md` declares
+itself a parse of §2.3, §2.4, §2.7 and §2.8. Grepped for `act flag`, `core
+loop`, `select →`, `move at most once`, `has acted` and `per turn`: **zero
+matches**. No pair in this stage touches §2.3, §2.4, §2.7 or §2.8's bytes.
+Nothing in this stage makes that file wrong.
 
-After pair 13 makes row 5's acceptance set `T-TURN-01..10` and pair 7 lists
-`T-TURN-10` among the unclosed, `T-TURN-10` is a candidate seventh uncovered ID
-and a fifth written-and-not-green ID, and row 5 no longer plainly "leaves no ID
-uncovered". This is not filed — F puts §3 out of scope and C7 reserves row 5's
-status for the rebuild addendum — but it is a bare count, and a bare count goes
-stale silently. **The rebuild addendum's site list must carry line 1504's
-sentence and its `Six` / `Four` tally, not only §4.5 and §4.11's preamble.**
+---
 
-**R2 — TECH / the deictic in `at this landing`, ×5 on line 1487.** Each of the
-five sentences means *its own* commit — 9f87ecd, 647d4df, ad77b13, d8284f1,
-9086d6a — and each sits beside that commit's hash, so context carries it today.
-Read instead as "at this revision" the sentence is false, because the written-ID
-count **does** move at this revision, 69 → 70. The harmonisation is right and
-the phrase is defensible; the risk is that it is now five identical deictics
-whose referent lives outside the clause. Related: after merge `written-ID count`
-occurs six times (five new plus Q32 at line 2444), so the next author grepping
-that phrase gets a class that mixes two meanings. **Anchor on the green-count
-delta, never on the phrase.**
+## `sections/rules_row5-act-order.md` — PASS
 
-**R3 — TECH / the pair-7 classification note quotes a token that does not
-exist.** The note reads *"its NEW carries `**21 IDs remain unclosed**` where its
-OLD carries `**20**`"*. The OLD carries `**20 IDs remain unclosed**`; the bare
-string `**20**` appears nowhere in that OLD, and it **does** appear elsewhere in
-the master — line 2419, Q7: *"*Ferrum Crossing* ships **20** turns"*. The
-conclusion is correct and I re-derived it independently, but the token named is
-not the token that carries the test, and it collides with an unrelated site.
-This is exactly the K5 shape — a locator written as a detail rather than as a
-claim. **Quote `**20 IDs remain unclosed**` in full.**
+Untouched since `row5-flags-2` and re-derived, not carried. Both anchors are
+unique and correctly located in the fence; the Placement line-count facts
+(`six body lines`, `eight including both ``` delimiters`, `third body line`,
+`second body line`) match L124–131 exactly. Both pairs are replacements. The
+change-request table is correctly empty — neither pair states or moves a number.
+Both open questions stay withdrawn against the rulings that answer them. §2.9's
+routine, §3's `per-unit act flags`, §4.7 Stub 5's `may move at most once AND act
+at most once` and §4.7's `T-MOVE-03` are cited and none is restated or altered.
 
-**R4 — RULES / `one row names a gate outside the `T-TURN-` numbering`** (pairs 2
-and 3). True of the *Aliases to* column, which is the scope the caption itself
-sets — *"The map below names, for each invariant, the ID or IDs that gate it"*.
-But the `T-CAP-03` row's Why cell names **T-FAME-01** as what gates one half of
-that invariant, so a reader counting rows that mention a non-`T-TURN-` gate
-reaches two, not one. The OLD (*"one row names none"*) did not expose this,
-because an empty cell is unmistakably a cell-level claim while "names a gate" is
-not. Open Question 1 flags the singular's fragility against a *future* second
-`GATE-` row; it does not flag `T-CAP-03`.
+## `sections/tech_row5-act-order.md` — PASS
 
-**R5 — RULES / a gate written into a column headed `Aliases to`.** Pair 4 puts
-`**GATE-CAP-PARTIAL**` in that column while §4.7's Q6 cell, line 2418, reads:
-*"T-CAP-05 aliases onto no `T-TURN-` ID (§2.8), so it has a gate of its own
-**rather than an alias**."* The cell's own text (*"not a `T-TURN-` ID; see
-below"*) and the rewritten caption stop the draft short of asserting an alias,
-and D3 explicitly hands the column question to the Director as a §2.8 formatting
-call — so this is within the grant. It is named because the **header word** is
-the one thing in that table no pair touches, and it is the word Q6 uses to say
-the opposite.
+Untouched since `row5-flags-2` and re-derived. Pair 1's OLD is verbatim
+L1773–1779. The five lettered checks stand against the document: (d)'s §4.9
+citation is verbatim; (e)'s `the same moment T-TURN-10's per-factory build
+allowance renews` matches `T-TURN-10`'s already-merged `The allowance renews at
+the start of the owner's turn` at L1806–1807 and adds no second proposition; the
+Inputs and Transition lines are quoted as they stand at L1766–1771; §2.8's
+alias-map preamble does read `T-TURN-01..10`, so the handoff that says the
+suite's extent is unaffected is correct. No ID minted, none retired, no §4.5
+count paired, and the file disclaims any statement about `ad77b13`.
 
-**R6 — RULES / two live senses of "turn" inside one disambiguating sentence.**
-Pair 6's exclusion clause reads *"and not the next turn in the I-GO-U-GO
-alternation (§2.1), which is the opponent's."* That is true under §2.1, which
-the clause cites and whose pseudocode labels `Player turn:` and `Opponent turn:`
-as separate turns. But §3 line 1487 records the documented choice that *"a turn
-is one full I-GO-U-GO round shared by both sides"*, under which turn T+1 belongs
-to both sides and is not "the opponent's". The main clause is safe because it
-says *"the capturing side's own turns"*; the exclusion clause carries no such
-qualifier. A sentence whose whole job is to remove an off-by-one should not lean
-on the document's most overloaded noun unqualified.
+## `sections/ux_row5-act-order.md` — PASS
 
-**R7 — the one seam stated in two vocabularies.** tech pair 11's *"The allowance
-renews at the start of the owner's turn"* and rules pair 1's *"the per-turn
-limit binds for the rest of that turn"* are the same rule in different words,
-and they diverge only when a factory changes hands mid-round — tech Open
-Question 2, ruled correctly open at J7. Named only because neither file's merged
-text signals that the other exists, so a reader of §2.7 alone and a reader of
-Stub 5 alone will not know they are reading one rule.
+**The one filed violation is discharged, at its own site and in the right
+scope.** Pair 8's NEW now reads `Those are the machine's only two routes from
+SELECTED to DONE that do not pass through MOVED`. Checked against the merged
+machine rather than against the author's summary: after pair 2, SELECTED has
+five exits — `LMB on lit hex → MOVED`, `hover enemy target → forecast card`,
+`LMB on lit target → DONE`, `Space → DONE`, `RMB / Esc → IDLE`. Exactly two
+reach DONE without entering MOVED, and both are the ones pair 8 closes. The
+Grounding bullet, retitled *Why the closure is exhaustive, stated over the right
+set*, now states the claim over routes that skip the move, names the two from
+SELECTED, disposes of `RMB/Esc → IDLE` as committing nothing, and enumerates the
+three from MOVED — `LMB on a lit target`, `Space`, `RMB/Esc` — which is exactly
+MOVED's three DONE exits at L517–519. The false proposition is gone and the true
+conclusion is unchanged.
+
+**The three unfiled, self-initiated corrections — audited hardest, and all three
+land clean.** No violation constrained their wording, so each was checked as a
+fresh assertion:
+
+1. **Placement** — *"Exactly two routes run from SELECTED to DONE **without
+   passing through MOVED** … Those are the two that can strand beat 1a, because
+   every other route to DONE runs through MOVED and therefore spends the move
+   the beat is waiting for."* True on both halves. DONE has no other producer in
+   the machine — PRODUCTION MENU has no DONE exit, IDLE reaches DONE only via
+   SELECTED — so *every other route* is the three MOVED exits, and entry to
+   MOVED is `LMB on lit hex`, which is the move beat 1a waits on. The
+   subordinate claim that Wait *"the input table has always granted from
+   SELECTED"* is verbatim true at L537: `Wait — mark the **selected**/moved unit
+   done without acting`.
+2. **Pair 2's rationale** — *"With it listed, the two routes from SELECTED to
+   DONE that skip the move are both on the diagram and both visibly
+   enumerable."* Correct, and correctly scoped to the diagram it is arguing
+   about. The paragraph's `Two additions and two edits` is not a miscount: the
+   two additions are the attack pair (two lines, one behaviour, named in the next
+   sentence) and the Space line, against two edited lines.
+3. **The two survey-B rows** — the `MOVED ──Space (Wait)` row now says the
+   transition *"is one of the three routes to DONE that run through MOVED, which
+   is why pair 8's enumeration is qualified to the routes that skip the move
+   rather than stated over all routes"*, and beat 1a's directive row says
+   *"every remaining route runs through MOVED, so the directive stays satisfiable
+   and `Move completes` stays reachable"*. Both are true against L516–519, and
+   the second is the row that would have carried the overstatement forward into
+   the survey if it had been left. The adjacent row on `this is what makes 1a
+   retire inside turn 1 in every branch` is also correct on its placement claim:
+   pair 8's insertion point at L712 is immediately before that clause, in the
+   same cell, and the clause is carried through unedited.
+
+**Nothing else in the file still carries the old enumeration.** Every remaining
+statement about routes to DONE — Placement, pair 8's NEW, pair 8's rationale
+(*"Every route by which the marked Infantry could reach DONE without moving is a
+dead end"*, *"The machine's remaining routes to DONE all run through MOVED"*),
+the `scenario-designer` handoff, and the Grounding bullet — is scoped to the
+skip-the-move set or to the through-MOVED set, and each is true against the
+merged block. The author's judgment that an uncorrected duplicate would resurface
+was right, and no correction overreached its site: no anchor moved, no
+classification moved, no pair was added or dropped, and the eight OLDs are the
+ones already verified.
+
+Everything else in the file re-checks: `T-TURN-01` is in §4.7 Stub 5,
+`T-MOVE-03` reads `a move never ends on an occupied hex` at L1702, `T-UI-02` and
+`T-UI-03` exist, `carrying its unacted pip` occurs once, `guidedOpening.infantry`
+is named in the scenario sections, and `kb_setting.md` does carry the ≤ 30-word
+result-line ceiling the Grounding bullet invokes. No pair states a number that is
+not carried verbatim out of its own OLD.
+
+---
+
+## Deferrals and non-blocking observations — nothing is filed
+
+**§2.7's build-limit boundary sentence** — still non-blocking, on the ground
+ruled twice: check (e) cites `T-TURN-10`'s already-merged renewal sentence rather
+than adding a proposition. Unchanged this round.
+
+**§2.9** — still no pair owed; its routine never passes through §2.11.1's
+machine.
+
+**§4.11's preamble and §3's seven/five tally** — still the rebuild round's by
+Director placement ruling. No pair in this stage mints or retires an acceptance
+ID, all three files disclaim any statement about `ad77b13`, and merging these
+eleven pairs neither worsens nor repairs that tally. Not a condition of this
+merge.
+
+**§4.7 Stub 8's `hasActed` field** — two distinct requests, both still open, each
+naming the other. `tech` asks for a second **rules** flag; `ux` asks where the
+**DONE** bit lives, which no rules flag yields. Neither states the field in its
+prose, so neither is `invented-fact` or `stat-drift`. They must be resolved in
+one edit or the field is edited twice.
+
+**The second UI/rules divergence** — `rules` pair 2 writes into §2.1 that a unit
+may be given its remaining command with other units' commands in between, and
+§2.11.1's machine still does not offer that. Not filed, for the reason given at
+`row5-flags-2`: `ux` pair 3's heading and its *"This is a UI restriction and
+nothing more"* generalise over the class, so no merged sentence is false. It is a
+word to the Director, not a condition of merge.
+
+**`ux`'s Placement claim `No pair states a rule`** — waived at `row5-flags-1` on
+bytes that have not changed since. I do not re-file what I have waived on
+unchanged bytes.
 
 ---
 
 ## Verdict
 
-**PASS**, both files, zero violations. Every OLD anchor resolves to exactly one
-site in `source/gdd.md` at md5 `ca397f4f2eca447b451fca2ca2393092`; the 19 pairs
-are 17 replacements and 2 insertions; there are no cross-file overlaps and no
-placement collision; the two files agree with each other on all three rulings
-and with the master on every figure they carry. The two round-3 fixes hold:
-TECH pair 7's restored conclusion clause is byte-identical on both sides and the
-pair remains a replacement, re-derived here on the current bytes rather than
-taken from the author's or the orchestrator's report; RULES' false enumeration
-is gone by deletion with no replacement locator, and the deletion's extension to
-the sibling enumeration and the Handoffs count leaves nothing behind that
-asserts a line number. **Nothing must happen before merge.** Two things must
-happen at merge and just after it: re-sync `kb/rules.md`, since §2.7, §2.8 and
-§2.13.3 all move and §2 has been byte-identical across every merge since row 5;
-and carry R1 — §3 line 1504's *"leaves no ID uncovered"* sentence and its
-`Six` / `Four` tally — into the rebuild addendum's site list alongside §4.5 and
-§4.11's preamble, because those counts are the only row-5 statements in the
-document that no open question currently names.
+**PASS.** All three files clear at zero: `sections/rules_row5-act-order.md` and
+`sections/tech_row5-act-order.md` are unchanged and were re-derived rather than
+carried — anchors, line counts, classifications and every citation re-checked
+against the current bytes — and `sections/ux_row5-act-order.md` discharges its
+single blocker exactly, by qualifying the enumeration to the routes that skip the
+move in pair 8's NEW and in the matching Grounding bullet, without moving an
+anchor, a classification or a pair count. The three unfiled corrections the
+author made on its own initiative — Placement, pair 2's rationale, and two
+survey-B rows — were audited as fresh assertions and are each true against
+§2.11.1's merged block; taken together they remove the last four sites where the
+overstatement could have resurfaced, which is the right call and the right scope.
+Eleven anchors are unique, nine replacements and two insertions are correctly
+classified, the three placements are disjoint, no number is invented, no
+acceptance ID moves, and no draft owed a `kb_rules.md` note. The Director may
+merge all eleven pairs at the placements each draft specifies; the merge
+checklist's remaining obligations for this stage are the two open `hasActed`
+requests, which must be answered in a single edit to Stub 8, and the rebuild
+round, which still owns §3's tally and §4.11's preamble.

@@ -1,15 +1,20 @@
 {
-  "run": "row5-rulings-3",
-  "gdd_md5": "ca397f4f2eca447b451fca2ca2393092",
+  "run": "row5-flags-3",
+  "gdd_md5": "7dc635b4f06589f89b46e2fa1b7ad86b",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/rules_row5-rulings-and-t-cap-05.md",
+      "file": "sections/rules_row5-act-order.md",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "sections/tech_row5-rulings-t-turn-10.md",
+      "file": "sections/tech_row5-act-order.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/ux_row5-act-order.md",
       "verdict": "PASS",
       "violations": []
     }
