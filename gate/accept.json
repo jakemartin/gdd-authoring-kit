@@ -1,10 +1,10 @@
 {
-  "run": "cleanup-3",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=324dfa07c91fc4ddec4c5315ba1c397b",
+  "run": "row7-3",
+  "gdd_md5": "f456445d516e75e5e31a5b749157bfd2",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_cleanup-and-t-cap-05.md",
+      "file": "sections/tech_row7-scenario-validator.md",
       "verdict": "PASS",
       "violations": []
     }
