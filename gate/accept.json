@@ -1,10 +1,15 @@
 {
-  "run": "row7-3",
-  "gdd_md5": "f456445d516e75e5e31a5b749157bfd2",
+  "run": "row5-rulings-3",
+  "gdd_md5": "ca397f4f2eca447b451fca2ca2393092",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row7-scenario-validator.md",
+      "file": "sections/rules_row5-rulings-and-t-cap-05.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/tech_row5-rulings-t-turn-10.md",
       "verdict": "PASS",
       "violations": []
     }
