@@ -1,10 +1,10 @@
 {
-  "run": "t-cap-alias-4",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=94c67ebe95a09414485cc2a07822f9b5",
+  "run": "row6-3",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=cc07e1f0db78b4955059933520194360",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/rules_t-cap-alias.md",
+      "file": "sections/tech_row6-opponent-ai.md",
       "verdict": "PASS",
       "violations": []
     }
