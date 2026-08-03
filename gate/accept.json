@@ -1,10 +1,10 @@
 {
-  "run": "row5-2",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=10b9a7ab4c5fbb4a7464faea37821122",
+  "run": "t-cap-alias-4",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=94c67ebe95a09414485cc2a07822f9b5",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row5-turn-loop.md",
+      "file": "sections/rules_t-cap-alias.md",
       "verdict": "PASS",
       "violations": []
     }
