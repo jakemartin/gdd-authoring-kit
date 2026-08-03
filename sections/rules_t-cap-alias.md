@@ -1,3 +1,19 @@
+> ## ✅ APPLIED ADDENDUM — DO NOT RE-APPLY
+>
+> All four pairs were merged into the master GDD on 2026-08-02.
+> Master md5 `94c67ebe95a09414485cc2a07822f9b5` → `cc07e1f0db78b4955059933520194360`.
+>
+> Gate: run `t-cap-alias-4`, **PASS**, 0 violations, after three blocking runs
+> (`-1` BLOCK 2 → `-2` BLOCK 3 → `-3` BLOCK 1 → `-4` PASS).
+>
+> All four pairs are **replacements**, none an insertion: pair 2 splits its OLD
+> anchor around the new map, so the anchor does not survive. Post-check on the
+> merged master: every NEW present exactly once, every OLD present zero times.
+>
+> `kb/rules.md` was **not** re-synced. §2 changed (96,921 → 98,194 chars), but
+> the delta is gate-ID glossing only — no number, threshold, or rule — and
+> `kb/rules.md` contains no `T-CAP` or `T-TURN` identifier.
+
 # Rules — T-CAP alias ruling addendum (rules-designer)
 
 Four replacement pairs recording the Director's ruling that **`T-CAP` is an
