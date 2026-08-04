@@ -1,137 +1,135 @@
-# Gate report — run `row8-record-2`
+# Gate report — run `t-cap-05-rebuild-2`
 
-- **Master**: `source/gdd.md`, md5 `83899833551abbe9d4518e21fd771520` (from
-  `source/MANIFEST.txt`), which is the md5 the draft's Placement declares.
-- **Sync**: `source/MANIFEST.txt` present — three entries, `gdd.md`,
-  `kb_rules.md`, `kb_setting.md`. No `sync-missing`.
-- **Sections gated**: one — `sections/tech_row8-record.md`, thirteen pairs.
-- **Top-level verdict**: **PASS**. 0 violations.
+Master: `source/gdd.md` @ md5 `d2cfe86d6decad525a9a002d3f2c17b8`
+(`source/MANIFEST.txt` present; `kb_rules.md` @ `024523449be1873c9d545dbea6d3bc9d`,
+`kb_setting.md` @ `b3e9e89daaef1cdeb333e3fb4368d1c0`.)
+
+**Top-level verdict: PASS.** One section, one PASS, **0 violations.**
 
 ---
 
-## `sections/tech_row8-record.md` — PASS (0 violations)
+## sections/tech_t-cap-05-and-rebuild.md — PASS (0)
 
-No violation is filed. What follows is the record of what was checked, since a
-PASS is only as good as the checks behind it.
+No violations filed. Four pairs, all replacements, all four OLD anchors unique.
 
-### The four `row8-record-1` violations, re-checked at the source
+### The two `t-cap-05-rebuild-1` findings — both cleared
 
-**1. `contradiction` — the clause Pair 3 left standing. Cleared.** Pair 3's OLD
-now reads, verbatim and matching `source/gdd.md` line 1511 exactly once:
+**1. `contradiction` (T-SCN-08 (c) "accepted as closing") — cleared, and the
+replacement is verified rather than accepted.**
 
-> everything on that path but **row 8** is now evidence rather than schedule —
-> **per acceptance ID as well as per row**, since `T-TURN-10`, the one path ID
-> that was written and asserting without being green, closed at `6ccd40b`
+The string "accepted as closing" occurs nowhere in
+`sections/tech_t-cap-05-and-rebuild.md` and nowhere in `source/gdd.md`. The
+rewritten precedent reads:
 
-and its NEW restates the tail rather than leaving it:
+> a synthetic fixture is legitimate exactly where the stub calls for one and
+> counts when it runs — the precedent is **T-SCN-08 (c)**, whose stub asks for a
+> scenario whose lanes both cost 7 and names no map, and which ran and was
+> counted at `9086d6a`. T-SCN-08 itself does not close, on fixtures (a) and (b),
+> which need a stretch map nobody has authored
 
-> **per acceptance ID as well as per row**: `T-TURN-10` closed at `6ccd40b`, and
-> the path IDs still written and asserting without being green are **T-UI-03**
-> and **T-UI-04**
+Each limb checks out against the master:
 
-That restatement is true against the source: §4.11's chain is
-`1 → 3 → 4 → 5 → 6/8` (line 2824), and of the IDs on rows 1, 3, 4, 5, 6 and 8
-the only two written, asserting and not green are T-UI-03 and T-UI-04 —
-T-MOVE-07 is reserved-**unwritten** on Q2 (line 2480) and so does not answer the
-description, which the draft keeps distinct in Pair 7 and Pair 4.
+- *"a scenario whose lanes both cost 7"* and *"names no map"* — §4.7 Stub 7,
+  T-SCN-08's fixture list: "(c) A scenario whose lanes both cost 7 FAILS the
+  T-SCN-06 ceiling", against (a) *The Causeway* and (b) *Longwater March*, which
+  are named maps. Fixture (c) is the only unnamed one.
+- *"ran and was counted at `9086d6a`"* — §3, row-7 paragraph: "**T-SCN-08,
+  T-SCN-09 and T-SCN-11 ran a part of their fixture sets and do not close** —
+  T-SCN-08 on fixture (c) plus its measure-and-report behaviour on the shipped
+  map", inside a gate recorded "**12/12 under clang++ and MSVC both**" whose
+  twelve decompose as T-SCN-01..07 + two `GATE-SCN-` checks + those three
+  partial IDs. So (c) both ran and was counted.
+- *"does not close, on fixtures (a) and (b)"* — §3: "**Four fixtures did not
+  run** … T-SCN-08 (a) *The Causeway* and (b) *Longwater March* … Each needs a
+  stretch map authored as a scenario file, and **none was replaced by a
+  synthetic map**." Consistent too with §4.11's † note, which says a stood-down
+  T-SCN-08 keeps "only the synthetic ceiling refusal (c)".
 
-**2. `invented-fact` — the driver's `snapshot` command. Cleared, and the round-1
-finding was mine on a short fact set.** The Grounding now carries a paragraph of
-its own for it, and it does not exceed the fact: the command prints §4.7 Stub 8's
-view model; `scenario snapshot` is the same command under row 7's spelling, which
-refused on row 8's account at `9086d6a` and does not at `7c36303`; `GATE-DRV-12`
-is new at this commit and asserts the driver holds no view model of its own, by
-rebuild through `cpp_reference/Ui.h` and by the one-of-two-flags case;
-`GATE-DRV-01..12` is 12/12 under clang++ and MSVC both; the IDs are not `T-*`.
-Pair 4's prose claims no more than that, and the master's `GATE-DRV-01..11,
-11/11` at `6ccd40b` (line 1511) is the count it moves from.
+The contrast the ruling now rests on is likewise carried by the master. The cell
+claims `GATE-CAP-PARTIAL` "has **one** written fixture and it ran, under clang++
+and MSVC both, so no part of its set is outstanding". §4.7 Stub 8's
+`GATE-CAP-PARTIAL` block enumerates no fixture list and states one differential
+assertion; §3's row-8 paragraph records the run on "**a fixture configured with
+`captureTurns = 2`**" (singular), and its pass-1 tally is decisive on the count —
+"**four FAIL lines over two distinct IDs**, `T-UI-02` on all three of its checks
+and `GATE-CAP-PARTIAL` on its differential" — three plus one, so the gate is a
+single check. Nothing in §3's enumeration of what did not run at `7c36303`
+(T-UI-03 and T-UI-04, both whole IDs) leaves any part of that gate outstanding.
+The per-ID reading of Q29 the cell applies is the master's own: §3 applies Q29
+"**per acceptance ID as well as per row**", and applies it to T-SCN-08 the other
+way — "Q29, read per ID, keeps the row unverified" (§3's Content / scenario
+evidence cell). The asymmetry the cell asserts is therefore the document's.
 
-**3. `invented-fact` — the `critical path` sweep. Cleared and exact.** The string
-occurs at **19** occurrences over **17** lines in `source/gdd.md`, with lines
-1511 and 2501 carrying two each, plus the capitalised `Critical path:` at 2824.
-The draft's enumerated line list — 30, 71, 97, 485, 1505, 1511, 1551, 1564, 1570,
-1579, 1582, 1644, 2359, 2501, 2623, 2752, 2838 — is the grep result exactly, and
-the three it names as previously missed (1644, 2359, 2623) are the §4.7 cut-line
-rule, Stub 7's MCP note and §4.9's editor-only-tooling note. None states what has
-been built; each was read in the text that would falsify it.
+**2. `dead-reference` ("the row above it") — cleared.** The referent is now
+named and internal:
 
-**4. `invented-fact` — the `GATE-CAP-PARTIAL` sweep. Cleared and exact.** Eight
-lines: 392, 400, 2395, 2405, 2464, 2484, 2492, 2775 — the draft's list, with the
-two previously omitted (2484, Q6's Assumption cell; 2775, §4.11's build-order row
-8) now named with their reasons. Q6's cell records where the gate lives and the
-date that home was ruled, not whether it ran, so the landing does not falsify it;
-§4.11's row lists the acceptance set, which the addendum's own Build order
-section confirms unmoved.
+> **This rules the closure only, and not Q14's own rules question** — whether a
+> partially captured objective counts toward "objectives held" — which keeps the
+> stated reading in the next column and stays open
 
-### What the revision could have disturbed, re-checked
+That matches Q14's own Question column ("Does a partially captured objective
+count toward \"objectives held\" (§2.8 criterion 2)?") and points at the
+Assumption column, which is in fact the next column after Blocks and reads "It
+counts for nobody until the objective flips". No pointer escapes the row.
 
-- **Does the extended Pair 3 leave any further clause standing whose truth
-  depended on the exclusion it removes?** No. The surviving continuation is
-  `, and row 8's other dependency is **row 7**, which has since landed at
-  \`9086d6a\` on a partial pass` — true independently of whether row 8 has
-  landed, and confirmed against §4.11's dependency cell `5, 7` (line 2775).
-  Upstream in the same sentence, `at \`d8284f1\` only rows 7–8 hold none` is
-  commit-scoped to `d8284f1` and unaffected. The other three sites that assert
-  row 8's position on the path are Pairs 10 (line 1582), 13 (line 2752) and the
-  §2.10 bullet at line 487, which states only that row 8 *depends on* row 7 and
-  stays true. `rows 7–8 depend on landed code rather than on scheduled code`
-  (line 2751) is outside Pair 13's block and remains true.
-- **Pair 3 is still a replacement.** Its extended NEW does not contain its
-  extended OLD as a substring. Pair 4's NEW opens with its OLD verbatim and is
-  the only insertion. Twelve replacements, one insertion, as the Grounding's
-  re-derived classification paragraph states.
-- **Anchor uniqueness, spot-checked at the source** on the short and
-  collision-prone anchors: `It has not run, so` (line 401), `**50** of the 70 are
-  green` (1582), `**Reduced and re-scoped at 2026-08-03, not retired:**` (1582),
-  `**Nine rows carry a ✓ …` (1528) and `| UI | *pending* | — | *pending build* |`
-  (1526) each match one line. Pairs 8, 9 and 10 share the one §4.5 cell and their
-  spans are ordered and disjoint, with the untouched `18 / 9 / 9 / 6 / 7`
-  enumeration between Pairs 9 and 10, as claimed. Pairs 1, 11 and 13's multi-line
-  anchors match the source line breaks exactly.
-- **`*pending*` sweep**: four lines — 71 (§1.7's revision-note row), 1526 (§3's
-  UI row, Pair 5), 1622 (§4.7's dated heading), 2741 (§4.11's opening). Only
-  1526 moves; the other three are dated records of a past state. §4.11's
-  `rows 1, 3, 4, 5 and 6 have since flipped` (2743) stays complete because row 8
-  does not flip.
-- **Arithmetic** (re-derived, not carried): green `18 + 9 + 9 + 6 + 7 + 1 + 2 =
-  52`; unclosed `1 + 3 + 2 + 12 = 18`; `52 + 18 = 70`; rows 9–10 hold
-  `T-INT-01..05 + T-SAVE-01..07 = 12`, and the old `16` in rows 8–10 decomposes
-  as `12 + T-UI-01..04`. §4.5's `**70** written acceptance IDs` and `against
-  **9** verified ledger rows` correctly do not move. Pair 6's `two more` →
-  `three more` is right against the table's three evidence-without-✓ rows.
-- **`kb-desync`**: none. `T-CAP-05`, `GATE-CAP-PARTIAL` and `T-UI-0*` occur zero
-  times in `source/kb_rules.md`, verified directly on the current bytes. Pair 1
-  changes only run state, not a rule. Open question 5 correctly leaves the
-  §2-touched re-sync to the Director rather than asserting it away.
-- **`scope-breach`**: none. Pair 1's §2.8 edit is inside the blast radius the
-  landing creates and is declared as such in Placement and in the rules-designer
-  handoff. No spec stub is redrafted, no acceptance ID minted, no † mark or
-  dependency moved, no §4.4 ruling written; the Build order section reproduces
-  §4.11's row 8 unchanged.
-- **`format-breach`**: none. Placement, Draft, Change requests, Open questions
-  and Grounding all present; sites named to the cell.
-- **`placement-collision`**: none. One section in this run; the thirteen spans are
-  distinct and each is anchored to text, not to a section number.
-- **`unverified-claim`**: none. Every green claim carries `7c36303` and named
-  IDs, and the two that did not run — T-UI-03 and T-UI-04 — are stated as not
-  run, in the same words at all four sites that mention them.
-- **`voice-drift`**: none. Declarative present tense throughout, matching §3 and
-  §4's register.
+### The Grounding bullet that carried the same false fact
+
+The bullet now reads:
+
+> T-SCN-08 (c) as the synthetic-fixture precedent — §4.7's T-SCN-08 fixture
+> list. §3's row-7 paragraph records that (c) ran at `9086d6a` while (a) and (b)
+> did not, each needing a stretch map authored as a scenario file, and that
+> T-SCN-08 therefore **does not close**; §4.5 counts it among the 18 unclosed.
+
+It agrees with the §4.5 arithmetic bullet beneath it, which lists "Unclosed 18 =
+T-DATA-05 + T-SCN-08 + T-SCN-09 + T-SCN-11 + T-UI-03 + T-UI-04 + 12 in rows
+9–10", and with §4.5 itself. The remaining Grounding bullets are unchanged in
+substance and each still resolves: §2.7's "N is per-scenario data" is verbatim at
+§2.7's Capture bullet; Stub 8's "raising a unit's captureProgress short of
+completion" is verbatim; §3's row-8 paragraph carries the `7c36303` clang++/MSVC
+pass and the pass-1 partial-credit refusal. No ungrounded substantive claim
+remains in the section.
+
+### Re-confirmed after the revision
+
+- **No new contradiction about T-SCN-08's status.** Every T-SCN-08 site in the
+  master — §3's row-7 paragraph, §3's Content / scenario evidence cell, §3's
+  eight-uncovered-IDs passage, §4.5's unclosed list, §4.11's † note — records the
+  ID as written, asserting and **not closed**, which is exactly what the
+  rewritten cell now says.
+- **No new contradiction about T-CAP-05's status.** Its status is asserted at
+  three sites only — §2.8's exception paragraph (Pair 1), §4.7's register
+  preamble (Pair 2) and Q14's Blocks cell (Pair 3) — and all three move together.
+  The other T-CAP-05 mentions (§2.8 criterion 5 and the alias table, Stub 8's
+  block, §4.7's "excepted" sentence, Q6's cell) state alias, gate home or rule
+  text and no closure state, so none is falsified.
+- **Anchors.** All four OLD strings occur exactly once in `source/gdd.md` and
+  none is empty: §2.8 line 404, §4.7 preamble lines 2471–2472, Q14's Blocks cell
+  line 2499, §3's status paragraph inside line 1513 ("provisionally met" — 1
+  occurrence file-wide). All four are replacements; no insertions. Pair 3's OLD
+  still ends at "the kb victory table" and the NEW still ends there, so the
+  cell's column structure is unchanged.
+- **Format.** Placement, Draft, Change requests, Open questions, Grounding all
+  present.
+- **Dates and voice.** All four pairs rule 2026-08-04, which is today; the new
+  prose is declarative and present-tense and matches the register's register.
+
+Not re-litigated, per the run brief and unchanged since `t-cap-05-rebuild-1`: the
+§4.5 decomposition (70 = 52 + 18, T-CAP-05 in neither), both rulings' blast
+radius, §4.11's Build-order row 8 reproduction, and the absence of `kb-desync`.
 
 ---
 
 ## Verdict
 
-**PASS**, one section, zero violations. The revision does what the block
-required and nothing beyond it: Pair 3's span now carries the `T-TURN-10` clause
-and restates it against the two path IDs that inherit its description, the
-driver's `snapshot` command is grounded to the same standard rows 4, 5 and 6 hold
-for the commands they introduce, both Grounding sweeps now reproduce the grep
-exactly at seventeen and eight lines with the missed sites named, and the
-insertion/replacement split is re-derived from the current bytes rather than
-carried forward. Nothing further must happen before merge: the Director may apply
-all thirteen pairs against `source/gdd.md` md5 `83899833551abbe9d4518e21fd771520`,
-post-checking that Pair 4's anchor survives once and the other twelve OLDs are
-absent, then rebuild `.pdf`/`.txt`, decide open question 5 on whether Pair 1's §2
-edit obliges a `kb/rules.md` re-sync, and re-run `python sync.py`. This file is
-not safe to apply twice.
+**PASS.** Both `t-cap-05-rebuild-1` violations are fixed at their source rather
+than papered over: the T-SCN-08 precedent is restated as what the master actually
+records — a synthetic fixture that ran and was counted while the ID it belongs to
+stays open — and the closure/rules-question distinction now points at Q14's own
+question and its Assumption column instead of at the row above. The correction of
+the duplicated false fact in Grounding is within the filed finding and leaves that
+list consistent with the §4.5 line below it. Nothing else in the section moved,
+all four anchors still resolve uniquely, and no §4.5 count, register count or
+ledger row changes. The section is clear to merge as four exact replacements; the
+Director's remaining decisions are the two Open Questions the author filed, which
+are choices rather than defects.
