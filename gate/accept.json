@@ -1,20 +1,10 @@
 {
-  "run": "row5-flags-3",
-  "gdd_md5": "7dc635b4f06589f89b46e2fa1b7ad86b",
+  "run": "row5-rebuild-2",
+  "gdd_md5": "9742f695f71d625763d9a3eeef21e70b",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/rules_row5-act-order.md",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "sections/tech_row5-act-order.md",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "sections/ux_row5-act-order.md",
+      "file": "sections/tech_row5-rebuild.md",
       "verdict": "PASS",
       "violations": []
     }
