@@ -1,10 +1,10 @@
 {
-  "run": "row8-2",
-  "gdd_md5": "f5284420e237b1cbedbf3fd7d46f0988",
+  "run": "row8-record-2",
+  "gdd_md5": "83899833551abbe9d4518e21fd771520",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row8-ui-binding.md",
+      "file": "sections/tech_row8-record.md",
       "verdict": "PASS",
       "violations": []
     }
