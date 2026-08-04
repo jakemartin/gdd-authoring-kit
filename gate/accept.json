@@ -1,10 +1,10 @@
 {
-  "run": "row5-rebuild-2",
-  "gdd_md5": "9742f695f71d625763d9a3eeef21e70b",
+  "run": "row5-links-2",
+  "gdd_md5": "5bad314bcb34e52a88bff92727f5fcc5",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row5-rebuild.md",
+      "file": "sections/tech_row5-links.md",
       "verdict": "PASS",
       "violations": []
     }

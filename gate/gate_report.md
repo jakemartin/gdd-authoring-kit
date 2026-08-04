@@ -1,143 +1,112 @@
-# Gate report — run `row5-rebuild-2`
+# Gate report — run `row5-links-2`
 
-- **Master**: `source/gdd.md`, md5 `9742f695f71d625763d9a3eeef21e70b` (from `source/MANIFEST.txt`).
+- **Master**: `source/gdd.md`, md5 `5bad314bcb34e52a88bff92727f5fcc5` (from `source/MANIFEST.txt`).
 - **Sync**: `source/MANIFEST.txt` present. Three entries — `gdd.md`, `kb_rules.md`, `kb_setting.md`.
 - **Top-level verdict**: **PASS**
 - **Total violations**: **0**
 
 ---
 
-## `sections/tech_row5-rebuild.md` — **PASS**, 0 violations
+## `sections/tech_row5-links.md` — **PASS**, 0 violations
 
-### The one finding from `row5-rebuild-1` is cleared
+No violations filed.
 
-At `row5-rebuild-1` this file carried a single `format-breach`:
+### The `row5-links-1` violation is cleared
 
-> draft: `## Rule gaps found while writing the gates — 4`
-> required: `## Change requests`
+The blocking sentence — *"Everything else is bare for every commit: … the §4.5 risk cell's
+green-count list, and §4.11's build-order prose"* — is absent from the file. It is not restated
+in narrower form anywhere: `rg` over the draft for `bare for every commit`, `Everything else`
+and `every commit` returns no surviving instance of the claim. The correct version of the fact
+survives where it was already correct, in `## Sites deliberately left alone`
+(*"In that cell `c224825`, `647d4df`, `ad77b13` and `d8284f1` are all bare and only `9086d6a`
+is linked; the majority form is bare"*) and in Open question 1. That matches §4.5 line 1582 as
+merged, which links `9086d6a` and leaves `c224825`, `647d4df`, `ad77b13`, `d8284f1` and both
+mentions of `6ccd40b` bare. Nothing in this round's edit reintroduces the falsified universal.
 
-Both required heading strings are now present verbatim — `## Change requests`
-and `## Open questions for the Director` — with their bodies unchanged. The
-count of four moved into a body lead-in, which the required-heading rule does
-not touch. The breach is repaired.
+### The deletion did not leave a hole
 
-### Ruling on the question the orchestrator raised: heading *order*
+This was the one thing worth re-deriving, and it was checked as three separate failure modes.
 
-**Order is not part of the convention. Only the heading strings are.**
+**Stranded connective.** The surviving derivation runs: three enumerated structural positions →
+*"That yields four link sites for `6ccd40b` — …"* → *"After the patch `6ccd40b` reads 4 linked /
+10 bare"*. Each sentence's antecedents are present. The fourth site (the *Status*-line head-commit
+clause) is not one of the three enumerated positions, and the sentence supplies its own
+justification inline — *"whose immediate neighbour `9086d6a` is already linked in the same clause
+as its parent"* — verified at line 1511, where the parent citation reads
+`whose parent is [`9086d6a`](…)`. No dangling *"these three"*, no orphaned demonstrative.
 
-The required-output rule enumerates the headings a section must carry —
-Placement, Draft, Change requests, Open questions, Grounding — and states no
-sequence among them. `format-breach` fires on a *missing* required heading, not
-on a permuted one. The author's decision to keep Open questions before Change
-requests, so that the last Change-requests bullet's "The harness question
-**above**" resolves, is therefore permitted, and the cross-reference is in fact
-correct as written: the harness question is item 2 under `## Open questions for
-the Director`, which precedes `## Change requests` in the file. Nothing is filed
-against it, and this is a settled answer for subsequent rounds — do not re-file
-heading order, in this file or any other.
+**Orphaned back-reference.** `## Sites deliberately left alone` ends its third bullet with
+*"as set out above"*. Its two nearest conjuncts are set out above: pair 3's note
+(*"The cell's second mention of `6ccd40b` … stays bare"*) and pair 4's note
+(*"The later "closes at one commit — `6ccd40b`, not `ad77b13` —" stays bare"*). The bullet's
+own text names the third item explicitly rather than relying on the back-reference. Nothing is
+referred to that no longer exists.
 
-### What was verified rather than taken on report
+**Argument now asserting more than it supports.** The lead sentence *"`6ccd40b` is given a link
+at the sites its sibling commits carry one, and left bare at the sites they are bare"* is
+qualified by the sentence immediately after it — *"three structural positions carry a link
+**every time**"* — so the operative scope is positions where the sibling form is unanimous.
+§4.5 is not such a position, and the draft does not silently absorb it: it is named in
+`## Sites deliberately left alone`, given a stated reason, and filed as Open question 1. That is
+disclosure, not an overclaim, and it is the distinction the `row5-links-1` violation turned on.
+The deletion went exactly as far as the claim's falsity did, and no further.
 
-The orchestrator's claim that all fifteen `OLD` blocks are byte-identical to the
-`row5-rebuild-1` version was not accepted as a fact; the property that actually
-matters — that each `OLD` matches `source/gdd.md` exactly once document-wide —
-was re-derived directly against the master at this md5. All fifteen match once:
+### Re-checked independently, not taken on report
 
-- Pairs 1–8 resolve inside the §3 status paragraph (`source/gdd.md` line 1511).
-  Uniqueness for Pair 3 rests on the substring `row 5 has no in-editor half`,
-  which distinguishes it from the row-4 and row-6 copies of the same sentence
-  shape; uniqueness for Pair 7 rests on ``the eleven `main()` definitions``,
-  which distinguishes it from the row-6 sentence naming *ten*.
-- Pair 9 → line 1520 (ledger table, Turn loop cell). Pairs 10 and 11 → line 1528;
-  Pair 10 is disambiguated from the Capture & Fame sentence by the leading
-  `**Turn loop & win / tiebreak** joined at`.
-- Pairs 12, 13, 14 → line 1582 (§4.5, *Specification outruns the build*).
-- Pair 15 → lines 2743–2744 (§4.11 prose), including its internal line break.
-
-The Placement header's classification was re-checked and is correct: **Pair 8**
-is the only pair whose `NEW` contains its `OLD` verbatim as a prefix, and **Pair
-7** is a replacement by the byte test despite appending, because its `OLD`
-terminates in the paragraph-closing `*`.
-
-### Arithmetic and blast radius re-derived
-
-- §4.5 green count: source reads `**49** of the 70 are green` with the split
-  18 + 9 + 9 + 6 + 7 = 49. Pair 13's `**50**` with 18 + 9 + 9 + 6 + 7 + 1 = 50
-  is consistent, and Pair 7 declares the same 49 → 50 move.
-- §4.5 unclosed count: source `**21 IDs remain unclosed**` enumerates T-DATA-05,
-  three `T-SCN-` IDs, `T-TURN-10`, and 16 in rows 8–10 = 21. Pair 14's `**20**`
-  drops `T-TURN-10` alone: 1 + 3 + 16 = 20. Consistent with Pair 7's 21 → 20.
-- Written-ID count `**70**` and verified-ledger-row count `**9**` are untouched
-  and remain true: row 5 already carried a ✓, so no row flips and §3's
-  `**Nine rows carry a ✓**` does not move.
-- `T-TURN-10` appears at five sites in the master (§2.8 invariants preamble,
-  §4.5 twice, §4.7 Stub 5 `Acceptance: T-TURN-01..10`, §4.11 build-order table).
-  The only two that assert its *status* are both in §4.5 and both are repaired,
-  by Pairs 12 and 14. No unedited site is left asserting that T-TURN-10 is
-  not green.
-- `ad77b13` appears at five lines; every one is either edited (Pairs 2, 9, 10,
-  13, 15) or retained deliberately as a historical record with a forward
-  pointer. No sentence is left claiming row 5's *current* evidence is `ad77b13`.
-- The draft's change request that Q8(b)'s renewal boundary is absent from the
-  document was checked at its source: §4.7 Stub 5's T-TURN-10 text reads only
-  `the owner's turn`, with no per-side-turn/per-round distinction. The gap is
-  real, and filing it as a change request rather than editing the invariant is
-  the correct disposition.
-- The `## Findings my scoping brief did not name` claim about §3's "Six IDs are
-  still recorded as **uncovered**" sentence was checked against line 1528: it
-  enumerates two unwritten (T-MOVE-07, T-SCN-10) and four written-and-not-green
-  (T-DATA-05, T-SCN-08/09/11). With `T-TURN-10` green at `6ccd40b` the sentence
-  is correct as written, and correctly no pair touches it.
-
-### Grounding checked claim by claim
-
-Every substantive number, ID range, file path and commit in the fifteen `NEW`
-blocks traces either to `source/gdd.md` at this md5 or to the round's standing
-fact block: the 14-file modify-only path list, the eleven `main()` definitions,
-`T-TURN-01..10` 11/11 with 11 counting printed checks over ten IDs, pass-1 5/11
-over five distinct failing IDs, `120 AI commands issued across 6 games`,
-`GATE-DRV-01..11` 11/11, the three carried-in Director rulings, and the
-GDD-first sequencing (`ff6b78b` / `18fae0a`). The commit-message caution was
-honoured: nothing in the draft restates `T-TURN-01` as showing "five checks";
-Pair 7 reports two printed lines and names both. No `unverified-claim` arises —
-every gate figure is stated with its commit, its compilers and its ID set, and
-the unestablished harness for `6ccd40b` is explicitly declared unstated in Pair 7
-and filed as Open question 2 rather than asserted.
-
-### Other checks that produced nothing
-
-- **`dead-reference`**: no link to `6ccd40b` is introduced anywhere, which is
-  what Pair 11's exception sentence promises and what the unpushed state
-  requires; every commit that *is* linked in a `NEW` (`9086d6a`, `ad77b13`,
-  `d8284f1`) is already linked in the master.
-- **`kb-desync`**: no pair touches §2 rules text, §2.13 map data or §2.11
-  screen material, so `kb_rules.md` and `kb_setting.md` are unaffected.
-- **`placement-collision`**: one section in this stage; every pair names a
-  distinct anchor and each anchor is unique in the master, so the fifteen edits
-  are mechanically mergeable in any order.
-- **`voice-drift`**: declarative present tense throughout; the tense repairs in
-  Pairs 4 and 5 move two present-tense falsehoods to commit-pinned past, which
-  is a correction of register, not a drift from it.
-- **`scope-breach`**: the §4.4 week-1 "provisionally met" passage is left
-  untouched and raised as Open question 1 rather than ruled, which is the
-  correct lane.
+- **Five anchors, five replacements, no insertion.** Every `OLD` matches **exactly once**
+  document-wide by occurrence counting: pairs 1 and 2 at line 1511, pair 3 at 1520, pairs 4 and 5
+  at 1528. No `NEW` contains its `OLD` as a verbatim prefix, so all five are replacements, as the
+  Placement header declares. Markers sit on their own line before each fence; pair headings are
+  at `##`.
+- **The 16-mention census.** `rg -o` returns exactly sixteen occurrences of `6ccd40b`: eight at
+  1511, two at 1520, three at 1528, two at 1582, one at 2744 — byte-for-byte the Grounding
+  section's figures.
+- **The 4 / 10 / 2 arithmetic.** Pairs 1–2 leave five bare mentions at 1511; pair 3 leaves one at
+  1520; pairs 4–5 leave one at 1528; 1582 keeps two; 2744 keeps one. Ten bare, four linked, two
+  deleted, summing to sixteen — and matching `## Sites deliberately left alone` item for item.
+- **The chosen link positions.** The landing announcement is linked for `647d4df`, `ad77b13`,
+  `d8284f1` and `9086d6a` at 1511; every evidence cell at 1515–1525 links its commit except row
+  5's; the *"joined at"* sentence below the table is linked for `c224825`, `647d4df`, `ad77b13`,
+  `d8284f1` and `9086d6a` at 1528. No exception found.
+- **Sibling shape unchanged by the patch.** No `NEW` alters a sibling's link form, so
+  `647d4df` (3/6), `ad77b13` (3/7) and `d8284f1` (3/6) stand as stated, and after the patch no
+  commit is linked at every mention.
+- **Scope item 4's negative.** Case-insensitive search for `pushed` / `unpushed` / `GitHub` /
+  `working repository` / `carries no link` / `without a link` / `reachable in the working` over
+  the whole file returns hits at only two sites — `without a link` at 1511 and
+  `carries no link` / `not yet pushed` / `reachable in the working` / `GitHub` at 1528 — both
+  inside pair 1's and pair 5's `OLD` respectively. Line 1511's `not citable` is about the
+  untracked `build/` binary, not `6ccd40b`. No third site survives the patch asserting that
+  `6ccd40b` is unpushed or unlinkable.
+- **Open question 1's link claim.** The only commit links outside §3 are at 1582 (§4.5) and 2504
+  (§2.13, Q32), exactly as stated.
+- **§4.11's bare passage.** Lines 2742–2745 cite `5ffa8d6`, `c224825`, `647d4df`, `6ccd40b`,
+  `ad77b13` and `d8284f1`, all bare — the bullet's claim holds.
+- **`links` → `cites` reversion.** Post-patch §3 cites `5ffa8d6`, `c224825`, `9f87ecd`,
+  `647d4df`, `ad77b13`, `d8284f1`, `9086d6a` and `6ccd40b`; the head of `main` is `6ccd40b`
+  itself, so the wider claim is true of the patched document and the narrowing has no remaining
+  work to do.
+- **Grounding vs. draft, claim by claim.** Every substantive figure in the draft traces to a
+  Grounding bullet and to a line in `source/gdd.md`. The one externally supplied fact — that
+  `https://github.com/jakemartin/stratocracy-crew/commit/6ccd40b` resolves unauthenticated — is
+  labelled as supplied rather than inferred, which is the correct disclosure.
+- **Format.** Placement, Draft, Change requests, Open questions and Grounding all present. Change
+  requests correctly empty: no number, rule or evidence claim moves. Build order correctly
+  records no row movement. No `kb_rules.md` exposure — this round touches §3 only, and the KB is
+  parsed from §2.
 
 ---
 
 ## Verdict
 
-`sections/tech_row5-rebuild.md` **PASSES** with zero violations, and the
-top-level verdict for run `row5-rebuild-2` is **PASS**. The single
-`format-breach` from `row5-rebuild-1` is repaired by the two heading renames,
-and the section order the author preserved is not a breach — the convention
-governs heading strings, not their sequence, and that is now settled for
-subsequent rounds. Nothing further is required before merge: the Director may
-apply the fifteen `OLD` → `NEW` pairs against `Stratocracy_Prototype_GDD.md` at
-md5 `9742f695f71d625763d9a3eeef21e70b`, then rebuild the `.pdf` and `.txt`,
-re-sync `kb/rules.md`, and re-run `python sync.py`. Three items travel with the
-merge as Director business rather than as gate conditions: the four filed change
-requests (none of which edits invariant text here), the three open questions —
-in particular the unestablished harness for `6ccd40b`, which Pair 7 correctly
-declares unstated rather than inventing — and the standing coupling that
-pushing `6ccd40b` obliges relinking its citations and retiring Pair 11's
-exception sentence in the same edit.
+`sections/tech_row5-links.md` **PASSES** with zero violations, and the top-level verdict for run
+`row5-links-2` is **PASS**. The `row5-links-1` `contradiction` is cleared by deletion rather than
+by restatement, and the deletion left no stranded connective, no orphaned back-reference and no
+surviving claim that outruns its support — the remaining derivation asserts only the positive
+link positions, each of which I re-measured on the merged master. Nothing must happen before
+merge beyond the ordinary sequence: apply the five pairs byte-for-byte at their verified anchors
+in the order given, confirm after application that `6ccd40b` reads four linked and ten bare and
+that no *"not yet pushed"* or *"carries no link"* text remains anywhere in the file, then rebuild
+the `.pdf` and `.txt`, and re-run `python sync.py`. The two open questions — §4.5's mixed link
+form and the *"— `d8284f1`, row 6's, included —"* aside — are the Director's to rule and are not
+conditions on this merge.
