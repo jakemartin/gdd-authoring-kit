@@ -1,135 +1,122 @@
-# Gate report — run `t-cap-05-rebuild-2`
+# Gate report — run `row8-rulings-7`
 
-Master: `source/gdd.md` @ md5 `d2cfe86d6decad525a9a002d3f2c17b8`
+Master: `source/gdd.md` @ md5 `a5c266b921ea3ea7a3ce79c89137cc66`
 (`source/MANIFEST.txt` present; `kb_rules.md` @ `024523449be1873c9d545dbea6d3bc9d`,
 `kb_setting.md` @ `b3e9e89daaef1cdeb333e3fb4368d1c0`.)
 
-**Top-level verdict: PASS.** One section, one PASS, **0 violations.**
+**Top-level verdict: PASS.** Both sections pass; zero violations.
+
+| Section | Verdict | Violations |
+|---|---|---|
+| `sections/ux_row8-rulings-view-model.md` | **PASS** | 0 |
+| `sections/tech_row8-rulings-snapshot-hash.md` | **PASS** | 0 |
 
 ---
 
-## sections/tech_t-cap-05-and-rebuild.md — PASS (0)
+## `sections/ux_row8-rulings-view-model.md` — PASS
 
-No violations filed. Four pairs, all replacements, all four OLD anchors unique.
+No violations. Re-checked whole, not exempted for having passed in runs 5 and 6.
 
-### The two `t-cap-05-rebuild-1` findings — both cleared
+All five pairs are §2.11-internal (Pairs 1 and 5 on §2.11.1 and §2.11.5, Pairs
+2–4 on §2.11.2), each OLD present once in the master and each NEW consistent
+with the rest of §2.11 and with §4.7 Stub 8 as the tech addendum rewrites it.
+The two files agree on vocabulary (**view-model**, **presentation block**,
+**declared derived**) and on the per-factory block's membership
+`{hex, owner, hasBuiltThisTurn, buildWaiting, spawnBlocked}`, stated identically
+in UX Pair 5 and tech Pair 9. Pair 4's `incomePerTurn` and Pair 5's
+`hasBuiltThisTurn` / `spawnBlocked` are fields tech Pair 9 adds in the same
+stage, and the draft files their absence at `7c36303` under "Filed for the
+Director" (three fields, matching what Pairs 4 and 5 name) rather than claiming
+any of them implemented. §2.11.4's Objectives row, §2.11.2's three-layer list
+and §2.11.6-D are correctly left unpaired: none is falsified by Rulings A, C
+or E.
 
-**1. `contradiction` (T-SCN-08 (c) "accepted as closing") — cleared, and the
-replacement is verified rather than accepted.**
+## `sections/tech_row8-rulings-snapshot-hash.md` — PASS
 
-The string "accepted as closing" occurs nowhere in
-`sections/tech_t-cap-05-and-rebuild.md` and nowhere in `source/gdd.md`. The
-rewritten precedent reads:
+No violations. All 22 pairs, the §4.5 arithmetic, the deletions and the
+re-anchored Grounding were checked.
 
-> a synthetic fixture is legitimate exactly where the stub calls for one and
-> counts when it runs — the precedent is **T-SCN-08 (c)**, whose stub asks for a
-> scenario whose lanes both cost 7 and names no map, and which ran and was
-> counted at `9086d6a`. T-SCN-08 itself does not close, on fixtures (a) and (b),
-> which need a stretch map nobody has authored
+**The two run-6 defects are gone and no substitute was introduced.** Pair 6a's
+NEW now reads "the presentation block and the snapshot fields ruled beside
+T-UI-05 on the same day, which mint no ID at all" — no count, and the phrase
+covers all four fields Rulings C and E add, `spawnBlocked` included, without
+excluding any. The `hpMax` inference and the §4.10 per-unit-record bullet it
+hung on are gone from Grounding; `hpMax` and `unitId` are now grounded on
+§4.8's unit schema, which carries them (`HP` → `strat::UnitDef::hpMax`, `Id`
+as the row key), and no surviving Grounding bullet claims more than its
+citation carries.
 
-Each limb checks out against the master:
+**The deletions cut nothing load-bearing.** Every one of the 22 pairs still
+carries prose saying what it does and why, sufficient for a Director to rule
+on it: the insertion/replacement kind is named where it matters (Pairs 2, 8,
+8b, 9, 10, 11), the single-line constraint is stated where a table cell or an
+unwrapped paragraph requires it (Pairs 1, 2b, 3, 6a, 6b, 18), and each pair
+names the ruling it executes. The two items called load-bearing survive: Pair
+8b's grouped field enumeration is intact and complete — 17 `GameState` mirrors,
+2 §4.8-table mirrors, 3 scenario-file mirrors, 4 declared derived, which is
+exactly the 26 fields Stub 8 lists once Pairs 9 and 8b land — and §4.5's
+itemisation is intact. Surviving prose was checked for truth, including the
+sites the deletions left adjacent: "Checked, and needing no pair" now carries
+the both-spellings grep result, and that result is correct — `view model` /
+`view-model` occurs at exactly four sites in the master (§3's driver sentence,
+Stub 8's Scope, §4.9's rebind bullet, T-INT-05), and all four are paired
+(2b, 7, 14, 15).
 
-- *"a scenario whose lanes both cost 7"* and *"names no map"* — §4.7 Stub 7,
-  T-SCN-08's fixture list: "(c) A scenario whose lanes both cost 7 FAILS the
-  T-SCN-06 ceiling", against (a) *The Causeway* and (b) *Longwater March*, which
-  are named maps. Fixture (c) is the only unnamed one.
-- *"ran and was counted at `9086d6a`"* — §3, row-7 paragraph: "**T-SCN-08,
-  T-SCN-09 and T-SCN-11 ran a part of their fixture sets and do not close** —
-  T-SCN-08 on fixture (c) plus its measure-and-report behaviour on the shipped
-  map", inside a gate recorded "**12/12 under clang++ and MSVC both**" whose
-  twelve decompose as T-SCN-01..07 + two `GATE-SCN-` checks + those three
-  partial IDs. So (c) both ran and was counted.
-- *"does not close, on fixtures (a) and (b)"* — §3: "**Four fixtures did not
-  run** … T-SCN-08 (a) *The Causeway* and (b) *Longwater March* … Each needs a
-  stretch map authored as a scenario file, and **none was replaced by a
-  synthetic map**." Consistent too with §4.11's † note, which says a stood-down
-  T-SCN-08 keeps "only the synthetic ceiling refusal (c)".
+**Arithmetic and counts.** 70 → **71** written, **52** green, 18 → **19**
+unclosed, 16 → **17** in rows 8–10 (row 8 `T-UI-01..05` = 5, row 9
+`T-INT-01..05` = 5, row 10 `T-SAVE-01..07` = 7), **9** verified ledger rows —
+all consistent with §4.5's risk row, §4.11's rows 8–10 and §3 as they stand.
+The unclosed itemisation sums (1 + 3 + 2 + 1 + 12 = 19), §3's uncovered count
+moves 8 → 9 as 2 unwritten + 7 written-and-not-green, and Pair 4's NEW
+enumerates exactly those seven. `T-UI-05` is the only ID minted; the
+presentation block, the per-factory block, `incomePerTurn` and `spawnBlocked`
+mint none, and no pair says otherwise. §3's commit-scoped records — "its
+unclosed count moves 20 → 18" at `7c36303`, "21 → 20" at `6ccd40b` — are
+records of movement at a landing and stay true unpaired.
 
-The contrast the ruling now rests on is likewise carried by the master. The cell
-claims `GATE-CAP-PARTIAL` "has **one** written fixture and it ran, under clang++
-and MSVC both, so no part of its set is outstanding". §4.7 Stub 8's
-`GATE-CAP-PARTIAL` block enumerates no fixture list and states one differential
-assertion; §3's row-8 paragraph records the run on "**a fixture configured with
-`captureTurns = 2`**" (singular), and its pass-1 tally is decisive on the count —
-"**four FAIL lines over two distinct IDs**, `T-UI-02` on all three of its checks
-and `GATE-CAP-PARTIAL` on its differential" — three plus one, so the gate is a
-single check. Nothing in §3's enumeration of what did not run at `7c36303`
-(T-UI-03 and T-UI-04, both whole IDs) leaves any part of that gate outstanding.
-The per-ID reading of Q29 the cell applies is the master's own: §3 applies Q29
-"**per acceptance ID as well as per row**", and applies it to T-SCN-08 the other
-way — "Q29, read per ID, keeps the row unverified" (§3's Content / scenario
-evidence cell). The asymmetry the cell asserts is therefore the document's.
+**Ruling D's hash.** Pair 16's added fields are integers written 0 or 1, the
+per-factory collection is in the same canonical hex order the per-unit list
+uses, and `spawnBlocked`'s exclusion is written as recomputability from hashed
+fields — which holds: unit positions are hashed and terrain is fixed by the
+scenario file whose `scenarioHash` is a header field in §4.10's own table. The
+narrower test is required, and the draft says so: §4.10's *Mid-match saves*
+bullet calls a waiting build and capture-in-progress derived pending state and
+both are hashed, so a rule phrased as "derived" would have contradicted the
+Policies list. §4.4's week-2 cell survives on the same reading, and its
+`{Move, Attack}` scope reaches both added per-unit flags.
 
-**2. `dead-reference` ("the row above it") — cleared.** The referent is now
-named and internal:
+**Nothing is claimed built.** Pairs 2, 3, 4, 5, 6a, 6b, 13 and 17 each state
+that no code implements `T-UI-05`, the per-factory block, `incomePerTurn`,
+`spawnBlocked` or the widened hash; row 8's ledger row stays `*pending*` and
+no §3 count of verified rows moves. Every commit named is `7c36303`,
+`6ccd40b`, `9086d6a`, `c224825` or `d8284f1`, each already in §3.
 
-> **This rules the closure only, and not Q14's own rules question** — whether a
-> partially captured objective counts toward "objectives held" — which keeps the
-> stated reading in the next column and stays open
+**Placement and lanes.** The UX addendum touches §2.11 only, the tech addendum
+§3 and §4 only; the two file their cross-lane observations rather than pairing
+them, and no OLD anchor is shared between the files. Every placement is an
+exact OLD/NEW pair and merges mechanically. `kb_rules.md` is a parse of §2's
+rules and carries no §2.11 binding text and no acceptance-ID count; neither
+addendum changes a §2 rule, so nothing here staleness-breaks it and no
+kb-desync declaration was owed.
 
-That matches Q14's own Question column ("Does a partially captured objective
-count toward \"objectives held\" (§2.8 criterion 2)?") and points at the
-Assumption column, which is in fact the next column after Blocks and reads "It
-counts for nobody until the objective flips". No pointer escapes the row.
-
-### The Grounding bullet that carried the same false fact
-
-The bullet now reads:
-
-> T-SCN-08 (c) as the synthetic-fixture precedent — §4.7's T-SCN-08 fixture
-> list. §3's row-7 paragraph records that (c) ran at `9086d6a` while (a) and (b)
-> did not, each needing a stretch map authored as a scenario file, and that
-> T-SCN-08 therefore **does not close**; §4.5 counts it among the 18 unclosed.
-
-It agrees with the §4.5 arithmetic bullet beneath it, which lists "Unclosed 18 =
-T-DATA-05 + T-SCN-08 + T-SCN-09 + T-SCN-11 + T-UI-03 + T-UI-04 + 12 in rows
-9–10", and with §4.5 itself. The remaining Grounding bullets are unchanged in
-substance and each still resolves: §2.7's "N is per-scenario data" is verbatim at
-§2.7's Capture bullet; Stub 8's "raising a unit's captureProgress short of
-completion" is verbatim; §3's row-8 paragraph carries the `7c36303` clang++/MSVC
-pass and the pass-1 partial-credit refusal. No ungrounded substantive claim
-remains in the section.
-
-### Re-confirmed after the revision
-
-- **No new contradiction about T-SCN-08's status.** Every T-SCN-08 site in the
-  master — §3's row-7 paragraph, §3's Content / scenario evidence cell, §3's
-  eight-uncovered-IDs passage, §4.5's unclosed list, §4.11's † note — records the
-  ID as written, asserting and **not closed**, which is exactly what the
-  rewritten cell now says.
-- **No new contradiction about T-CAP-05's status.** Its status is asserted at
-  three sites only — §2.8's exception paragraph (Pair 1), §4.7's register
-  preamble (Pair 2) and Q14's Blocks cell (Pair 3) — and all three move together.
-  The other T-CAP-05 mentions (§2.8 criterion 5 and the alias table, Stub 8's
-  block, §4.7's "excepted" sentence, Q6's cell) state alias, gate home or rule
-  text and no closure state, so none is falsified.
-- **Anchors.** All four OLD strings occur exactly once in `source/gdd.md` and
-  none is empty: §2.8 line 404, §4.7 preamble lines 2471–2472, Q14's Blocks cell
-  line 2499, §3's status paragraph inside line 1513 ("provisionally met" — 1
-  occurrence file-wide). All four are replacements; no insertions. Pair 3's OLD
-  still ends at "the kb victory table" and the NEW still ends there, so the
-  cell's column structure is unchanged.
-- **Format.** Placement, Draft, Change requests, Open questions, Grounding all
-  present.
-- **Dates and voice.** All four pairs rule 2026-08-04, which is today; the new
-  prose is declarative and present-tense and matches the register's register.
-
-Not re-litigated, per the run brief and unchanged since `t-cap-05-rebuild-1`: the
-§4.5 decomposition (70 = 52 + 18, T-CAP-05 in neither), both rulings' blast
-radius, §4.11's Build-order row 8 reproduction, and the absence of `kb-desync`.
+**The one open tension is filed, not created.** §4.7 Stub 7's `guidedOpening`
+note keeps the marked/locked state out of Stub 8, while Pair 15 widens
+T-INT-05's subject to the whole view-model. Pair 15's OLD already carried the
+same gap ("from the current view-model snapshot alone"), the note is left
+unedited and unpaired, and the addendum files the disposition as a change
+request naming three options and taking none. That is the correct handling.
 
 ---
 
 ## Verdict
 
-**PASS.** Both `t-cap-05-rebuild-1` violations are fixed at their source rather
-than papered over: the T-SCN-08 precedent is restated as what the master actually
-records — a synthetic fixture that ran and was counted while the ID it belongs to
-stays open — and the closure/rules-question distinction now points at Q14's own
-question and its Assumption column instead of at the row above. The correction of
-the duplicated false fact in Grounding is within the filed finding and leaves that
-list consistent with the §4.5 line below it. Nothing else in the section moved,
-all four anchors still resolve uniquely, and no §4.5 count, register count or
-ledger row changes. The section is clear to merge as four exact replacements; the
-Director's remaining decisions are the two Open Questions the author filed, which
-are choices rather than defects.
+**PASS.** This run is clean: both files carry zero violations, and the two
+defects run 6 filed — Pair 6a's stale count and the `hpMax` inference — are
+repaired without regression anywhere else in either file. The structural
+deletion pass removed prose without removing explanation: every pair remains
+rulable on its own framing, both passages the author flagged as load-bearing
+survive intact, and the surviving non-pair prose is true against the master.
+Nothing further must happen before merge: the Director may merge both drafts
+at the placements their OLD/NEW pairs specify, then rebuild the derived files,
+re-sync `kb/rules.md`, update the §3 provenance ledger's row-8 evidence cell
+per Pair 3 — row 8 stays `*pending*` — and re-run `python sync.py`.

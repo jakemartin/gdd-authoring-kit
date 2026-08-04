@@ -1,10 +1,15 @@
 {
-  "run": "t-cap-05-rebuild-2",
-  "gdd_md5": "d2cfe86d6decad525a9a002d3f2c17b8",
+  "run": "row8-rulings-7",
+  "gdd_md5": "a5c266b921ea3ea7a3ce79c89137cc66",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_t-cap-05-and-rebuild.md",
+      "file": "sections/ux_row8-rulings-view-model.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/tech_row8-rulings-snapshot-hash.md",
       "verdict": "PASS",
       "violations": []
     }
