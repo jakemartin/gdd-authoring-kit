@@ -1,163 +1,229 @@
-# Gate report — run `t-ui-05-built-3`
+# Gate report — run `row9-integration-4`
 
-Master GDD md5 `5075d853166d99858fd3a5a4b7dfc27c` (`source/MANIFEST.txt`
-present, three entries; `kb_rules.md` @ `024523449be1873c9d545dbea6d3bc9d`,
-`kb_setting.md` @ `b3e9e89daaef1cdeb333e3fb4368d1c0`). Section read:
-`sections/tech_t-ui-05-built.md`, the only file this stage produced.
+- Master: `source/gdd.md`, md5 `8db63b1a1b3122fb656cea3961e8e45f` (per `source/MANIFEST.txt`)
+- Sections gated this stage: `sections/tech_row9-integration.md` (1)
+- **Top-level verdict: PASS** — 0 violations.
+- Prior runs: `-1` BLOCK/7, `-2` BLOCK/4, `-3` BLOCK/1. The one surviving
+  violation is resolved.
 
-**Top-level verdict: PASS.** Zero violations, in one section.
+`source/MANIFEST.txt` is present, so the run is not stale. Anchor existence —
+11 OLD blocks, each extracting under a strict matcher and occurring exactly
+once — was verified mechanically by the Director and is not re-derived here.
+Findings withdrawn in earlier runs (the `T-INT-03` ruling, the log-scoping
+carve-out, and the `c224825` substitution ruled correct in `-3`) stay withdrawn
+and were not revisited.
 
 ---
 
-## `sections/tech_t-ui-05-built.md` — PASS (0 violations)
+## sections/tech_row9-integration.md — PASS (0 violations)
 
-No violation is filed. Nothing below is a finding; it is the record of what was
-put to a test that could have failed, so that a later run does not have to guess
-what this one covered.
+### 1. The `-3` violation is resolved, and nothing was substituted for it
 
-### Deletion blast radius — the question this run was spent on
+Run `-3` filed one `invented-fact` against Grounding bullet 4's final clause:
 
-The apparatus lost several parentheticals, two OLD-span restatements, the
-spellings enumeration, the blast-radius bullet, the grounding bullets' figure
-lists and line numbers, restatements inside change requests 1 and 2 and open
-question 1, and an inference in open question 2. Each surviving passage that
-could have depended on removed text was read against what remains:
+> `spec/integration_spec.md` records that derivation; it does not supply it.
 
-- **Change request 1** now supports its ask from two surviving pieces — the
-  ledger rule it quotes verbatim (`**Author = human** for anything a human
-  hand-wrote or substantially edited`, §3) and Pair 5's record of who wrote the
-  code at `41a1452`. The ask (`agent+human`, or a per-commit split) is a value
-  the §3 legend already admits (`**Author** ∈ {agent, agent+human, human}`), so
-  the "Why" still reaches the ask.
-- **Change request 2** quotes §4.10's clause in full rather than by reference,
-  so removing the restatement cost it nothing; both limbs of its either/or name
-  a site that exists (§4.10's omission clause; §4.7 Stub 8's `spawnBlocked`
-  derivation), and its precedent — row 7's Q32 registration — is stated in §3.
-- **Change request 3**'s premise `Q32 is the highest registered row` holds: the
-  §4.7 register table's last row is **Q32** and §4.8 follows it. Its three
-  touched sites are the register's two extent-bearing sites plus the
-  authoritative table, which §4.7 itself names.
-- **Open question 1** stands alone: it states the amended ruling's two re-opening
-  conditions in its own words and cites Pair 5 for the two artifacts it asks
-  about, both of which Pair 5 records (the widened `snapshot` render, the new
-  `DriverUnit` field).
-- **Open question 2** states the candidate convention as a quoted rule rather
-  than relying on the deleted inference, and the episode it refers to is
-  recorded in Pair 5's merging text, not in deleted apparatus.
-- **Substitutions of the form "cites Pair 5"** were checked in the direction that
-  matters — the cited pair carries the claim. Pair 5 states the authorship, the
-  `DriverUnit` field, the render change and the clause-(b) episode.
-- **No dangling comparison or pronoun** was found in the surviving notes. The two
-  remaining blast-radius notes (Pairs 14 and 16) each quote the clause they
-  displace, so each is intelligible without the deleted bullet.
+That string does not occur anywhere under `sections/`. A search for
+`integration_spec` across the kit returns hits only in `gate/gate_report.md`
+and `gate/accept.json` — this gate's own prior record — and one hit inside the
+draft, at Pair 2's NEW text, discussed below. Bullet 4 now terminates at:
 
-### Arithmetic — still the sole home of every figure, and still complete
+> …which between them exclude every `test_*.cpp`, `driver_main.cpp` and
+> `selfplay.cpp` and leave the ten modules' headers and good implementations.
 
-Re-derived rather than re-read, since the sweep moved material into it:
+No replacement pointer, no demoted restatement, no relocation of the claim to
+another bullet, another pair note, or the check-results list. The fix ordered
+was a deletion and a deletion is what was made.
 
-- written **71** unchanged (no acceptance ID minted at `41a1452`);
-- green **52 → 53**, and the per-commit list re-sums: 18 + 9 + 9 + 6 + 7 + 1 + 2
-  + 1 = 53, against the master's current 18 + 9 + 9 + 6 + 7 + 1 + 2 = 52;
-- unclosed **19 → 18**: 1 + 3 + 2 + 12 = 18, and 53 + 18 = 71;
-- §3 uncovered **9 → 8** = 2 unwritten + 6 written-and-not-green, and 6 + 12 = 18
-  reconciles §3's remainder with §4.5's unclosed list;
-- verified ledger rows **9**, rows carrying evidence without a ✓ **3** (rows 2, 7,
-  8) — both unmoved;
-- field contract **27 = 22 + 5**, recounted off Stub 8: per-hex 2 + per-unit 11 +
-  per-factory 5 + per-side 5 + match 4 = 27; DECLARED DERIVED marks
-  `isGuidedMarked`, `spawnBlocked`, `objectivesHeld`, `survivingHP`,
-  `incomePerTurn` = 5;
-- `test_ui` 34/34 with pass-1 21/34 → 13 FAIL, on the same shape §3 already uses
-  for `7c36303` (14/14, pass-1 10/14, four FAIL lines);
-- output lines **76**, **82**, **101** are stated once, in the arithmetic table,
-  and are used once, in Pair 5.
+The bullet still carries its grounding without the deleted clause. Its §4.9
+citation is verbatim in the master, wrapping a line break at `source/gdd.md`
+2735–2736:
 
-No figure appears in the apparatus outside that table except span-shape counts
-in the pair notes ("four master lines", "two master lines", the nine-space
-continuation indent, "five unwrapped master lines"), which are properties of the
-edit and not figures of the document.
+> `StratRules` contains **no engine headers, no UObject, no third-party
+> includes** — pure C++17 in `namespace strat`, exactly the base-spec constraint.
 
-### Standing checks re-run against the pairs
+and the UBT single-`main()` constraint is stated in the standing fact block.
+The deletion therefore removed the only ungrounded element and left a bullet
+that is a citation, which is what the apparatus limit requires of Grounding.
 
-- **Every `T-UI-05` site in the master is accounted for.** The eight sites the
-  draft names are the eight the master carries (§3 status paragraph, §3 ledger UI
-  row, §3 uncovered-ID paragraph, §4.4 week 3, §4.5 risk row, §4.7 Stub 8, §4.11
-  lead-in, §4.11 † bullet). Every unpaired site was read: Stub 8's invariant
-  text, its clause-(b) note, its `Acceptance: T-UI-01..02 and T-UI-05 headless`
-  line and §4.11's † bullet state kind, subject or cut-line membership, not build
-  status, so none is falsified by the closure.
-- **The blast radius over the unimplemented claim is closed.** Every occurrence of
-  `no code implements` / `implemented by no code` in the master (§3 ×4 across the
-  status paragraph, the UI row and the uncovered-ID paragraph; §4.5 ×2; §4.7 Stub
-  8; §4.11 lead-in) is inside an OLD span of Pairs 3, 4, 6, 7, 8, 10, 14, 15 or
-  16. No occurrence survives the merge.
-- **Status vocabulary stays distinct.** *written*, *unblocked*, *asserting*,
-  *green*, *unwritten*, *reserved* and *blocked* are used in the master's senses
-  throughout; the two *unwritten* IDs (T-MOVE-07 on Q2, T-SCN-10 on Q26) keep
-  their state and are not folded into the six *written and not green*.
-- **The row does not flip anywhere.** Pair 6 reproduces `| UI | agent | — |`; Pairs
-  5, 7, 14 and 16 each state that the in-editor pass is now the whole of what row
-  8 lacks; §3's "Nine rows carry a ✓ … and three more carry evidence without one"
-  is untouched and stays true.
-- **§2 is untouched, and no §2 statement is falsified.** §2.11.5's per-factory
-  block reference and §2.11.1's DONE-bit passages name fields and owners, not
-  statuses. `kb_rules.md` carries no gate status, no `T-UI-` ID and no commit, so
-  nothing in this round makes it wrong: no `kb-desync`.
-- **Pairs frame their rulings honestly.** Pair 6's note declares that the Author
-  and Agent-verified cells are reproduced unchanged and files the Author question
-  as a change request instead of editing it, which is the correct route for a
-  value the draft cannot move.
+### 2. No new finding was introduced by the deletion
 
-### Examined and deliberately not filed
+**The surviving `spec/integration_spec.md` mention is a landing claim, and the
+author's argument for it is correct.** Inside Pair 2's NEW text:
 
-- **`ahead of the milestone table, not behind it` inside Pair 5's NEW.** The
-  Director reports examining it. Concurred: the phrase is §3's own idiom, used
-  three times in the same paragraph for rows 4, 5 and 6 in the same construction
-  (`§4.4 schedules rows 4–5 for **week 3**, so this row is **ahead of the
-  milestone table, not behind it**`), and Pair 5 uses it in a §3 insertion with
-  §4.4 named only as where week 3 was scheduled, which §4.4's week-3 cell bears
-  out. Run `-2`'s finding was against the *grounding bullet*, which no longer
-  makes the claim. Nothing to file.
-- **Pair 3's "The two snapshot fields" beside Pair 5's three-item "the snapshot's
-  ruled additions".** The two lists are different sets described in their own
-  terms: §3's unedited enumeration is the three *known-absent* fields row 8's
-  landing left out, two of which became snapshot fields, while Pair 5 lists the
-  snapshot fields ruled on 2026-08-04, which Stub 8's `lockedThisTurn` member
-  shows includes `isGuidedMarked` (`the guided opening's other half, marked, is
-  the snapshot field \`isGuidedMarked\` above and is not in this block`, ruled
-  2026-08-04). Neither statement is false on that reading, and the Director's
-  fact block groups the guided mark with the two new fields. Not a
-  `contradiction`.
-- **The arithmetic table's Source cell for the `test_ui` and `test_driver` rows**
-  names the fact block, while the *Before* figures (14/14 and 12/12 at
-  `7c36303`) come from master §3. The figures are grounded — §3 states both, and
-  the Grounding section cites §3 for row 8's landing record — so no violation
-  type applies; recorded only so the next sweep does not re-open it.
-- **"§4.10's parenthetical"** describes a subordinate clause rather than a
-  parenthesis, but the reference resolves to text that exists at the named
-  section, in the Director's own words. Not a `dead-reference`.
-- **Change request 1's closing clause "Pair 6 reports the authorship without
-  pre-empting it"** reads correctly as Pair 6 reproducing the Author cell's
-  existing report unchanged — which its own pair note states explicitly — so the
-  citation is not filed as dead.
+> New in the crew repo: `sync_stratrules.py`, `spec/integration_spec.md`,
+> `run_integration_gate_fn` in `crew/tools.py`, and `python run.py
+> --integration`, which `--week1` now also runs at its end
+
+Against the record:
+
+> COMMIT `b23823f` — build-order row 9's headless half. New:
+> `sync_stratrules.py`, `spec/integration_spec.md`, `run_integration_gate_fn`
+> in `crew/tools.py`, and `python run.py --integration`, which `--week1` now
+> also runs at its end.
+
+The draft asserts that the file is new at that commit and asserts nothing about
+what is inside it. That is exactly and only what the record establishes, in the
+same enumeration and the same order. It is grounded by Grounding bullet 2 —
+*"Row 9's headless half, its new files and entry points: commit `b23823f`"* —
+which is a citation to a commit, not to a file's contents. Nothing is owed
+here; the distinction the `-3` violation turned on is the distinction the
+surviving sentence respects.
+
+**The deletion orphaned nothing.** No pair, note, check result or change
+request cites `spec/integration_spec.md` as the source of the vendored-set
+derivation, or of anything else. The derivation itself is stated once, in Pair
+9's NEW — *"Nothing else is vendored — a UBT module cannot hold a second
+`main()`, which excludes every `test_*.cpp`, `driver_main.cpp` and
+`selfplay.cpp`, and the `*.buggy.cpp` files are pass-1 fixtures"* — and bullet
+4 is its citation. Removing the clause left that pairing intact.
+
+**The bullet count is what a single-clause deletion predicts.** Grounding holds
+eleven bullets: runner repair; row-9 landing and the UE-repo tree; the gate run
+and control results; the vendored set; the Director rulings; §4.9's
+any-one-compiler clause; the run-versus-close split and the † bullet; the
+log-scoping universal at both sites; `T-DATA-01..04, 06` at `c224825`; Q29's
+per-ID reading; the post-repair tally cross-check. Bullet 4 plus the other ten,
+none added and none merged away.
+
+### 3. The claim of "byte-for-byte unchanged elsewhere" is verified, not taken
+
+Checked against run `-3`'s own quotations of the draft, clause by clause, in
+every place `-3` recorded text it had cleared:
+
+- **Pair 2 seam.** OLD still ends *"rather than preserved in place from
+  `7c36303`.*"*; the NEW still restores the italic close, terminating at *"…no
+  harness claim is made for either, because none was established.*"*.
+- **Pair 3.** Still reads *"Every **crew-repo** commit this section **cites** …
+  reachable from the head of `main` there"*, *"`99fcb84` … is reachable from
+  the head of `master` in the **Stratocracy** UE project repo"*, and *"the first
+  citation this ledger makes outside the crew repo"* — the three clauses on
+  which `-3` cleared the reachability universal.
+- **Pair 9.** OLD still ends at *"records the source commit\nhash."*; the NEW
+  still carries the single-sited object-store sentence *"which reads each source
+  from the git object store rather than the working tree — so identity is true
+  by construction at the moment the script finishes"*.
+- **Pair 11.** OLD still runs through *"T-DATA-01..04 and 06 pass\nat that
+  commit and T-DATA-05 has not run,"* and the NEW still names `c224825`.
+- **Check results.** All fourteen bullets stand, including the log-scoping
+  sweep (*"occurs twice"*, no carve-out owed) and the † bullet reconciling
+  `T-INT-03`, both of which state the master's position and assert no ruling.
+- **Change requests.** Three, unchanged, including the `T-INT-01` UE-owned
+  exemption that `-3` confirmed still carries the deleted-from-prose claim.
+
+Independently against the master, `source/gdd.md` line 1585 still reads *"**53**
+of the 71 are green"*, *"**18 IDs remain unclosed**"*, *"the **12** in rows
+9–10, which hold no code"* and *"**71** written acceptance IDs … against **9**
+verified ledger rows"*, so every OLD the arithmetic depends on is the master's
+current text and no pair's premise moved under it.
+
+### 4. The arithmetic still chains
+
+| Quantity | Before | Movement | After |
+|---|---|---|---|
+| Written acceptance IDs | 71 | none minted | 71 |
+| Green | 53 | + `T-INT-01`, `T-INT-04` | 55 |
+| Unclosed | 18 | − `T-INT-01`, `T-INT-04` | 16 |
+| Verified ledger rows | 9 | no flip | 9 |
+
+The master's breakdown sums 18 + 9 + 9 + 6 + 7 + 1 + 2 + 1 = 53; Pair 5's added
+**2** at `b23823f` takes it to 18 + 9 + 9 + 6 + 7 + 1 + 2 + 1 + 2 = 55, which is
+Pair 4's total. The master's unclosed enumeration sums 1 + 3 + 2 + 12 = 18;
+Pair 7 splits the 12 into 3 + 7, giving 1 + 3 + 2 + 3 + 7 = 16, which is Pair
+6's total and the complement 71 − 55 = 16. Row 9's five written IDs split 2
+closed / 3 not, and 5 + 7 = 12 reconciles the figure Pair 7 retires. Fourth
+pass, unchanged and clean.
+
+### 5. The apparatus limit's three species are clean
+
+- **Counts outside the arithmetic section.** None. Pair 4's note defers
+  (*"Derivation in the arithmetic section"*); the sweep bullet's *"occurs
+  twice"* counts occurrences of a swept string, not IDs; the `-3`-cleared
+  §3 sweep bullet quotes the master's *"Nine rows carry a ✓"* and *"Eight IDs
+  are still recorded as **uncovered**"* as the sweep's object, not as a tally
+  of this round's work.
+- **Restatements of a definition a pair states.** The object-store read is
+  single-sited in Pair 9; Pair 2 states the check's non-trust of the manifest
+  hashes, which is a different mechanism and is stated once. The not-wired
+  definition sits in Pair 2 alone; the vendored set in Pair 9 alone, with Pair
+  2 pointing to it rather than repeating it (*"the vendored module itself is
+  described in §4.9"*). Grounding names these as citation labels, which the
+  limit permits.
+- **Inference from one passage to another.** The two comparing bullets — the
+  log-scoping universal at its two sites, and §4.11's † bullet against §4.9's
+  Acceptance line — report the sweeps the brief required and ground no claim
+  on the comparison; both end by stating that no pair asserts anything there.
+
+The deletion touched none of the three and introduced no fourth site of
+anything.
 
 ---
 
 ## Verdict
 
-**PASS.** `sections/tech_t-ui-05-built.md` carries zero violations: all sixteen
-pairs are true against `source/gdd.md` at md5
-`5075d853166d99858fd3a5a4b7dfc27c`, every figure the file states is either in
-the Director-supplied fact block or re-derivable from the master and is stated
-once in the arithmetic table, the blast radius over `T-UI-05`'s unimplemented
-status is closed at every site the master carries it, the two change requests
-that would move a value the draft may not touch are filed as requests rather
-than written into prose, and this run's subtraction sweep left no surviving
-sentence depending on deleted support. The section is clear to merge. What must
-happen before merge is the Director's own checklist and nothing from this gate:
-apply the sixteen pairs at their stated placements, rebuild the `.pdf` and
-`.txt`, re-sync `kb/rules.md` (unaffected by this round but rebuilt with the
-master), leave §3's row 8 at `*pending*`, and rule on the three items this file
-hands up — the UI row's **Author** cell, the `spawnBlocked` occupancy-versus-
-terrain discrepancy between §4.7 Stub 8 and §4.10, and whether that discrepancy
-is minted as a Q row.
+**PASS.** `sections/tech_row9-integration.md` carries zero violations and the
+addendum is clear to merge. The single deletion ordered in run `-3` was made
+exactly and only as ordered: the clause claiming `spec/integration_spec.md`
+*"records that derivation"* is gone from the draft with nothing put in its
+place, no pointer relocated to another bullet, and no orphaned citation left
+behind — Grounding bullet 4 now rests on a §4.9 quotation that is verbatim in
+the master and on the UBT single-`main()` constraint, which between them carry
+it. The one surviving mention of that file, inside Pair 2's NEW text, is a
+landing claim that reproduces the record's own enumeration of what is new at
+`b23823f` and asserts nothing about the file's contents, so it is not the
+`-3` finding in another dress. Every other element the author reported
+unchanged was re-checked against run `-3`'s quotations and against the master
+rather than taken on report — the eleven pairs' seams, the fourteen check
+results, the three change requests, the remaining ten grounding bullets — and
+the arithmetic chains a fourth time at 71 / 55 / 16 / 9 with both enumerations
+summing to their totals and the complement holding. Before merge the Director
+need do nothing to this file; it should be merged at the eleven placements as
+written, after which the three unresolved change requests — the `T-INT-01`
+UE-owned exemption, whether §3 gains a row for build-order row 9, and whether
+the exemption question becomes a numbered register row — remain open for the
+Director's own hand, and `kb_rules.md` must be re-parsed only if §2 moves,
+which this addendum does not touch.
+
+---
+
+## Post-verdict clarification — `T-INT-03` is not an unresolved defect
+
+An earlier draft of the closing paragraph above added, to the list of things
+left for the Director, "the filed §4.11 / §4.9 disagreement over `T-INT-03`."
+The Director challenged that against this gate's own run `-1` finding. **The
+challenge is correct and the remark was loose phrasing; it is struck from the
+paragraph above.** The master states a coherent position and contains no known
+falsehood on this point. Nothing else in the report or in
+`gate/accept.json` changed, and the verdict is unaffected.
+
+The two passages, both unchanged by this addendum:
+
+> Acceptance: T-INT-01, 04 on every gate run; T-INT-02, 03, 05 in the editor pass.
+
+— §4.9, `source/gdd.md` line 2800, beside §4.11's row-9 cell, which daggers
+`T-INT-02` and `T-INT-05` and not `T-INT-03`. The † bullet at 2979–2986 states
+both halves outright and gives the reason:
+
+> **T-INT-03 stays unmarked on the rule, not on cost:** §4.9 does place it in
+> the editor pass, but what it asserts — an illegal command leaves the state
+> hash unchanged and returns a reason, no partial application — is the bridge
+> behaviour §4.9 contracts ("an invalid command returns a rejection reason and
+> changes nothing"), and a marked ID may not guard a rules invariant. The
+> consequence is stated rather than hidden: an editor pass cut to its marked IDs
+> alone would still owe T-INT-03, so this line thins that pass, it never cancels
+> it.
+
+So the master asserts, in one place and without hedging, that `T-INT-03` is in
+the editor pass **and** is unmarked. The dagger and the venue are different
+predicates — cut-line membership, versus where an ID runs — and §4.5's rule that
+the build-order table is "authoritative for which side an ID is on" governs the
+first only; §4.9 is not competing with it. A defect would require some sentence
+equating dagger-membership with editor-pass membership, and none does: the †
+bullet denies that equivalence by name and discharges its consequence. The
+discrepancy as originally filed rests on that unstated equivalence, which is why
+run `-1` found the bullet "dissolves much of the discrepancy it files and flatly
+denies the conclusion it draws," and why the author's deletion of the change
+request was correct. The draft's own check-results bullet states the master's
+position accurately — *"the two passages never disagreed"* — so the section was
+right and the escalation was the outlier. No violation arises and there is no
+Director item here for a later round.
