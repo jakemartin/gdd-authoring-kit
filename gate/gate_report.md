@@ -1,184 +1,176 @@
-# Gate report — run `row10a-3`
+# Gate report — run `row10b-4`
 
-- Master: `source/gdd.md`, MANIFEST md5 `afb16df47373ddcd2f23bd8b15102b7e` (unchanged
-  across all three runs; the master has not moved under this draft).
+- Master: `source/gdd.md`, MANIFEST md5 `01433f61ba39f63fdac6aaae0ff2b451`.
 - `source/MANIFEST.txt` present; all three source files listed. No `sync-missing`.
-- Sections read: `sections/tech_row10a-save-format.md` (16 pairs), diffed against the
-  version gated at `row10a-2`.
+- Section read: `sections/tech_row10b-replayer-hash.md` — 16 pairs, one file. One
+  file this stage, so no cross-section placement collision is possible; the
+  sixteen intra-file placements were checked against each other and none collide.
 - Top-level verdict: **PASS**. Zero violations.
-- **Nothing is escalated beside this verdict.** There is no non-blocking observation
-  outstanding, and no finding held back from the violation list.
 
 ---
 
-## `sections/tech_row10a-save-format.md` — PASS (0 violations)
+## Disposition of run `row10b-3`'s finding
 
-Both defects are cleared, and the three edits introduce nothing new.
+Re-derived against the master rather than taken on report, and then re-checked
+against the repair.
 
-### 1. The `row10a-2` violation is cleared
+At `row10b-3` the block was one `contradiction`: §3's part-(a) record at
+`737f666` stated, without a tense marker, that four T-SAVE IDs
 
-**Filed then:** `invented-fact`, on change request 1's *"Both survive this round on the
-measurement"* — a UE-repo measurement that had not been made.
+> `T-SAVE-01`, `T-SAVE-02`, `T-SAVE-03` and `T-SAVE-05` need the headless replayer of part (b); `T-SAVE-06` is the only † of the seven, is asserted jointly with `T-INT-02`, and has neither an in-editor harness nor a built subject;
 
-**Now:** the request does not retreat to the crew half, and it does not repeat the
-attribution. It states which durable equivalent exists for each half, that the two were
-established separately, and — the load-bearing sentence — that **neither is the claim
-the parenthetical makes**:
+while Pair 4 appended to the same paragraph that those four had closed and that
+`T-SAVE-06`'s built-subject blocker was removed.
 
-> **Neither of those measurements is the claim the parenthetical makes.** No
-> branch-head reading was taken for either repo, on purpose: reachability from a head
-> and reachability from a sha are different assertions, and it is the first that
-> expired inside an hour and produced the defect Pair 1 repairs.
+**Pair 16 repairs it, and repairs it by pinning rather than by deleting.** Its
+OLD is the exact clause quoted above, resolved in `source/gdd.md` line 1514 —
+the string `need the headless replayer of part (b)` occurs once in the whole
+master, and the OLD as written is a unique substring of that line. Its NEW reads
 
-Checked claim by claim against the master and the round's measurements:
+> needed the headless replayer of part (b), which was unbuilt at that commit; `T-SAVE-06` is the only † of the seven, is asserted jointly with `T-INT-02`, and had at that commit neither an in-editor harness nor a built subject; `T-SAVE-07` needs row 6's self-play, which part (c) reaches.
 
-- The quotation of the parenthetical is exact against `source/gdd.md` §3 — both the
-  crew-repo *"reachable from the head of `main`"* half and the *"`99fcb84` and
-  `9dec48c` … each reachable from the head of `master`"* half.
-- The crew-side durable equivalent is what Pair 1 carries and what the round measured:
-  `d837fc8` an ancestor of `737f666`, 13 of 13 cited crew commits reachable from
-  `737f666`.
-- The UE-side durable equivalent — `99fcb84` an ancestor of `9dec48c`, both reachable
-  from `9dec48c` — matches the Director's measurement as supplied, and is attributed to
-  the Director in Grounding rather than absorbed as the author's.
-- *"it is the first that expired inside an hour"* is accurate: the fact block records
-  the `git ls-remote` head reading as *"true when gated and false within the hour"*.
-- The conclusion is unchanged and remains correct — no pair touches the parenthetical.
-
-**The distinction from what I filed.** The rejected text attributed the parenthetical's
-survival *to* a measurement that did not exist and disclosed no gap. The new text
-separates the truth of the sentence from the measurements taken and states plainly that
-the measurements are not the sentence's claim. Its one truth assertion is explicitly
-as-of qualified — *"the parenthetical is true as this draft stands"* — and the paragraph
-that carries it names exactly what was and was not checked, so the Director cannot be
-misled about the basis. That is a sound disclosure, not an unsupported claim, and I do
-not file it.
-
-### 2. The staled Pair 1 clause is gone, and its deletion is clean
-
-*"no ancestry was measured for it this round"* was made false by the measurement taken
-after it was written, and would have merged as a false sentence. Pair 1's UE clause now
-reads:
-
-> `9dec48c` is cited as a commit, and this line makes no claim about how it stands to
-> any branch.
-
-- **This is a statement about the line, not about the world**, so no later measurement
-  or push can stale it. That is the durable form.
-- **It is true of the line.** The status line names `9dec48c` by sha only; the crew
-  half's *"rather than read off a branch"* is a statement of method about `737f666`, not
-  a branch claim about `9dec48c`; and the historical sentence reports what the line
-  *previously* said. Nothing in Pair 1 asserts how `9dec48c` stands to any branch.
-- **It still does not collide with §3's surviving parenthetical**, which does make a
-  head-phrased claim about `9dec48c` — because Pair 1's sentence is scoped to itself by
-  its own words.
-- The new UE measurement was correctly **not** folded into Pair 1. Had it been, the
-  master would carry a second sha-anchored ancestry claim that no pair's reasoning needs
-  and that the Director has not yet ruled on. Keeping it in the change request is the
-  right place for it.
-
-### 3. The rewritten grounding bullet, judged on its merits
-
-> Pair 1 asserts no ancestry for `9dec48c`, and its UE-repo clause is confined to citing
-> the commit.
-
-This is the correct repair and not merely a smaller one. The old bullet grounded a
-clause that no longer exists *and* carried the same expiry defect, being a claim about
-what had been measured. The replacement is a claim about what the pair *says*, which is
-checkable against the pair and cannot be falsified by anything measured later. I confirm
-it is accurate against Pair 1 as written. The added bullet attributing the UE ancestry
-measurement to the Director, with its two commands and its timing *"after Pair 1 was
-gated"*, is accurate and correctly attributed.
-
-Flagging the edit as outside the change-scope instruction rather than burying it was the
-right call, and I endorse it on the gate's own terms: a scope rule is not a reason to
-merge a sentence known to be false.
+Both falsified predicates are now tensed to `737f666` and both name the commit
+explicitly rather than relying on the paragraph's context. That is the move
+Pair 3 makes for the row-9 record (`has not built` → `had not built at that
+commit`), so the two repairs are one convention rather than two. The bolded
+lead-in *"Six of row 10's seven IDs did not run, and each is named in the runner
+with its reason"* is correctly left outside the OLD: it is a record of what that
+run printed and remains true.
 
 ---
 
-## No new expiring claim, and no new universal
+## The three checks the brief asked for, each re-derived
 
-I swept the whole file rather than the edited regions, since that is what was asked.
+### 1. The claim of no further falsified sibling predicates — verified
 
-**Universals** — every one is measured and sha-anchored:
+I read §3's part-(a) record on line 1514 sentence by sentence, from
+*"**Build-order row 10's part (a) then landed**, at `737f666`"* to
+*"**How `737f666` was authored is deliberately not stated**"*, and sorted its
+sentences into commit-scoped records and present-tense predicates.
 
-- Pair 1's *"every crew-repo commit this GDD cites is reachable from `737f666`"* —
-  measured 13 of 13 per sha, and anchored to a commit rather than a head.
-- Pair 3's *"Every other row's tally is unchanged from the pre-change baseline, under
-  both compilers"* — measured, and scoped to the landing.
-- Pair 3's *"No in-editor harness is among the thirteen `main()` definitions above"* —
-  verified at `row10a-2` on the master's own evidence, scoped to `737f666`.
-- Pair 7's *"the closure convention this document states once, here"* — verified: after
-  Pairs 5, 15 and 16 the full conditional occurs at exactly one site.
-- Pair 11's *"nothing re-dates on its account"* — verified against the master.
-- Change request 1's *"No branch-head reading was taken for either repo"* — a negative
-  about what this round did, which no later event can falsify.
+Commit-scoped records, which this landing cannot falsify: the new-file list and
+the `save` registry row; *"**thirteen** tracked sources define `main()` at
+`737f666`"* with its diff against the twelve at `7c36303`; the
+`T-SAVE-04` + `GATE-SAVE-PARSE` 25/25 gate; the pass-1 18/25 block and its three
+defects; and *"its green count moves **55 → 56** and its unclosed count moves
+**16 → 15**"*. Each names its own commit or its own landing. Pair 4 extends the
+same series with `ec15be6` and states row 10's part (a) as 25/25 in the
+unchanged-baseline list, which agrees with this record.
 
-**Expiring claims** — none introduced. The clause that staled is deleted and nothing
-replaces it. Every present-tense claim that remains is either sha-scoped (*"at
-`737f666`"*, *"at this commit"*), a statement about the document's own text, or one of
-the master's existing standing conventions carried forward unchanged — *"`g++` is still
-not installed on this machine"* appears at seven earlier landings in §3, and *"This hash
-is still unbuilt"* is the register §4.10 already uses. The one temporal assertion added
-this round carries its own as-of qualifier.
+Present-tense predicates, checked one by one:
 
-I also re-checked the Check-results bullet on the reachability parenthetical, which was
-**not** edited: *"it survives the push on the measurement"* refers to the crew push and
-the crew measurement, and *"Pair 1 is … asserting nothing about the UE project commit's
-relation to a branch"* is still true of the rewritten Pair 1. The edits did not stale it.
+- *"registered as row `save` in `crew/tools.py`, so this row runs under the
+  `python run.py` gate `T-INT-04` names"* — still true; part (b) adds a second
+  registry row rather than altering this one, which Pair 4 states in terms.
+- *"**`T-INT-01` and `T-INT-04` still pass 2/2 at `rulesCommit` `d837fc8` after
+  this module landed**"* — a claim about that landing; the integration gate is
+  2/2 at `ec15be6` too, so nothing behind it moved.
+- *"**Row 10's acceptance set therefore does not close**"* — still true;
+  `T-SAVE-06` and `T-SAVE-07` are open.
+- *"**It has no row in the table below to leave unflipped** … and this landing
+  creates none"* — still true; Ruling T names the eventual row without creating
+  it, and §3's table gains nothing.
+- *"**§4.10's canonical state hash is not defined here** — that is part (b)'s"* —
+  scoped by *here* to part (a), and part (b) is exactly where it landed.
+- *"its link set is `Save.cpp`, `Hex.cpp` and `test_save.cpp` and nothing else"* —
+  still true, because the landing registered `replay` as a second row rather
+  than widening `save`.
+- *"No in-editor harness is among the thirteen `main()` definitions above"* —
+  scoped to that commit's enumeration, and still true of the fourteen besides.
+- *"`T-SAVE-07` needs row 6's self-play, which part (c) reaches"* — inside
+  Pair 16's own OLD span, and carried through unchanged. Its truth value does
+  not move on this landing: row 6's self-play landed at `d8284f1`, before
+  `737f666`, so what has always been missing is a log in the §4.10 format, not
+  the schedule. The draft files that gap as change request 3 rather than
+  asserting a repair.
+
+The author's enumeration of seven surviving siblings maps onto this list
+exactly. I found no eighth predicate that this landing falsifies. The claim is
+sound.
+
+### 2. Pair 16 against Pairs 3 and 4 — no disturbance
+
+All three sit in line 1514, in this textual order:
+
+1. **Pair 3**, in the `b23823f` row-9 record: *"`T-INT-03`'s subject is §4.10's
+   canonical state hash, which build-order row 10 has not built;"* — the string
+   `has not built` occurs once in the master.
+2. **Pair 16**, in the `737f666` part-(a) record, later in the same line.
+3. **Pair 4**, at the very end of that record: *"**How `737f666` was authored is
+   deliberately not stated:** no harness claim is made for it, because none was
+   established.*"* — distinguished from the `6ccd40b`, `e06c44b`/`b23823f` and
+   `d837fc8` sentences of the same shape by its sha, so unique.
+
+Neither Pair 16's OLD nor its NEW contains any part of Pair 3's or Pair 4's OLD,
+and neither of theirs contains any part of Pair 16's; the three spans are
+disjoint and ordered 3 < 16 < 4. I derived the ordering from the master's own
+text rather than from the byte offsets supplied, and it agrees with them.
+The §4.10 cluster is likewise disjoint: Pair 12's OLD ends at *catch it.* (line
+2892), Pair 13's runs *above. That is a narrower test …* to *both are hashed.*
+(2897–2899), and Pair 14's begins at *"**This hash is still\nunbuilt**"* on 2899
+and ends at *would not stay free.* (2902) — abutting Pair 13 without overlapping
+it.
+
+### 3. Pair 16's completeness — nothing left false in its own span
+
+The OLD span carries five clauses. Two are pinned. Of the other three:
+*"`T-SAVE-06` is the only † of the seven"* is still true — §4.11 row 10's
+acceptance column reads `T-SAVE-01..07 (**T-SAVE-06 †**)`; *"is asserted jointly
+with `T-INT-02`"* is unchanged by this landing; and the `T-SAVE-07` clause is
+addressed above. No clause inside the span reads falsely after the pin.
 
 ---
 
-## What changed, verified rather than accepted
+## Other checks run this round, all clear
 
-Three changes, all outside the pair OLD blocks, exactly as described: Pair 1's **NEW**
-block, change request 1, and the Grounding bullets (one rewritten, one added). I diffed
-the file against the `row10a-2` version in full. **All 16 OLD blocks are
-byte-identical**, so the anchor set has not moved. Fifteen of the sixteen NEW blocks are
-byte-identical; only Pair 1's differs, and only by the deletion described. Every pair
-heading, every descriptor line, the Arithmetic section and the Check-results section are
-unchanged. 16 `**OLD**` markers and 16 `**NEW:**` markers, matching the mechanical
-count.
-
----
-
-## Re-confirmed on this file
-
-- **The figure that must not move has not moved.** §3's *"Eight IDs are still recorded
-  as **uncovered**"* — T-MOVE-07 and T-SCN-10 unwritten; T-DATA-05, T-SCN-08, T-SCN-09,
-  T-SCN-11, T-UI-03, T-UI-04 written and not green — is untouched by every pair, and the
-  Arithmetic bullet reproduces it correctly. `T-SAVE-04` was never among the eight.
-- **§4.5's arithmetic.** Decomposition 18+9+9+6+7+1+2+1+1+1 = 55, plus Pair 7's new `1`
-  at `737f666` = 56 (Pair 6). Unclosed: 1 + 3 + 2 + 3 + 6 = 15 (Pair 8), against the
-  pre-change 1 + 3 + 2 + 3 + 7 = 16. Written stays **71** — no ID minted,
-  `GATE-SAVE-PARSE` mints none. **9** verified ledger rows and §3's *"Nine rows carry a
-  ✓"* untouched.
-- **The `main()` series.** 12 → 13 at `737f666`, 11 harnesses + 1 duel simulator + 1
-  REPL, consistent with §3's own decomposition of the twelve at `7c36303`.
-- **All three "row 10 holds no code" sites** moved (Pairs 2, 9, 13), every neighbouring
-  canonical-state-hash clause surviving and still true.
-- **Rulings K, L, M and N** unchanged and re-verified: the closure convention stated at
-  exactly one site, `T-INT-01` at `d837fc8` and `T-INT-04` at `b23823f` throughout, no
-  green re-dated, §4.9's ten-module enumeration byte-identical.
-- **No `kb-desync`** — nothing in §2 moves. **No `placement-collision`** — one section,
-  16 distinct anchors. Insertions by substring test are 4, 11, 12 and 14, matching the
-  Arithmetic section's statement.
+- **All sixteen OLD anchors resolve, uniquely, in `source/gdd.md`.** Spot-checked
+  against the master: Pair 1 and Pair 2 in §3's status line and reachability
+  parenthetical; Pairs 5, 6, 7 and 8 in §4.5 (line 1585); Pair 9 in §4.4's week-3
+  cell (line 1567); Pair 10 at lines 2802–2805; Pair 11 at 2757–2765; Pairs
+  12–14 at 2879–2902; Pair 15 in §4.11 row 10's cell (line 3003); Pairs 3, 4 and
+  16 in line 1514.
+- **Arithmetic.** §4.5's green decomposition sums 18+9+9+6+7+1+2+1+1+1+1 = 56 in
+  the master; Pair 6's added term of 4 at `ec15be6` takes it to 60, which is what
+  Pair 5 writes. The unclosed enumeration sums 1+3+2+3+6 = 15 in the master; with
+  Pair 8's row-10 term at 2 it sums to 11, which is what Pair 7 writes. §3's own
+  last recorded movement (55 → 56 green, 16 → 15 unclosed) is the baseline Pair 4
+  continues. No figure appears outside the Arithmetic section except as prose in
+  the pairs the Arithmetic section names.
+- **Scope of what landed.** Every site that speaks of part (c) states that
+  part (b) landed and was *run against* part (c)'s closure conditions; Pair 4
+  states *"**Part (c) is not complete at this commit**"* outright, and Pair 15
+  names both IDs still waiting. No sentence claims part (c) completed.
+- **Unmeasured universals.** Pair 12's quantifiers are bounded by the implemented
+  field grouping — *"Every emitted value is an **integer**"* and the constant
+  marker carrying no information its presence does not — both stated in the fact
+  set. No wider quantifier appears.
+- **Re-dating.** Pair 4 states that no invariant text is amended, that no closure
+  re-dates, and that `T-UI-05` is green at `41a1452` before and after; Pair 11
+  states that nothing re-dates on the two unvendored modules' account. Nothing
+  claims a status flip the round did not make.
+- **Negative verification claims.** The `T-SAVE-05` and fixture-board passages are
+  past-tense records of what a run exposed, not claims that something has never
+  been measured. None expires on the next measurement.
+- **Unverified claims.** Every built/green claim carries `ec15be6` and named test
+  IDs, and `GATE-REPLAY-*` is stated to mint none.
+- **Placement.** Sixteen exact OLD → NEW pairs; each merges mechanically. No
+  collision.
 
 ---
 
 ## Verdict
 
-**PASS.** `sections/tech_row10a-save-format.md` carries zero violations and is clear to
-merge at the placement each of its sixteen pairs specifies. Both defects are properly
-closed rather than papered over: change request 1 now tells the Director what was
-measured, what was not, and that neither measurement is the claim the parenthetical
-makes — which is a better request than the one I blocked, because it makes the Director's
-actual question visible; and Pair 1's staled clause is deleted rather than patched, with
-the new measurement deliberately left out of the master where it has not been ruled on.
-I swept the whole file for new universals and new expiring claims and found none: every
-universal is measured and sha-anchored, and the only temporal assertion added carries its
-own as-of qualifier. The arithmetic holds on every figure — 71 / 55 / 16 → 71 / 56 / 15,
-the decomposition's `+1` at `737f666`, `main()` 12 → 13, nine verified ledger rows — and
-the eight-uncovered figure is untouched by every pair, which is correct. **Nothing is
-escalated beside this verdict**; the `main()` observation raised at `row10a-1` was closed
-by the `row10a-2` correction and no new observation replaces it. The Director may merge.
+`sections/tech_row10b-replayer-hash.md` **PASSES** at run `row10b-4` with zero
+violations, and the run's top-level verdict is **PASS**. The one
+`contradiction` returned at `row10b-3` is closed by Pair 16, which pins both
+falsified predicates to `737f666` instead of deleting or hedging them, leaves
+the run-record lead-in and the `T-SAVE-07` clause intact, and does not touch
+Pair 3's or Pair 4's spans. I re-derived the author's no-further-siblings claim
+against §3's part-(a) record sentence by sentence and found no eighth falsified
+predicate, and I confirmed that no clause inside Pair 16's own OLD span reads
+falsely after the pin. Nothing further must happen before merge: the Director
+may apply all sixteen pairs at the placements stated, and should then rebuild
+the `.pdf`/`.txt`, re-sync `kb/rules.md` — §2 is untouched by this addendum, so
+that sync should be a no-op and is worth confirming rather than assuming — and
+re-run `python sync.py`. The five change requests are the Director's to rule on
+and none of them blocks this merge.

@@ -1,10 +1,10 @@
 {
-  "run": "row10a-3",
-  "gdd_md5": "afb16df47373ddcd2f23bd8b15102b7e",
+  "run": "row10b-4",
+  "gdd_md5": "01433f61ba39f63fdac6aaae0ff2b451",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_row10a-save-format.md",
+      "file": "sections/tech_row10b-replayer-hash.md",
       "verdict": "PASS",
       "violations": []
     }
