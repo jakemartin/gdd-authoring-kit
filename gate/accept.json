@@ -1,10 +1,10 @@
 {
-  "run": "ue-harness-9",
-  "gdd_md5": "7f161314451f43829497070870b5255a",
+  "run": "editor-pass-4",
+  "gdd_md5": "e1d369273c274649f2e72f9f51806cba",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_ue-harness-ubt-and-check-repair.md",
+      "file": "sections/tech_editor-pass-denotation.md",
       "verdict": "PASS",
       "violations": []
     }
