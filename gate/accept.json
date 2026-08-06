@@ -1,10 +1,10 @@
 {
-  "run": "editor-pass-4",
-  "gdd_md5": "e1d369273c274649f2e72f9f51806cba",
+  "run": "harness-calendar-7",
+  "gdd_md5": "8491e0133cfa04207b909d29785397e0",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_editor-pass-denotation.md",
+      "file": "sections/tech_harness-calendar.md",
       "verdict": "PASS",
       "violations": []
     }
