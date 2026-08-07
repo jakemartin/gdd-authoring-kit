@@ -1,115 +1,94 @@
-# Gate report — run `rulings-ao-ap-5`
+# Gate report — run q31-boxed-in-build-3
 
-Snapshot: `source/MANIFEST.txt` present; `gdd.md` md5
-`18555ea139cc70d8026957c4b3b5ef14`, matching the md5 the draft's Placement and
-Grounding declare.
+Source: `source/gdd.md` (md5 `ff680be5b9c4467dc1ac846244926c08`, per
+`source/MANIFEST.txt`). Sections reviewed: `sections/rules_q31-boxed-in-build.md`,
+`sections/ux_q31-boxed-in-build.md`, `sections/tech_q31-boxed-in-build.md`.
+This is a fresh, full re-verification of all three files, not a diff against
+runs 1–2.
 
-Sections gated: `sections/tech_rulings-ao-ap.md` — sole section this stage.
+## sections/rules_q31-boxed-in-build.md — PASS
 
-## sections/tech_rulings-ao-ap.md — PASS
+All four OLD blocks were checked verbatim against the master:
 
-Zero violations.
+- P1 (§2.7 build-and-spawn bullet, lines 246–251 of the master) — exact match.
+- P2 (§4.7 Q31 register row, line 2658) — exact match, including the
+  "Blocks" and "Assumption in force" cell text.
+- P3 (§4.7 Q8 row's stale Q31-status sentence, embedded in line 2635) —
+  exact match.
+- P4 (§4.7 preamble ruled/open tally, lines 2611–2614) — exact match. The
+  17→18 ruled / 17→16 open arithmetic and the open-row list (removing Q31
+  from "Q1, Q2, Q3, Q10–Q19, Q29, Q30, Q31 and Q32") both check: the prior
+  list is 3+10+4=17, the new list is 3+10+3=16.
 
-The file was gated as new text throughout. No prior revision was consulted, and
-no identity claim from the run brief was accepted; pairs 1 and 3, the four
-Check-results bullets, Change requests, the open question and all nine Grounding
-bullets were re-derived against `source/gdd.md` from scratch rather than carried
-forward from run 4.
+No stat-drift, no invented facts, no dead references. Grounding claims
+(Q8(c), the ruled/open convention at Q29/Q33/Q34, the register's own count
+paragraph) all check against the cited rows. Handoffs to `ux-onboarding-designer`
+and `tech-director` correctly identify the two sites this author left
+untouched, and both of those sites are in fact picked up by the other two
+drafts this round. No violations.
 
-### What was checked and what it resolved to
+## sections/ux_q31-boxed-in-build.md — PASS
 
-**Run 4's violation is cleared, and the repair leaves nothing dangling.** The
-string `against that commit` occurs nowhere in the draft. The merged pair 2
-shared sense reads *"Vendored means the same thing in each: bytes copied out of a
-named commit's object store into the UE project, and gated for identity."* Both
-halves hold of both mechanisms against source: §4.8 states *"the UE project
-vendors it verbatim beside a manifest recording each file's sha256 and the crew
-commit it came from"* and *"The manifest's `dataCommit` names the commit the
-vendored bytes came from"*, so the CSV bytes do come from a named commit; and
-§4.8's *"`GATE-DATA-VENDOR` asserts that the vendored bytes are the recorded
-ones"* is identity gating. The sentence no longer says what each is gated
-against, and no later clause in pair 2, pair 1, pair 3, the Change requests, the
-open question or the Grounding leans on the deleted words.
+Pair 1's OLD block (§2.11.5 production-menu footer/button-state passage,
+line 704 of the master) now quotes §2.11.5's own text verbatim — confirmed
+character-for-character against the master, including the `spawnBlocked`/
+`buildWaiting` sentence. This resolves run 2's placement-collision finding;
+no other draft targets this anchor, so there is no collision in the
+aggregate either.
 
-**Pairs anchor and are unique.** Each OLD returns exactly one match in the master
-— pair 1 at §4.7 Q34 (line 2661), pair 2 at §4.9 part 1 (line 2791), pair 3 at
-§4.8's principle paragraph (line 2669). Pairs 2 and 3 reproduce their OLD
-verbatim at the head of their NEW; pair 1 replaces its OLD and keeps verbatim the
-half the ruling rests on (*"the pinned record is untouched either way, since
-green at `b1ea992` over the UE tree at `fed8ae9` stays true of those commits,
-which is what pinning is for"*). `interval` occurs once in the master, wholly
-inside pair 1's OLD, and pair 1's NEW names the span in full at first use.
+The Check-results table's five swept, no-pair-needed sites were each
+verified against the master: the §2.7 "player cannot currently reach"
+sentence, §4.7 Stub 8's field note, §2.11.8's "grey/shortfall/boxed states"
+phrase (line 798), the §4.7 preamble tally, and the §4.7 provenance-chain
+sentence (line 2561) — all quoted exactly as they appear in `source/gdd.md`.
+Grounding claims (the Q31 ruling, §2.7's waiting-build rule, the existing
+production-menu mockup, the snapshot fields) are each traceable to a cited
+GDD location. No violations.
 
-**Ruling AO is grounded on the master's own rule, not a new one.** §3 states
-*"each Verified row citing the commit and passing test IDs that back it"*; §3's
-row 2 cell cites `b1ea992` and *"T-DATA-05 (in-editor) 4/4 ... @ `fed8ae9`"*. The
-loud-failure claim matches §3's known-bad record — *"a perturbed CSV value
-(parity and vendor both)"* — and Q34's own *"failed both the parity check, on
-`Infantry.HP` expected 11 and read 10, and `GATE-DATA-VENDOR`, on a sha256
-mismatch"*. AO does not conflict with Q34's surviving *"such an edit re-opens the
-whole pair"*: re-opening governs the new pair, the ✓ cites the old one.
+## sections/tech_q31-boxed-in-build.md — PASS
 
-**Ruling AP's placement and scope hold.** Pair 2 sits immediately after §4.9's
-*"Nothing else is vendored — a UBT module cannot hold a second `main()` ... the
-`*.buggy.cpp` files are pass-1 fixtures, not shippable code."* and immediately
-before *"The set is declared, not inferred (ruled 2026-08-05)."* The reason pair
-2 attributes to that sentence is that sentence's own stated reason. Nothing
-downstream in §4.9 that points backward (*"the different reason stated above"*,
-*"The enumeration above is correct as it stands"*) is displaced by the insertion.
+Pair 1's OLD block (§4.7 Spec Stub 8's `buildWaiting`/`spawnBlocked`
+per-factory note, lines 2436–2440) is an exact match, whitespace and all.
 
-**Every dependant-sweep site the draft names exists and reads as claimed.** The
-other `re-open` occurrences are §4.4's wk-2 cell (line 1566), §4.11's rows 9–10
-cell (line 3195) and §3's *"re-opened by each system that lands after it"* (line
-1514) — all a different event. Every `vendored`/`unvendored` site named for AP
-resolves to crew C++ modules or `Source/StratRules/`: §4.9's ten-module
-enumeration plus `StratRules.Build.cs` and `StratRules.manifest.json`, the
-declared-not-inferred partition, *"`Save`, `Replay` and `Balance` remain
-unvendored"*, *"ruled out of vendoring until a bridge consumer exists"*, the
-*"vendored replayer"* sites in §4.4/§4.11/§3, and `T-INT-01`'s *"every file in
-Source/StratRules/"*.
+The Checks section's count is now correct: `Q31` occurs exactly **twice**
+inside the Stub 8 fence (lines 2436 and 2439), both inside the passage this
+pair replaces — verified by reading the fence's full extent (lines 2379–2547,
+confirmed by locating the opening ` ``` ` and closing ` ``` ` at those exact
+line numbers). `AI-only path` occurs once in that same span, matching the
+draft's claim. The document-wide tally of six `Q31` occurrences reconciles:
+two inside the fence (both edited) plus four outside it (line 250, §2.7;
+line 2561, the provenance-chain paragraph; line 2613, the preamble tally
+list; line 2658, the register table row) — all four confirmed present and
+correctly attributed to their owning authors, none of them edited by this
+draft. This resolves run 2's invented-fact finding.
 
-**"No count moves" re-derived, not accepted.** §4.7: *"Seventeen of the
-thirty-four rows are ruled; the other seventeen remain open"* — the open list
-(Q1, Q2, Q3, Q10–Q19, Q29, Q30, Q31, Q32) counts 17, Q34 is already ruled, and
-neither pair adds a register row, so 34 / 17 / 17 stands. §4.5: line 1587 gives
-71 written and *"**62** of the 71 are green"*, so 71 / 62 / 9 stands; neither
-ruling mints an acceptance ID. §3: *"Ten rows carry a ✓ in the table above, and
-two more carry evidence without one"* and *"Seven IDs are still recorded as
-uncovered"* — AO keeps row 2's ✓, so ten / two / seven stands. No arithmetic
-section is required.
+The `T-UI-05` grounding citation (`sections/tech_t-ui-05-built.md`, Pair 5
+and Pair 15) points to a file that exists in `sections/` and is consistent
+with the master's own `T-UI-05` material (lines 2398, 2507, 2534–2547) — not
+a dead reference. No violations.
 
-**Apparatus gated at the same standard as the pairs.** The four Check-results
-bullets are each true against the master as re-derived above. The Change requests
-section closes the two the merged addendum filed without adding a pair: §4.9's
-*"Nothing else is vendored"* is left untouched, and §4.9's stub `Inputs` line —
-*"a §4.10 replay file and the §4.8 tables imported in-editor"* — is left
-untouched and gains no note in the master. The open question quotes `T-INT-01`'s
-invariant text, §4.9's *"so neither takes its expectation from the other"*, and
-§4.8's *"the UE project cannot see the crew repo at test time"* verbatim; its
-reading of *"Neither mechanism"* is fixed by the invariant's own preceding
-sentence, as claimed; `GATE-DATA-VENDOR` indeed carries no invariant text, and
-the six `T-DATA` invariants are as characterised. Its three answers are proposals
-to the Director, not assertions, and it states no measurement it did not take.
-All nine Grounding bullets resolve — including the precedent bullet, whose quoted
-phrase is §4.9's *"What 'the editor pass' denotes, stated once here and cited
-elsewhere"* (line 2913), and the deferred-rename bullet, whose basis is §4.9's
-*"A rename would have to reconcile with those commit-pinned §3 records and is
-deferred to its own round."* The one claim measured outside this document —
-that the script, its manifest note and its crew commit message all say *vendor* —
-is labelled as supplied by the round's fact block and pinned to crew `c2edae0`.
+## Cross-section checks
+
+- **Placement collisions:** none. The three drafts target three disjoint
+  anchors (§2.7 + §4.7 register rows; §2.11.5; §4.7 Stub 8), and each
+  author's Handoffs/Check-results section correctly names the other two
+  sites as out of scope for itself.
+- **kb-desync:** none. `kb_rules.md` (line 66) carries only the basic
+  build-and-spawn sentence and does not carry the "player cannot reach the
+  waiting case" / "AI-only path" claim this ruling retracts, so the ruling
+  does not make the KB wrong.
+- **Voice / format:** all three files carry the required headings
+  (Placement, Draft, Change requests, Open questions, Grounding, plus extra
+  Handoffs/Checks sections) and are written in the GDD's declarative,
+  present-tense register.
 
 ## Verdict
 
-`sections/tech_rulings-ao-ap.md` passes with zero violations, and the run's
-top-level verdict is **PASS**. Three pairs, numbered 1–3, anchor uniquely against
-`gdd.md` at `18555ea1`; no count in §3, §4.5 or §4.7 moves; no acceptance ID is
-minted and no register row is added. The file is clear to merge at the placements
-it states — pair 1 into §4.7's Q34 answer cell, pair 2 into §4.9 part 1
-immediately after *"fixtures, not shippable code."*, pair 3 into §4.8's principle
-paragraph — with no other edit to the master. What must happen before merge is
-only the standing merge checklist: apply the three pairs at their anchors,
-rebuild `.pdf` and `.txt`, re-sync `kb/rules.md`, and re-run `python sync.py` so
-the kit sees the new master. One item is for the Director rather than the gate:
-the open question on a source-identity invariant for the CSV mechanism is live
-and unanswered, and answer (ii) would mint an acceptance ID and move §4.5's
-written count, so it must not be actioned as part of this merge.
+**PASS.** All three drafts are cleared to merge as exact OLD→NEW pairs
+against `source/gdd.md` at `ff680be5b9c4467dc1ac846244926c08`. Before merge,
+the Director should apply the pairs in the order rules → ux → tech (their
+anchors do not overlap, so ordering is not load-bearing, but Stub 8's
+line numbers will shift once §2.7/§4.7 register edits land above it, so
+tech's pair should be applied against the pre-edit line numbers or
+re-located by anchor text rather than by line number after the first two
+pairs are in).

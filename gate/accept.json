@@ -1,10 +1,20 @@
 {
-  "run": "rulings-ao-ap-5",
-  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=18555ea139cc70d8026957c4b3b5ef14",
+  "run": "q31-boxed-in-build-3",
+  "gdd_md5": "ff680be5b9c4467dc1ac846244926c08",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_rulings-ao-ap.md",
+      "file": "sections/rules_q31-boxed-in-build.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/ux_q31-boxed-in-build.md",
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "file": "sections/tech_q31-boxed-in-build.md",
       "verdict": "PASS",
       "violations": []
     }
