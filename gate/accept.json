@@ -1,10 +1,10 @@
 {
-  "run": "t-data-05-harness-6",
-  "gdd_md5": "46d05e398f5df9d6aefae5eab017a51e",
+  "run": "rulings-ao-ap-5",
+  "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=18555ea139cc70d8026957c4b3b5ef14",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_t-data-05-harness.md",
+      "file": "sections/tech_rulings-ao-ap.md",
       "verdict": "PASS",
       "violations": []
     }

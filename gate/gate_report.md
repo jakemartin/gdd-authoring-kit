@@ -1,138 +1,115 @@
-# Gate report — run `t-data-05-harness-6`
+# Gate report — run `rulings-ao-ap-5`
 
-Master: `source/gdd.md`, md5 `46d05e398f5df9d6aefae5eab017a51e` (per `source/MANIFEST.txt`).
-Snapshot present; the run reads current material.
+Snapshot: `source/MANIFEST.txt` present; `gdd.md` md5
+`18555ea139cc70d8026957c4b3b5ef14`, matching the md5 the draft's Placement and
+Grounding declare.
 
-**Top-level verdict: PASS.**
+Sections gated: `sections/tech_rulings-ao-ap.md` — sole section this stage.
 
-## sections/tech_t-data-05-harness.md — PASS (0 violations)
+## sections/tech_rulings-ao-ap.md — PASS
 
-Nothing is filed. What was checked, and why each check clears.
+Zero violations.
 
-### 1. Pair 24's amended NEW against its unchanged OLD
+The file was gated as new text throughout. No prior revision was consulted, and
+no identity claim from the run brief was accepted; pairs 1 and 3, the four
+Check-results bullets, Change requests, the open question and all nine Grounding
+bullets were re-derived against `source/gdd.md` from scratch rather than carried
+forward from run 4.
 
-OLD is the tail of the Q33 register row, which occurs once in `source/gdd.md` at
-§4.7 (line 2658):
+### What was checked and what it resolved to
 
-> `the register carries it so the amendment above has a stated cause rather than an unexplained rewrite. |`
+**Run 4's violation is cleared, and the repair leaves nothing dangling.** The
+string `against that commit` occurs nowhere in the draft. The merged pair 2
+shared sense reads *"Vendored means the same thing in each: bytes copied out of a
+named commit's object store into the UE project, and gated for identity."* Both
+halves hold of both mechanisms against source: §4.8 states *"the UE project
+vendors it verbatim beside a manifest recording each file's sha256 and the crew
+commit it came from"* and *"The manifest's `dataCommit` names the commit the
+vendored bytes came from"*, so the CSV bytes do come from a named commit; and
+§4.8's *"`GATE-DATA-VENDOR` asserts that the vendored bytes are the recorded
+ones"* is identity gating. The sentence no longer says what each is gated
+against, and no later clause in pair 2, pair 1, pair 3, the Change requests, the
+open question or the Grounding leans on the deleted words.
 
-NEW reproduces that string verbatim and appends one new table row beginning
-`| **Q34** |`, so the edit is an insertion immediately after Q33 and inside the
-§4.7 register table, which is where a new register row belongs. The row carries
-the four columns the table uses (question, dependencies, ruling) in the same
-order as Q33 and Q29, and it is marked `**RULED (this revision), and registered
-already ruled.**` on Q33's stated precedent — Q33's own row ends "It is
-registered already marked RULED because the Director ruled it in the session
-that found it", and Q34 closes with the same clause.
+**Pairs anchor and are unique.** Each OLD returns exactly one match in the master
+— pair 1 at §4.7 Q34 (line 2661), pair 2 at §4.9 part 1 (line 2791), pair 3 at
+§4.8's principle paragraph (line 2669). Pairs 2 and 3 reproduce their OLD
+verbatim at the head of their NEW; pair 1 replaces its OLD and keeps verbatim the
+half the ruling rests on (*"the pinned record is untouched either way, since
+green at `b1ea992` over the UE tree at `fed8ae9` stays true of those commits,
+which is what pinning is for"*). `interval` occurs once in the master, wholly
+inside pair 1's OLD, and pair 1's NEW names the span in full at first use.
 
-Q34's premise checks against Q29 as written (§4.7, line 2654): Q29 requires "a
-row flips only when its **full** acceptance set passes over the **complete**
-§4.9 command set at one commit", so Q34's "no single commit in either repo can
-carry both halves and Q29's condition is unsatisfiable read literally" states
-Q29's condition rather than restating it loosely.
+**Ruling AO is grounded on the master's own rule, not a new one.** §3 states
+*"each Verified row citing the commit and passing test IDs that back it"*; §3's
+row 2 cell cites `b1ea992` and *"T-DATA-05 (in-editor) 4/4 ... @ `fed8ae9`"*. The
+loud-failure claim matches §3's known-bad record — *"a perturbed CSV value
+(parity and vendor both)"* — and Q34's own *"failed both the parity check, on
+`Infantry.HP` expected 11 and read 10, and `GATE-DATA-VENDOR`, on a sha256
+mismatch"*. AO does not conflict with Q34's surviving *"such an edit re-opens the
+whole pair"*: re-opening governs the new pair, the ✓ cites the old one.
 
-### 2. Ruling AN and Open question 1 — the run-5 contradiction is discharged
+**Ruling AP's placement and scope hold.** Pair 2 sits immediately after §4.9's
+*"Nothing else is vendored — a UBT module cannot hold a second `main()` ... the
+`*.buggy.cpp` files are pass-1 fixtures, not shippable code."* and immediately
+before *"The set is declared, not inferred (ruled 2026-08-05)."* The reason pair
+2 attributes to that sentence is that sentence's own stated reason. Nothing
+downstream in §4.9 that points backward (*"the different reason stated above"*,
+*"The enumeration above is correct as it stands"*) is displaced by the insertion.
 
-Run 5's violation was that AN said row 2's flip re-pins to the new pair "rather
-than surviving on the old one" while Open question 1 presented the surviving
-reading as live. Both sides now read:
+**Every dependant-sweep site the draft names exists and reads as claimed.** The
+other `re-open` occurrences are §4.4's wk-2 cell (line 1566), §4.11's rows 9–10
+cell (line 3195) and §3's *"re-opened by each system that lands after it"* (line
+1514) — all a different event. Every `vendored`/`unvendored` site named for AP
+resolves to crew C++ modules or `Source/StratRules/`: §4.9's ten-module
+enumeration plus `StratRules.Build.cs` and `StratRules.manifest.json`, the
+declared-not-inferred partition, *"`Save`, `Replay` and `Balance` remain
+unvendored"*, *"ruled out of vendoring until a bridge consumer exists"*, the
+*"vendored replayer"* sites in §4.4/§4.11/§3, and `T-INT-01`'s *"every file in
+Source/StratRules/"*.
 
-AN, pair 24 NEW:
+**"No count moves" re-derived, not accepted.** §4.7: *"Seventeen of the
+thirty-four rows are ruled; the other seventeen remain open"* — the open list
+(Q1, Q2, Q3, Q10–Q19, Q29, Q30, Q31, Q32) counts 17, Q34 is already ruled, and
+neither pair adds a register row, so 34 / 17 / 17 stands. §4.5: line 1587 gives
+71 written and *"**62** of the 71 are green"*, so 71 / 62 / 9 stands; neither
+ruling mints an acceptance ID. §3: *"Ten rows carry a ✓ in the table above, and
+two more carry evidence without one"* and *"Seven IDs are still recorded as
+uncovered"* — AO keeps row 2's ✓, so ten / two / seven stands. No arithmetic
+section is required.
 
-> **That rules which IDs re-open and nothing about what this ledger shows in the interval** between the edit and the re-run; the pinned record is untouched either way, since *green at `b1ea992` over the UE tree at `fed8ae9`* stays true of those commits, which is what pinning is for.
-
-Open question 1:
-
-> It settles nothing about the interval, and the two are separate claims: the pinned record *green at `b1ea992` over the UE tree at `fed8ae9`* stays true of those commits throughout, so what is in question is the **live mark** and not the evidence behind it.
-
-The two now name the same two objects — the pinned evidence citation and the
-live ✓ — and assign the same one to each side of the split. AN's surviving
-temporal clause, "the flip re-pins to a new pair **when the re-run completes**",
-speaks to when the evidence pin moves; it is satisfiable under either answer to
-Open question 1 (a ✓ withdrawn in the interval still re-pins at completion; a ✓
-left standing still re-pins at completion). Neither decides the other's case.
-
-The pinning premise is grounded: §3's parenthetical beneath the ledger records
-that "a head expires and a sha does not", which is what makes a commit-pinned
-record survive a later change.
-
-### 3. The narrowing did not over-shoot
-
-AN still rules what the Director ruled:
-
-> **Which IDs a §4.8 CSV edit re-opens is ruled with it:** such an edit re-opens the **whole** pair — `T-DATA-05` and the headless `T-DATA` IDs together — and the flip re-pins to a new pair when the re-run completes.
-
-with the reason kept ("the bytes both halves read are one file, so a change to
-them is a change to both halves' subject") and the refused alternative kept
-("re-opening the headless half alone was the alternative, and it is refused for
-that reason"). The scope limit is worded as a conjunction — "That rules which
-IDs re-open **and nothing about** what this ledger shows in the interval" — so it
-affirms the re-opening in the same sentence that disclaims the interval; it does
-not disclaim the ruling itself.
-
-### 4. No third site takes a position on the interval
-
-Every occurrence of *re-open* in the draft was read: pair 24's ruling, pair 24's
-note ("AN is scoped to which IDs re-open; the interim display is not ruled and is
-registered below"), the Check-results sweep sentence distinguishing AN's event
-from the §4.4 wk-2 / Q20 "re-open when it widens", Open question 1, and the
-Open-questions closing pointer. None of the other four states what §3 displays
-in the interval. Pair 25 (AM, `dataCommit`) governs a manifest field's advance
-condition and says nothing about the ✓; pairs 4, 9 and 38 state row 2's present
-state, not its state after a future edit. The two GDD-side *re-open* sites
-(§3's provisionally-met natural-language-commands goal at line 1514, and the
-§4.4 wk-2 command-set note at line 1566) are about different objects and are
-untouched.
-
-### 5. Apparatus
-
-- **Arithmetic.** Each row of the table matches the pair it cites: §3 9→10 ✓
-  rows and 3→2 evidence-without-✓ (pairs 5, 9), 8→7 uncovered (pair 6), 6→5
-  written-and-not-green (pair 7); §4.5 9→10 verified rows (pair 14), 61→62 green
-  (pair 15) with 62 + 9 = 71 against 10→9 unclosed (pair 17); §4.7 33→34 rows,
-  16→17 ruled, 17 open, and 17 + 17 = 34 matches pair 22's NEW; §4.11 5→6 flipped
-  rows (pair 37). The note "AN is filed inside the existing Q34 row, so no
-  register row is added" is true of pair 24 as written — the pair inserts exactly
-  one row, already counted by pair 22.
-- **Check results.** Every assertion is carried by the fact block: 5/5 in-editor
-  at `fed8ae9`; 6/6 headless at `c2edae0` with WEEK-1 GATE PASS and INTEGRATION
-  GATE PASS 2/2 under MSVC; `T-INT-01`/`T-INT-04` green at `e19605e` with 22
-  files accounted for; the six known-bad controls with their catching checks; the
-  `dataCommit` lag at `b1ea992` with the three CSVs byte-identical to `c2edae0`;
-  the 44-pair inventory with insertions 24, 26 and 36 and the disjoint §4.9 sites
-  2877–2885 and 2893–2894. Nothing in the bullet list has gone stale under this
-  edit: the fail-proving bullet's "the control Ruling AN rests on" still names a
-  control AN's amended text still cites, and the dependant-sentence sweep's new
-  paragraph enumerates the sites that refer to AN's scope — pair 24's note, the
-  Arithmetic note, the Open-questions pointer, §3's row-2 evidence cell and
-  §4.5's green count — each of which reads as the sweep describes. The
-  `Infantry.HP` figures are reported as a perturbed control's failure message,
-  not as a unit stat, so §2's Infantry HP of 10 (line 174) is not contradicted.
-- **Change requests.** Both are confirm-requests filed against existing text
-  (§4.9's stub `Inputs` line and §4.9 part 1's *Nothing else is vendored*), with
-  no pair filed and no prose change smuggled in; neither moves a number.
-- **Open questions.** One question, on a §3 presentation matter no gate decides,
-  plus the record of the three questions ruled this round (AL, AM, AN) pointing
-  at the pairs that carry them.
-- **Grounding.** Each bullet resolves to a live site in `source/gdd.md`: §3's
-  ledger table and the paragraph beneath it (line 1531), Q29 and Q33 (lines 2654,
-  2658), §3's per-sha pinning parenthetical, §4.9's module-registration
-  paragraph, §4.11's † bullets and prose, §4.4's harness note. The commits and
-  the `md5` line match `source/MANIFEST.txt`.
-- **kb-desync.** No pair touches §2; `kb_rules.md` carries none of the ledger
-  counts, the §4.8 UStruct field names or `dataCommit`, so nothing this addendum
-  merges would make it wrong.
+**Apparatus gated at the same standard as the pairs.** The four Check-results
+bullets are each true against the master as re-derived above. The Change requests
+section closes the two the merged addendum filed without adding a pair: §4.9's
+*"Nothing else is vendored"* is left untouched, and §4.9's stub `Inputs` line —
+*"a §4.10 replay file and the §4.8 tables imported in-editor"* — is left
+untouched and gains no note in the master. The open question quotes `T-INT-01`'s
+invariant text, §4.9's *"so neither takes its expectation from the other"*, and
+§4.8's *"the UE project cannot see the crew repo at test time"* verbatim; its
+reading of *"Neither mechanism"* is fixed by the invariant's own preceding
+sentence, as claimed; `GATE-DATA-VENDOR` indeed carries no invariant text, and
+the six `T-DATA` invariants are as characterised. Its three answers are proposals
+to the Director, not assertions, and it states no measurement it did not take.
+All nine Grounding bullets resolve — including the precedent bullet, whose quoted
+phrase is §4.9's *"What 'the editor pass' denotes, stated once here and cited
+elsewhere"* (line 2913), and the deferred-rename bullet, whose basis is §4.9's
+*"A rename would have to reconcile with those commit-pinned §3 records and is
+deferred to its own round."* The one claim measured outside this document —
+that the script, its manifest note and its crew commit message all say *vendor* —
+is labelled as supplied by the round's fact block and pinned to crew `c2edae0`.
 
 ## Verdict
 
-`sections/tech_t-data-05-harness.md` passes with zero violations, and the run
-verdict is PASS. Run 5's contradiction was repaired at its cause rather than
-papered over: Ruling AN now rules only which acceptance IDs a §4.8 CSV edit
-re-opens and states its own scope limit, while what §3 displays between the edit
-and the re-run is carried as Open question 1 for the Director; the two claims no
-longer overlap, and no other site in the file takes a position on the interval.
-Nothing must happen before merge beyond the ordinary merge discipline — apply
-the 44 pairs at their stated sites, and put Open question 1 and the two
-confirm-requests in front of the Director, since the §3 interim-display question
-and the two senses of *vendored* are decisions this addendum deliberately does
-not make.
+`sections/tech_rulings-ao-ap.md` passes with zero violations, and the run's
+top-level verdict is **PASS**. Three pairs, numbered 1–3, anchor uniquely against
+`gdd.md` at `18555ea1`; no count in §3, §4.5 or §4.7 moves; no acceptance ID is
+minted and no register row is added. The file is clear to merge at the placements
+it states — pair 1 into §4.7's Q34 answer cell, pair 2 into §4.9 part 1
+immediately after *"fixtures, not shippable code."*, pair 3 into §4.8's principle
+paragraph — with no other edit to the master. What must happen before merge is
+only the standing merge checklist: apply the three pairs at their anchors,
+rebuild `.pdf` and `.txt`, re-sync `kb/rules.md`, and re-run `python sync.py` so
+the kit sees the new master. One item is for the Director rather than the gate:
+the open question on a source-identity invariant for the CSV mechanism is live
+and unanswered, and answer (ii) would mint an acceptance ID and move §4.5's
+written count, so it must not be actioned as part of this merge.
