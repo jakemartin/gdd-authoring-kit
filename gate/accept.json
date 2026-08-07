@@ -1,20 +1,10 @@
 {
-  "run": "q31-boxed-in-build-3",
-  "gdd_md5": "ff680be5b9c4467dc1ac846244926c08",
+  "run": "af-rename-editor-pass-3",
+  "gdd_md5": "8800bd70daff7d19a54d4176d82e04f0",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/rules_q31-boxed-in-build.md",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "sections/ux_q31-boxed-in-build.md",
-      "verdict": "PASS",
-      "violations": []
-    },
-    {
-      "file": "sections/tech_q31-boxed-in-build.md",
+      "file": "sections/tech_af-rename-editor-pass.md",
       "verdict": "PASS",
       "violations": []
     }
