@@ -1,10 +1,10 @@
 {
-  "run": "harness-calendar-7",
-  "gdd_md5": "8491e0133cfa04207b909d29785397e0",
+  "run": "t-data-05-harness-6",
+  "gdd_md5": "46d05e398f5df9d6aefae5eab017a51e",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_harness-calendar.md",
+      "file": "sections/tech_t-data-05-harness.md",
       "verdict": "PASS",
       "violations": []
     }
