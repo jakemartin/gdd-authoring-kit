@@ -1,10 +1,10 @@
 {
-  "run": "af-rename-editor-pass-3",
-  "gdd_md5": "8800bd70daff7d19a54d4176d82e04f0",
+  "run": "bridge-scope-4",
+  "gdd_md5": "417a3ad795303c1012dd84520108499a",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_af-rename-editor-pass.md",
+      "file": "sections/tech_bridge-scope.md",
       "verdict": "PASS",
       "violations": []
     }

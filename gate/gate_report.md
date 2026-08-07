@@ -1,84 +1,126 @@
-# Gate report — af-rename-editor-pass-3
+# Gate report — run `bridge-scope-4`
 
-Run: `af-rename-editor-pass-3`
-GDD: `source/gdd.md`, md5 `8800bd70daff7d19a54d4176d82e04f0` (per `source/MANIFEST.txt`)
-Section reviewed: `sections/tech_af-rename-editor-pass.md`
+`source/MANIFEST.txt` present. `gdd.md` md5 `417a3ad795303c1012dd84520108499a`.
+One section produced this stage: `sections/tech_bridge-scope.md`, 34 pairs.
 
-## Independent re-derivation (per the round's instruction)
+## sections/tech_bridge-scope.md — PASS (0 violations)
 
-The draft's completeness claim was not taken on faith. I re-ran the exact
-pattern it names — `in-?editor|Automation harness|Automation pass|editor
-pass|Unreal Automation`, case-sensitive, occurrences not matching lines —
-against `source/gdd.md` myself, via `rg -o -n`, and built my own per-line
-occurrence tally independent of the draft's table before comparing.
+No violation is filed. The record below states what was measured, so that a
+later run can tell a clean check from an unrun one.
 
-**My independent count: N = 126.** This matches the draft's claimed N exactly.
+### The finding carried in from `bridge-scope-3`
 
-I then checked, line by line, that my own occurrence count at every one of
-the 47 distinct hit-lines matches the draft's stated per-line breakdown
-(count and disposition) — not just the aggregate. Every line matched:
+The previous run's single violation was that §4.9 part 2's opening lead-in
+(`source/gdd.md` lines 2894–2895) read
 
-- Line 1516 (the single giant §3 paragraph): my count is 47 occurrences,
-  matching the draft's claim exactly, and the draft's internal partition of
-  those 47 (24 old-pair + 9 new-pair + 5 canonical + 5 pinned-quote-excluded
-  + 2 historical-excluded + 1 quoted-spec-excluded + 1 a13626f-twin-excluded)
-  sums to 47.
-- Lines 1527, 1531, 1533, 1550, 1557, 1569, 1577, 1589, 1654, 2375, 2541,
-  2693, 2763, 2769, 2864, 2917, 2926, 2935, 2936, 2956, 2972, 2974–2976,
-  2985, 3030, 3146, 3147, 3167, 3173, 3195, 3210, 3215, 3216, 3217, 3218,
-  3225, 3245, 3251, 3258, 3259, 3261, 3266, and the four MCP-wrapper lines
-  474/497/1435/1455 — every one matched the draft's stated count and
-  disposition at that line.
+    **2. Bridge — the only code that knows both worlds.** The game module
+    (`Stratocracy`) owns:
 
-Re-summing my own line-by-line tally by disposition category (not copying
-the draft's stated subtotals) gives: **67 old-pair-covered (Pairs 1–44) +
-14 new-pair-covered (Pairs 45–55) + 27 excluded + 18 already-canonical =
-126.** This is an independent confirmation of the draft's arithmetic, not a
-restatement of it — I did not find a discrepancy at any of the 47 lines or
-in any disposition bucket.
+while the draft's own record put the load mapping in the `StratBridge` UBT
+module. Pair 24 takes that lead-in. Its OLD is verbatim and unique in
+`source/gdd.md` (one occurrence, lines 2894–2895). Its NEW assigns the
+responsibilities to `StratBridge`, states why the game module cannot own them
+— a modular editor target plus a rules UBT module exporting one symbol — and
+cites §3.
 
-## Verbatim spot-checks
+### The four bullets the lead-in governs
 
-Direct grep/read against `source/gdd.md` confirmed, verbatim, at the claimed
-locations:
+The lead-in ends in a colon and governs four bullets, none of which the draft
+edits. Each was checked against the fact block for whether the re-attribution
+asserts something the round did not build.
 
-- All new Pairs 45–52 (lines 1516, 1577) — OLD text matches exactly.
-- The third-defect Pairs 53–55 (lines 2956, 2985, 3216) — "the §4.8 tables
-  imported in-editor" (×2) and "widgets in-editor" are present unrenamed in
-  source exactly as the draft's OLD blocks state, confirming the withdrawn
-  exclusion category was live in source and is a legitimate catch, not an
-  invented one.
-- Pair 44's hard line-break (line 2693–2694) — confirmed in source.
-- Both pinned §3 quotes (`b23823f`: "no in-editor Automation harness exists,
-  and the runner prints that sentence"; `41a1452`: "...output lines 76 and
-  82..." / "states that no in-editor pass exists at this commit") — present
-  verbatim, untouched, matching the draft's "Left untouched" claims.
-- Ruling AF's own illustrative naming-variance list and its two commit-
-  citation clauses (source lines ~2971–2980, including "*the editor pass*,
-  *an in-editor Automation pass* and *an in-editor pass*" and "A rename
-  would have to reconcile with those commit-pinned §3 records and is
-  deferred to its own round. **No name is changed in this revision.**") —
-  present verbatim in source, matching the draft's Pair 26 OLD text and the
-  "Left untouched" note for the paragraph's illustrative sentence.
-- All exclusion claims (lines 474, 497, 1435, 1455, 1550, 1557, 2375, 2864,
-  3146, 3215, 3259) and all "already canonical" claims (lines 2769, 2935,
-  3030, 3147, 3195, 3258, 3261, 3266, plus the canonical instances inside
-  lines 1516, 1533, 1589, 3218) — confirmed present in source exactly as
-  characterized, none requiring a pair the draft omitted.
+| Bullet (`source/gdd.md`) | Ruling |
+|---|---|
+| **Load** (2896–2898) | Lead-in states it built at `0897cb5`. Fact block, "What did NOT close": *"The load mapping and the command surface exist."* Same granularity as the source. |
+| **The authoritative `strat::GameState`** (2899–2900) | Not claimed built by the lead-in. `ue_module/vendored_set.json`, quoted in the fact block: *"the bridge consumes GameState, the command surface and the canonical state hash"*. |
+| **Command in / events out** (2901–2909) | The bullet holds both the command surface and the event list. The lead-in disaggregates them exactly: *"the load mapping and the command surface are built … ; the event list is not (§3)"*. Fact block: *"There is still **no event list**, no actor and no widget."* Forbidden species 4 is not produced. |
+| **Threading** (2910–2914) | A runtime-path constraint, carried at the same modality it had under the `Stratocracy` attribution. Nothing measured contradicts it. |
 
-## Violations
+What the re-attribution drags with it was checked at three further sites:
 
-None found.
+- `source/gdd.md` 2990–2991 (§4.9 spec stub) already reads *"the unit
+  definitions the bridge maps from FUnitRow (part 2 above)"* — it attributes
+  the mapping to "the bridge" generically, so Pair 24 does not falsify it.
+- `source/gdd.md` 2959–2961, *"`FUnitRow`, `FTerrainRow` and
+  `FEffectivenessRow` — all of them in the `Stratocracy` module and none in
+  `Source/StratRules/`"*, is about the DataTable row structs, not about who
+  maps them. Unaffected.
+- `source/gdd.md` 2867–2869, *"`StratRules` is now a **link dependency of the
+  `Stratocracy` module**"*, is the remaining claim about that module's build
+  relationship to `StratRules`. The draft files it as a change request rather
+  than restating it in prose, which is the correct disposal for an unmeasured
+  claim; a change request is not a violation.
+
+### Checks run across the whole draft
+
+- **Pair OLD blocks.** All 34 located in `source/gdd.md`, each verbatim and
+  each occurring exactly once. Multi-line OLDs (Pairs 21, 22, 23, 24, 25, 26,
+  27, 28) were checked line-for-line including indentation inside the §4.9
+  spec-stub code block (Pair 28, lines 2995–2996). Pair 32's OLD ends at a
+  table-cell boundary (` | ` follows on line 3218), so its appended sentence
+  merges mechanically.
+- **Surviving present-tense blocker claims** (forbidden species 2). Every
+  occurrence of `T-INT-02`, `T-INT-03` and `T-SAVE-06` in `source/gdd.md` was
+  enumerated with a context window. Every live "waits on / still needs /
+  lacks / is blocked by" site is taken by a pair: lines 1516 (Pairs 2, 5, 8),
+  1569 (Pair 13), 1577 (Pairs 14, 15), 1589 (Pairs 18, 20), 3219 (Pairs 33,
+  34). The remainder are commit-pinned §3 landing records at `b23823f`,
+  `d837fc8` and `ec15be6`, or quoted gate-runner output, and were stale before
+  this round rather than made so by it.
+- **The re-dating sweep.** Every `e19605e` site in `source/gdd.md` was
+  enumerated. The live credit sites are taken by Pairs 7, 12, 16, 17, 19, 22,
+  29 and 31; the rest are that landing's own §3 record or verbatim PASS-line
+  quotes pinned at `d837fc8` and `e19605e`, which the fact block's CORRECTION
+  leaves standing. Same for `22 files` / `20 sources` / `ten crew modules`:
+  the one live site is Pair 6, the others are pinned verbatim quotes.
+- **Counts.** `source/gdd.md` line 1589 reads *"**62** of the 71 are green"*.
+  The draft holds 71 / 62 / 9, row 9 at 3 and row 10 at 1, and states it in
+  Pair 11. Forbidden species 6 not produced. Pair 17 keeps the by-commit
+  figure at **2** and moves only the commit, so §4.5's partition still sums.
+- **Ledger rows.** Pair 11 states *"No ledger row is created, flipped or
+  removed by this landing"*; the two deferred rows are put to the Director as
+  a change request. Forbidden species 7 not produced.
+- **Closure discipline.** No ID is stated as closed anywhere in the draft
+  (species 1). `T-INT-05` is stated as not having run at Pairs 11, 18, 26 and
+  30 (species 3). The bridge is stated partly built with its missing parts
+  named in the negative at Pairs 11, 22, 24, 25 (species 4, 8). The fixture's
+  command coverage — `Move`, `Attack`, `EndTurn`, and no `Capture` and no
+  `Build` — is stated at Pairs 11, 30 and 32 (species 5).
+- **Pinning.** Every "has since" construction in the draft (Pairs 13, 15, 27)
+  names the commit or commit pair it rests on. The new UE-repo sha `0897cb5`
+  is never hyperlinked to the crew repo; the crew shas `cb8e12b`, `862a225`,
+  `f5fdb69`, `5c47cc1` and `9289c1d` are. §3's own convention for commits
+  cited after `ec15be6` — *"each commit cited since is pinned at the landing
+  that cites it"* (line 1533) — is satisfied by Pair 11.
+- **Naming.** The unvendored rules module is `Balance` at every site;
+  `selfplay` appears only as the file path `cpp_reference/selfplay.cpp`.
+- **Arithmetic.** Pair 21's twelve enumerated rules modules × 2 files, plus
+  `StratRules.Build.cs` and the manifest, is the 26 files Pair 22 and Pair 11
+  report; 24 sources and 12 standalone implementations follow.
+- **Grounding.** Every row of the grounding table was matched to a claim in
+  the draft, and every substantive claim in the draft to a row or to a
+  quotable sentence of `source/gdd.md`. No ungrounded substantive claim found.
+- **Format.** Placement, Draft, Change requests, Open questions, Grounding all
+  present. One section this stage, so no placement collision is possible; the
+  five named anchors do not overlap each other.
+- **kb-desync.** The draft touches §3, §4.4, §4.5, §4.9 and §4.11 only.
+  `kb_rules.md` is a parse of §2 and `kb_setting.md` of the setting material;
+  neither is put wrong by these pairs.
 
 ## Verdict
 
-**PASS.** This is the fourth pass on this file and the first that survives
-independent re-derivation rather than a spot-check of the cited violations:
-my own from-scratch grep of the exhaustive pattern against `source/gdd.md`
-returns the same N = 126 the draft reports, my own line-by-line tally
-matches its per-line disposition at every one of the 47 hit-lines, and the
-67/14/27/18 arithmetic reproduces independently rather than merely summing
-to itself. Spot-checks of new pairs, the third-defect fix, both pinned §3
-quotes, and Ruling AF's illustrative paragraph all confirm verbatim match
-against source with no drift. Nothing further is required before merge on
-this section.
+**PASS.** `sections/tech_bridge-scope.md` carries zero violations, so the
+top-level verdict for run `bridge-scope-4` is PASS and the draft is clear to
+merge. The one finding carried in from `bridge-scope-3` is closed at the
+source: Pair 24 replaces the §4.9 part 2 lead-in that named the `Stratocracy`
+game module as owner, its OLD is verbatim and unique, and the four bullets it
+governs each survive the re-attribution — the load mapping and the command
+surface are claimed built and the fact block says they exist, the event list is
+named as not built, and the GameState and Threading bullets are carried as
+specification without a built-claim. Before merge the Director owes rulings on
+the four change requests the draft files, of which two are load-bearing for
+this addendum's own numbers: whether `T-INT-02`, `T-INT-03` and `T-SAVE-06`
+close on this run under Q29, and whether crew `9289c1d` over UE `0897cb5` is
+the right re-dating target for `T-INT-01` and `T-INT-04` rather than the
+earliest qualifying pair, which is not measured. Neither ruling is the gate's
+to take, and neither blocks the merge of the text as written.
