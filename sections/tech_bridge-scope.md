@@ -20,6 +20,20 @@ Old→new pairs against the merged master: §3 (the ledger prose), §4.4, §4.5,
 
 ---
 
+### Pair 38
+**Anchor:** §3, ledger prose, the same `b23823f` first-UBT-build record, what a green UBT build is not evidence for
+
+**OLD**
+```
+while in-engine compilation is what the editor pass gates, and that pass does not exist.
+```
+**NEW**
+```
+while in-engine compilation is what the editor pass gates, and that pass did not exist at that commit.
+```
+
+---
+
 ### Pair 2
 **Anchor:** §3, ledger prose, the row-10-part-(b) record
 
@@ -141,7 +155,35 @@ while the bridge §4.9 part 2 describes is unbuilt, so a row written now would e
 ```
 **NEW**
 ```
-while the bridge §4.9 part 2 describes was unbuilt there, so a row written then would either name a system that half-exists or start a practice of one row per half.
+while the bridge §4.9 part 2 describes is incomplete — its load mapping and command surface are built, and it has no event list, no actor and no widget — so a row written now would either name a system that half-exists or start a practice of one row per half.
+```
+
+---
+
+### Pair 35
+**Anchor:** §3, ledger prose, the sentence following Pair 10's anchor, the deferral's trigger
+
+**OLD**
+```
+The row is deferred until the bridge is built, so the ledger later gains a row describing a whole system.
+```
+**NEW**
+```
+The row is deferred until the bridge is whole, so the ledger later gains a row describing a whole system.
+```
+
+---
+
+### Pair 36
+**Anchor:** §3, ledger prose, the naming of the integration row, the same trigger stated forward
+
+**OLD**
+```
+and it is created as **one** row when §4.9 part 2 lands
+```
+**NEW**
+```
+and it is created as **one** row when §4.9 part 2 lands whole
 ```
 
 ---
@@ -155,7 +197,7 @@ because none was established.* Legend: **Author**
 ```
 **NEW**
 ```
-because none was established.* **§4.9 part 2's bridge landed, at `0897cb5` in the Stratocracy UE project repo against the crew half [`cb8e12b`](https://github.com/jakemartin/stratocracy-crew/commit/cb8e12b), and the substance of this round is the defect that landing exposed rather than the three acceptance IDs that ran.** The UE tree there records `dataCommit` [`862a225`](https://github.com/jakemartin/stratocracy-crew/commit/862a225) in `Data/StratData.manifest.json` and `rulesCommit` `cb8e12b` in `Source/StratRules/StratRules.manifest.json`; `Save` and `Replay` were vendored into the UE project at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69), `sync_stratdata.py` carries the parity fixture from [`5c47cc1`](https://github.com/jakemartin/stratocracy-crew/commit/5c47cc1), and the crew-side stale-claim repair is at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d). **The defect: a UBT module that had compiled and linked for four commits was structurally incapable of satisfying a cross-module call.** An editor target is a **modular** build, so every UBT module is its own DLL and Unreal exports only symbols carrying an `_API` macro. The vendored rules-module sources carry none — §4.9 forbids them engine headers — and `dumpbin /EXPORTS` over `UnrealEditor-StratRules.dll` reports **one** export, `ThisIsAnUnrealEngineModule`. The first code that tried to call across that boundary — the bridge — failed with **8 × LNK2019**. No gate could see it, because nothing had ever *called* it. `T-INT-04` cannot catch it and is not weakened by it: it compiles the rules modules **standalone, outside UBT**, which is a different question from whether a UBT module exposes them. **This is the next transition of the failure recorded above**, where the round that registered `StratRules` gated that it *compiles* and *links* and never launched the editor, and the repair that followed left it *still built, still linked* — true, and still one transition short. The chain is compile → link → load → **call**, and the last three were each reached by a separate landing. **The repair.** The bridge is its own UBT module, `StratBridge`, and the vendored rules-module sources are compiled into it by **one shim per source** — one each because several rules modules declare same-named helpers in anonymous namespaces, which collide in a single translation unit. No vendored byte is edited by that repair: the shims `#include` `Source/StratRules/`. **`T-INT-01` and `T-INT-04` re-date, on the vendoring rather than on the shims.** `rulesCommit` moved `e19605e` → `cb8e12b`, and the vendored set grew when `Save` and `Replay` were vendored at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) — **22 files → 26**, **20 sources → 24**, **ten vendored rules modules → twelve** — so both conditions this ledger states for the previous re-dating are met again: `T-INT-01` asserts identity at `rulesCommit`, which moved, and `T-INT-04` compiles the vendored copy, whose set of implementations changed. Both are green at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d) over the vendored tree at `0897cb5`, where the integration gate passes **2/2**, `T-INT-01` accounting for all 26 files in `Source/StratRules/` at `cb8e12b` — 24 sources beside `StratRules.Build.cs` and the manifest, the declaration partitioning the 13 crew rules modules as 12 vendored and 1 ruled out — and `T-INT-04` compiling the **12** vendored rules-module implementations standalone under clang++, outside UBT. **Neither re-dating moves a count:** both IDs were already green and neither ID's written text changed, so both are closure movements rather than widenings. The pair recorded here is the one measured after the commit; whether the credit belongs instead at the earliest qualifying pair is filed for the Director rather than chosen here. `StratBridge` is listed in `Stratocracy.uproject`'s `Modules` array and carries a real `IMPLEMENT_MODULE`; `StratRules` is still absent from that array, deliberately. **The editor pass at `0897cb5`: 8 tests, 8 Success.** Three are new — `Stratocracy.StratBridge.T-INT-02.ReplayParityWithHeadless`, `Stratocracy.StratBridge.T-INT-03.RejectionSafety` and `Stratocracy.StratBridge.GATE-BRIDGE-DEFS.MappedDefsMatchLoaderOrder`. Five already ran at `fed8ae9`: `GATE-DATA-VENDOR`, and `T-DATA-05` in four tests (unit table, terrain table, effectiveness table, enum mirror). Beside them, the week-1 gate PASSes headless at `9289c1d` with `accepted=True`, and row 10's part (b) is 36/36 there, including seven `GATE-REPLAY-FIXTURE` clauses. **`GATE-BRIDGE-DEFS` mints no acceptance ID**, on the `GATE-DATA-VENDOR`, `GATE-AI-SMOKE` and `GATE-CAP-PARTIAL` precedent. **`T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed, and none of them closes.** The parity fixture they run over carries `Move`, `Attack` and `EndTurn` and carries **no `Capture` and no `Build`**; §4.11 states that `T-INT-02/03/05` re-open on the `Capture`/`Build`/`EndTurn` rows 4–5 added and close on rows 1–5, and Q29 reports a partial pass as a run and never as a closure. What their closure waits on is a parity fixture carrying the complete §4.9 command set, and no constant reaches it through the fixture's current producer: `AiCommandKind` is `{Build, Move, Attack, EndTurn}`, so that producer cannot emit a `Capture` at all, and `Build` never becomes affordable on the shipped scenario. **No acceptance ID was written here and none closed**, so §4.5's written, green and unclosed figures do not move at this landing — **71**, **62** and **9** — row 9's unclosed count stays **3** and row 10's stays **1**. **No ledger row is created, flipped or removed by this landing.** **The suite was proven able to FAIL on three known-bad inputs, each restored afterwards.** The parity fixture's `stateHash` altered with the manifest untouched: `T-INT-02` FAIL and `GATE-DATA-VENDOR` FAIL. The same forgery with the manifest **updated to match**: `GATE-DATA-VENDOR` passes and **`T-INT-02` FAILS alone**, which is what shows that ID asserting on its own rather than riding the vendor gate's sha256. `units.csv` row order reversed with the manifest updated: `GATE-BRIDGE-DEFS` FAIL. The same discipline was applied on the crew side before the fixture existed: with the parity fixture absent `GATE-REPLAY-FIXTURE` blocks on clauses (b)(c)(e)(f)(g) while (a) and (d) pass, and against the bundled buggy replayer it blocks on (f) and (g) while (a)–(e) pass. **The third input recorded something not previously known: `T-DATA-05`'s unit-table test PASSED on reversed rows.** It looks each row up **by Id** and never compares order, so it is structurally order-blind. `GATE-BRIDGE-DEFS` is therefore the only check in the project standing between a reordered table and a `defIndex` that silently resolves a Build command to the wrong unit type, and it mints no acceptance ID. **What this landing does not do is stated so it is not inferred.** **`T-INT-05` did not run**, and what it lacks is the real Stratocracy widgets it asserts over. **The bridge is partly built:** the load mapping and the command surface exist, and there is **no event list, no actor and no widget**. `Balance` is **not** vendored; the bridge does not consume it, so the 2026-08-05 ruling still describes the tree for that module, while for `Save` and `Replay` the ruling is spent — part 2 supplied the consumer it named. **Stale claims in the crew repo were repaired at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d):** eleven sites said that the bridge did not exist, that `T-INT-02` waited on a vendored replayer a ruling deferred, that `T-INT-03` waited on an unbuilt command surface, that no in-editor Automation harness or editor pass existed, or that `T-INT-02` and `T-INT-03` lacked the subjects they assert over. Sentences of the form *"they do not run **here**"* are true of every headless suite in that repo and were kept. Legend: **Author**
+because none was established.* **§4.9 part 2's bridge landed, at `0897cb5` in the Stratocracy UE project repo against the crew half [`cb8e12b`](https://github.com/jakemartin/stratocracy-crew/commit/cb8e12b), and the substance of this round is the defect that landing exposed rather than the three acceptance IDs that ran.** The UE tree there records `dataCommit` [`862a225`](https://github.com/jakemartin/stratocracy-crew/commit/862a225) in `Data/StratData.manifest.json` and `rulesCommit` `cb8e12b` in `Source/StratRules/StratRules.manifest.json`; `Save` and `Replay` entered `Source/StratRules/` at that UE commit, the crew having declared them vendored at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69); `sync_stratdata.py` carries the parity fixture from [`5c47cc1`](https://github.com/jakemartin/stratocracy-crew/commit/5c47cc1), and the crew-side stale-claim repair is at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d). **The defect: a UBT module that had compiled and linked for four commits was structurally incapable of satisfying a cross-module call.** An editor target is a **modular** build, so every UBT module is its own DLL and Unreal exports only symbols carrying an `_API` macro. The vendored rules-module sources carry none — §4.9 forbids them engine headers — and `dumpbin /EXPORTS` over `UnrealEditor-StratRules.dll` reports **one** export, `ThisIsAnUnrealEngineModule`. The first code that tried to call across that boundary — the bridge — failed with **8 × LNK2019**. No gate could see it, because nothing had ever *called* it. `T-INT-04` cannot catch it and is not weakened by it: it compiles the rules modules **standalone, outside UBT**, which is a different question from whether a UBT module exposes them. **This is the next transition of the failure recorded above**, where the round that registered `StratRules` gated that it *compiles* and *links* and never launched the editor, and the repair that followed left it *still built, still linked* — true, and still one transition short. The chain is compile → link → load → **call**, and the last three were each reached by a separate landing. **The repair.** The bridge is its own UBT module, `StratBridge`, and the vendored rules-module sources are compiled into it by **one shim per source** — one each because several rules modules declare same-named helpers in anonymous namespaces, which collide in a single translation unit. No vendored byte is edited by that repair: the shims `#include` `Source/StratRules/`. **What §4.9 part 1's link dependency buys is header access, not linkage of `strat::` functions:** the `Stratocracy` module's build rules still list `StratRules` among their public dependency modules at `0897cb5`, and what that supplies is the vendored combat header the parity harness includes so its enum mirror compares against the real enum — no callable symbol, for the one-export reason above. **`T-INT-01` and `T-INT-04` re-date, on the vendoring rather than on the shims.** `rulesCommit` moved `e19605e` → `cb8e12b`, and the vendored set grew when `Save` and `Replay` entered the UE tree at `0897cb5`, the crew declaration having moved them from excluded to vendored at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) — **22 files → 26**, **20 sources → 24**, **ten vendored rules modules → twelve** — so both conditions this ledger states for the previous re-dating are met again: `T-INT-01` asserts identity at `rulesCommit`, which moved, and `T-INT-04` compiles the vendored copy, whose set of implementations changed. Both are green at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d) over the vendored tree at `0897cb5`, where the integration gate passes **2/2**, `T-INT-01` accounting for all 26 files in `Source/StratRules/` at `cb8e12b` — 24 sources beside `StratRules.Build.cs` and the manifest, the declaration partitioning the 13 crew rules modules as 12 vendored and 1 ruled out — and `T-INT-04` compiling the **12** vendored rules-module implementations standalone under clang++, outside UBT. **Neither re-dating moves a count:** both IDs were already green and neither ID's written text changed, so both are closure movements rather than widenings. **No earlier pair qualifies:** `Source/StratRules/` holds 22 files at `a13626f` and at `fed8ae9` and 26 at `0897cb5`, the four added being `Save`'s and `Replay`'s header and implementation, and the recorded `rulesCommit` is `e19605e` at `fed8ae9` and `cb8e12b` at `0897cb5`, so both conditions are first met at `0897cb5` and at no earlier UE tree. `StratBridge` is listed in `Stratocracy.uproject`'s `Modules` array and carries a real `IMPLEMENT_MODULE`; `StratRules` is still absent from that array, deliberately. **The editor pass at `0897cb5`: 8 tests, 8 Success.** Three are new — `Stratocracy.StratBridge.T-INT-02.ReplayParityWithHeadless`, `Stratocracy.StratBridge.T-INT-03.RejectionSafety` and `Stratocracy.StratBridge.GATE-BRIDGE-DEFS.MappedDefsMatchLoaderOrder`. Five already ran at `fed8ae9`: `GATE-DATA-VENDOR`, and `T-DATA-05` in four tests (unit table, terrain table, effectiveness table, enum mirror). Beside them, the week-1 gate PASSes headless at `9289c1d` with `accepted=True`, and row 10's part (b) is 36/36 there, including seven `GATE-REPLAY-FIXTURE` clauses. **`GATE-BRIDGE-DEFS` mints no acceptance ID**, on the `GATE-DATA-VENDOR`, `GATE-AI-SMOKE` and `GATE-CAP-PARTIAL` precedent. **`T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed, and none of them closes.** The parity fixture they run over carries `Move`, `Attack` and `EndTurn` and carries **no `Capture` and no `Build`**; §4.11 states that `T-INT-02/03/05` re-open on the `Capture`/`Build`/`EndTurn` rows 4–5 added and close on rows 1–5, and Q29 reports a partial pass as a run and never as a closure. What their closure waits on is a parity fixture carrying the complete §4.9 command set, and the two commands this fixture lacks are absent for different reasons. **`Capture` cannot be produced at all:** `AiCommandKind` is `{Build, Move, Attack, EndTurn}` and has no `Capture` member, so nothing reading that enum can emit one. **`Build` can be produced, and this fixture's harness never asks for it:** the harness builds its `AiState` without assigning `buildlist`, and `chooseBuild` iterates that list and returns -1 when it is empty, before Fame is consulted; `Balance`'s equivalent view does assign a buildlist. Fame sufficiency is not what stops it — `startingFame` is 200 a side, Infantry's `CostFame` is 100, side 0 owns the `Factory` hex at column 1 row 4 with `IsSpawnPoint` true, and `queueBuild` refuses only when `fameTotal` is below the cost. **No acceptance ID was written here and none closed**, so §4.5's written, green and unclosed figures do not move at this landing — **71**, **62** and **9** — row 9's unclosed count stays **3** and row 10's stays **1**. **No ledger row is created, flipped or removed by this landing.** **The suite was proven able to FAIL on three known-bad inputs, each restored afterwards.** The parity fixture's `stateHash` altered with the manifest untouched: `T-INT-02` FAIL and `GATE-DATA-VENDOR` FAIL. The same forgery with the manifest **updated to match**: `GATE-DATA-VENDOR` passes and **`T-INT-02` FAILS alone**, which is what shows that ID asserting on its own rather than riding the vendor gate's sha256. `units.csv` row order reversed with the manifest updated: `GATE-BRIDGE-DEFS` FAIL. The same discipline was applied on the crew side before the fixture existed: with the parity fixture absent `GATE-REPLAY-FIXTURE` blocks on clauses (b)(c)(e)(f)(g) while (a) and (d) pass, and against the bundled buggy replayer it blocks on (f) and (g) while (a)–(e) pass. **The third input recorded something not previously known: `T-DATA-05`'s unit-table test PASSED on reversed rows.** It looks each row up **by Id** and never compares order, so it is structurally order-blind. `GATE-BRIDGE-DEFS` is therefore the only check in the project standing between a reordered table and a `defIndex` that silently resolves a Build command to the wrong unit type, and it mints no acceptance ID. **What this landing does not do is stated so it is not inferred.** **`T-INT-05` did not run**, and what it lacks is the real Stratocracy widgets it asserts over. **The bridge is partly built:** the load mapping and the command surface exist, and there is **no event list, no actor and no widget**. `Balance` is **not** vendored; the bridge does not consume it, so the 2026-08-05 ruling still describes the tree for that module, while for `Save` and `Replay` the ruling is spent — part 2 supplied the consumer it named. **Stale claims in the crew repo were repaired at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d):** eleven sites said that the bridge did not exist, that `T-INT-02` waited on a vendored replayer a ruling deferred, that `T-INT-03` waited on an unbuilt command surface, that no in-editor Automation harness or editor pass existed, or that `T-INT-02` and `T-INT-03` lacked the subjects they assert over. Sentences of the form *"they do not run **here**"* are true of every headless suite in that repo and were kept. **That same commit introduced false claims of its own:** fourteen clauses across **ten** files — two runner modules, three test and harness sources, the README and four spec documents — assert that `T-SAVE-06` and `T-INT-02` **closed** in the editor pass at `0897cb5`. They ran and passed and did not close, so all fourteen are false. In almost every case such a clause sits beside a true negative — that no headless build can close `T-SAVE-06`, that it is marked † and asserted jointly with `T-INT-02` — and the true negative stands. **Two commit messages carry claims measurement contradicts, and neither can be amended.** UE `0897cb5`'s message states that `T-INT-01` and `T-INT-04` do not re-date and cites crew `cb8e12b` as the commit both are green at; both halves are false. Both re-date, on the file-count and `rulesCommit` measurements recorded above, and `cb8e12b` is the `rulesCommit` that UE tree records — the crew commit its sources were vendored **from** — while the crew commit the checks were run at is `9289c1d`. Crew `9289c1d`'s message names the unvendored module `Selfplay` at three places; the vendored-set declaration the identity check reads has named that module `Balance` since [`e19605e`](https://github.com/jakemartin/stratocracy-crew/commit/e19605e), which is earlier than `9289c1d`, and the naming record above states why the other spelling is impossible. The tree was corrected at the crew tip; the message cannot be. Each of the two messages was written from a fact block the addendum round had not yet gated. **Where a commit message and this ledger disagree, this ledger is the record.** Legend: **Author**
 ```
 
 ---
@@ -183,7 +225,7 @@ because none was established.* **§4.9 part 2's bridge landed, at `0897cb5` in t
 ```
 **NEW**
 ```
-`T-SAVE-06`, `T-INT-02` and `T-INT-03` did not close here, and have since run and passed without closing, in the editor pass at `0897cb5` in the Stratocracy UE project repo against the crew half `cb8e12b` (§3), in no week this table names: `Replay` was vendored at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) and the bridge's command surface landed at that UE commit, and the editor pass all three also lacked had landed at `fed8ae9` in the same repo (§3). What their closure waits on is a parity fixture carrying the complete §4.9 command set, which rows 4–5 supply and the fixture run there does not carry (§3). `T-INT-05` did not close here either, and what it lacks is the real Stratocracy widgets it asserts against, measured absent at `a13626f` (§4.9).
+`T-SAVE-06`, `T-INT-02` and `T-INT-03` did not close here, and have since run and passed without closing, in the editor pass at `0897cb5` in the Stratocracy UE project repo against the crew half `cb8e12b` (§3), in no week this table names: `Replay` was vendored into `Source/StratRules/` at that UE commit and the bridge's command surface landed there, and the editor pass all three also lacked had landed at `fed8ae9` in the same repo (§3). What their closure waits on is a parity fixture carrying the complete §4.9 command set, which rows 4–5 supply and the fixture run there does not carry (§3). `T-INT-05` did not close here either, and what it lacks is the real Stratocracy widgets it asserts against, measured absent at `a13626f` (§4.9).
 ```
 
 ---
@@ -211,7 +253,21 @@ The principle stated above — the week the thing that consumes it runs — now 
 ```
 **NEW**
 ```
-The principle stated above — the week the thing that consumes it runs — governed the two that have since landed off this calendar: the vendored replayer, at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69), and the bridge's command surface, at `0897cb5` in the Stratocracy UE project repo against the crew half `cb8e12b`, where `T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed in the editor pass without closing (§3). What is still uncelled is the real Stratocracy widgets `T-INT-05`, `T-UI-03` and `T-UI-04` assert against (§4.9).
+The principle stated above — the week the thing that consumes it runs — governed the two that have since landed off this calendar: the vendored replayer and the bridge's command surface, both at `0897cb5` in the Stratocracy UE project repo against the crew half `cb8e12b`, where `T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed in the editor pass without closing (§3). What is still uncelled is the real Stratocracy widgets `T-INT-05`, `T-UI-03` and `T-UI-04` assert against (§4.9).
+```
+
+---
+
+### Pair 37
+**Anchor:** §4.4, the same note, what stood between the `fed8ae9` landing and a cell held at it
+
+**OLD**
+```
+while the subjects the other editor-pass IDs assert against are unbuilt (§4.9)
+```
+**NEW**
+```
+while the subjects the other editor-pass IDs assert against were unbuilt at that landing (§4.9)
 ```
 
 ---
@@ -239,7 +295,7 @@ and **2** at [`e19605e`](https://github.com/jakemartin/stratocracy-crew/commit/e
 ```
 **NEW**
 ```
-and **2** at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d), where `T-INT-01` and `T-INT-04` re-date over the vendored tree at `0897cb5` without closing row 9's acceptance set either — `T-INT-01` because it asserts identity at `rulesCommit`, which moved to `cb8e12b`, and `T-INT-04` because it compiles the vendored copy, whose implementations `Save` and `Replay` joined at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) — neither on a text change, so both are closure movements rather than widenings, and this count does not move on them (§3)
+and **2** at [`9289c1d`](https://github.com/jakemartin/stratocracy-crew/commit/9289c1d), where `T-INT-01` and `T-INT-04` re-date over the vendored tree at `0897cb5` without closing row 9's acceptance set either — `T-INT-01` because it asserts identity at `rulesCommit`, which moved to `cb8e12b`, and `T-INT-04` because it compiles the vendored copy, whose implementations `Save` and `Replay` joined at `0897cb5` — neither on a text change, so both are closure movements rather than widenings, and this count does not move on them (§3)
 ```
 
 ---
@@ -301,9 +357,8 @@ and Driver, each as `X.h` and `X.good.cpp`, beside `StratRules.Build.cs`,
 `0897cb5` in the UE project repo against `rulesCommit`
 [`cb8e12b`](https://github.com/jakemartin/stratocracy-crew/commit/cb8e12b)
 (§3): twelve rules modules — Combat, Hex, Data, Move, Economy, Turn, Ai,
-Scenario, Ui and Driver, joined by Save and Replay at
-[`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) —
-each as `X.h` and `X.good.cpp`, beside `StratRules.Build.cs`,
+Scenario, Ui and Driver, joined there by Save and Replay — each as `X.h` and
+`X.good.cpp`, beside `StratRules.Build.cs`,
 ```
 
 ---
@@ -354,9 +409,10 @@ no command surface, no event list, no actor and no widget, and none of those
 subjects exists at `a13626f` either, measured below — so the consumer it named
 was hypothetical. Part 2 has since supplied it — the bridge's load mapping and
 command surface are built, and it has no event list, no actor and no widget —
-and `Save` and `Replay` were vendored at
-[`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69),
-which makes the vendored set twelve: the ten enumerated above plus those two.
+and the crew declared `Save` and `Replay` vendored at
+[`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69), the
+UE project vendoring them into `Source/StratRules/` at `0897cb5`, which makes
+the vendored set twelve: the ten enumerated above plus those two.
 `Balance` stays out, where it would be a thirteenth rules module beside them,
 the bridge not consuming it, and the declaration partitions the 13 crew rules
 modules as 12 vendored and 1 ruled out. **Both `T-INT` closures re-date on that
@@ -391,6 +447,20 @@ and `GATE-DATA-VENDOR` and no in-engine parity check over the vendored module;
 at `0897cb5`, against the crew half `cb8e12b`, it runs eight tests, 8 Success,
 three of them new — `T-INT-02`, `T-INT-03` and `GATE-BRIDGE-DEFS`, the last
 minting no acceptance ID, and none of the three closing (§3).
+```
+
+---
+
+### Pair 39
+**Anchor:** §4.9 part 1, the `fed8ae9` removal from the `Modules` array, the re-date clause only — the link-dependency clause in the same sentence is untouched (CR-4)
+
+**OLD**
+```
+`T-INT-01` and `T-INT-04` do not re-date (§3).
+```
+**NEW**
+```
+`T-INT-01` and `T-INT-04` did not re-date on that removal (§3).
 ```
 
 ---
@@ -469,13 +539,13 @@ be discovered at the pass: `T-INT-02` needed a **vendored replayer**, and
 `Replay` was then ruled out of vendoring until a bridge consumer existed; `T-INT-03`
 needed the **command surface**, which was part of the then-unbuilt bridge; `T-INT-05`,
 `T-UI-03` and `T-UI-04` need **real Stratocracy widgets**; and `T-SAVE-06`
-is asserted jointly with `T-INT-02`. `Save` and `Replay` were vendored at
-[`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) and
-the command surface landed at `0897cb5` in the Stratocracy UE project repo
-against the crew half `cb8e12b`, where `T-INT-02`, `T-INT-03` and `T-SAVE-06`
-ran and passed in the editor pass without closing, their closure waiting on a
-parity fixture carrying the complete §4.9 command set (§3); the widgets the
-other three assert over are not built.
+is asserted jointly with `T-INT-02`. `Save` and `Replay` were vendored into
+`Source/StratRules/` at `0897cb5` in the Stratocracy UE project repo against
+the crew half `cb8e12b`, where the command surface landed with them and
+`T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed in the editor pass
+without closing, their closure waiting on a parity fixture carrying the
+complete §4.9 command set (§3); the widgets the other three assert over are
+not built.
 ```
 
 ---
@@ -613,17 +683,12 @@ They **close on rows 1–5**, which is what this cell used to state as the whole
 ```
 **NEW**
 ```
-**`T-SAVE-06` is still the only ID this row lacks**, and it has run without closing: the replayer had to be compiled into the engine and therefore vendored, `Replay` was vendored at [`f5fdb69`](https://github.com/jakemartin/stratocracy-crew/commit/f5fdb69) once the bridge consumer existed, and `T-SAVE-06` passed in the editor pass at `0897cb5` in the Stratocracy UE project repo against the crew half `cb8e12b`, asserted jointly with `T-INT-02`, whose replay runs **in-engine**. What its closure waits on is a parity fixture carrying the complete §4.9 command set. The editor pass this ID also lacked landed at `fed8ae9` in the same repo (§3).
+**`T-SAVE-06` is still the only ID this row lacks**, and it has run without closing: the replayer had to be compiled into the engine and therefore vendored, `Replay` was vendored into `Source/StratRules/` at `0897cb5` in the Stratocracy UE project repo once the bridge consumer existed, and `T-SAVE-06` passed in the editor pass at that commit against the crew half `cb8e12b`, asserted jointly with `T-INT-02`, whose replay runs **in-engine**. What its closure waits on is a parity fixture carrying the complete §4.9 command set. The editor pass this ID also lacked landed at `fed8ae9` in the same repo (§3).
 ```
 
 ## Change requests
 
-| Existing § | Current text | Proposed change | Why |
-|---|---|---|---|
-| §4.11 row 9 cell; §4.7 Q29 | `T-INT-02/03/05` "re-open on the `Capture`/`Build`/`EndTurn`" and "**close on rows 1–5**"; Q29 reports a partial pass as a run and never as a closure | Director rules whether `T-INT-02`, `T-INT-03` and `T-SAVE-06` close on the run recorded here | The draft applies the conservative reading: they ran and passed and did not close. A ruling the other way closes three IDs, moving green 62 → 65, unclosed 9 → 6, row 9's 3 → 1 and row 10's 1 → 0, and completing row 10's acceptance set. The fixture's producer cannot reach `Capture` at all — `AiCommandKind` is `{Build, Move, Attack, EndTurn}` — and `Build` never becomes affordable on the shipped scenario, so the complete command set needs a fixture authored by something other than that producer |
-| §3, §4.4 wk 2, §4.5, §4.11 — every site crediting `T-INT-01` and `T-INT-04` at `e19605e` | Both greens stand at `e19605e` over the vendored tree at `a13626f` | Pairs 12, 16, 17, 19, 22, 29 and 31 re-date both to crew `9289c1d` over the UE tree at `0897cb5`. Director confirms that target | `rulesCommit` moved `e19605e` → `cb8e12b` and the vendored copy went 20 sources → 24, so both conditions §3 states for the previous re-dating are met again. Only the post-commit pair is measured; the earliest qualifying pair — the UE commit at which `Save` and `Replay` first appeared in `Source/StratRules/` — is not, so the draft records the measured pair and does not choose the earlier one. No §4.5 count moves either way: both IDs were already green and neither text changed |
-| §3, the deferred **Save & replay** row; §3, the deferred **Headless → Unreal integration** row | Each is created as one row when its stated condition is met | Director rules whether either row is created now | Row 10's set completes only under the first ruling above. Row 9's condition is "when §4.9 part 2 lands"; part 2's bridge landed with a load mapping and a command surface and with no event list, no actor and no widget, and `T-INT-05` did not run. No row is created or flipped by this addendum |
-| §4.9 part 1 | "`StratRules` is now a **link dependency of the `Stratocracy` module**" | Director re-measures what `Stratocracy` links at `0897cb5` before that sentence is relied on | The measured record for this round covers `StratBridge`'s shims and `Source/StratRules/`'s byte-identity, and states nothing about the `Stratocracy` module's link inputs. Pair 24 moves the bridge's ownership off the `Stratocracy` module; this sentence is the remaining claim about that module's build relationship to `StratRules` |
+None open.
 
 ## Open questions for the Director
 
@@ -632,15 +697,9 @@ They **close on rows 1–5**, which is what this cell used to state as the whole
    `units.csv` and a `defIndex` resolving a Build command to the wrong unit
    type, `T-DATA-05`'s unit-table test being order-blind.
 2. **Who authors a parity fixture carrying `Capture` and `Build`?** Three IDs'
-   closure depends on one, and §4.9 assigns no owner for it.
-3. **Does `ue_module/vendored_set.json` need a ruling to move `Save` and
-   `Replay` from `excluded` to `vendored`?** §4.9 requires the declaration to
-   partition the crew's rules modules; the measured record says it now
-   partitions 13 as 12 vendored and 1 ruled out, and states nothing about which
-   commit changed it.
-4. **Which UE commit first carried `Save` and `Replay` in `Source/StratRules/`?**
-   It is the earliest qualifying re-dating target for `T-INT-01` and `T-INT-04`
-   and is not measured.
+   closure depends on one, and §4.9 assigns no owner for it. `Capture` needs a
+   producer that does not read `AiCommandKind`, which has no such member;
+   `Build` needs only a harness that assigns the AI a buildlist.
 
 ## Grounding
 
@@ -650,24 +709,28 @@ They **close on rows 1–5**, which is what this cell used to state as the whole
 | Editor pass at `0897cb5`: 8 tests, 8 Success; three new (`T-INT-02`, `T-INT-03`, `GATE-BRIDGE-DEFS`); five ran at `fed8ae9` | fact block, "What ran, and the result" |
 | `T-SAVE-06` asserted jointly with `T-INT-02`, in-engine, no headless build closing it | fact block, "What ran, and the result"; §4.10 spec stub `T-SAVE-06` |
 | `GATE-BRIDGE-DEFS` mints no acceptance ID | fact block; §3 `GATE-DATA-VENDOR` / `GATE-AI-SMOKE` / `GATE-CAP-PARTIAL` precedent |
-| One export, `ThisIsAnUnrealEngineModule`; 8 × LNK2019; compiled and linked for four commits with nothing calling it | fact block, "The defect this round found" |
-| The bridge is a UBT module, `StratBridge`, and the load mapping and command surface live in it | fact block, "The repair"; fact block, "What did NOT close" |
-| A modular editor target plus a rules module exporting one symbol is why the game module cannot own the load mapping | fact block, "The defect this round found" |
+| One export, `ThisIsAnUnrealEngineModule`; 8 × LNK2019; compiled and linked for four commits with nothing calling it; a modular editor target is why the game module cannot own the load mapping | fact block, "The defect this round found" |
 | `T-INT-04` compiles standalone outside UBT and is not weakened | fact block, same section; §4.9 `T-INT-04` invariant text |
-| Earlier defect of the same species (compiles-and-links, editor never launched) | §3 ledger prose, the `fed8ae9` record |
-| `StratBridge`, one shim per source, anonymous-namespace collisions, no vendored byte edited | fact block, "The repair" |
+| Earlier defect of the same species (compiles-and-links, editor never launched); the `fed8ae9` removal touched no vendored byte and re-dated neither `T-INT` ID, which §3 and §4.9 part 1 now both state in the past, the re-dating that did occur being on the `0897cb5` vendoring | §3 ledger prose, the `fed8ae9` record; fact block, "CORRECTION" |
+| The editor pass did not exist at `b23823f` and exists at `fed8ae9`, so the subjects the editor-pass IDs assert against were unbuilt at that landing and the widgets still are | §3 ledger prose, the `b23823f` and `fed8ae9` records; §4.9 part 1's `fed8ae9` statement; §4.9 part 2's `a13626f` measurement |
+| The bridge is the UBT module `StratBridge`, holding the load mapping and command surface, built by one shim per source over anonymous-namespace collisions, no vendored byte edited | fact block, "The repair"; fact block, "What did NOT close" |
+| `Stratocracy`'s build rules still list `StratRules` as a public dependency module at `0897cb5`, supplying the vendored combat header the parity harness includes and no callable symbol | round `bridge-scope-5` measurement, F3; Director ruling on CR-4 (link-dependency clause unchanged) |
+| Crew `f5fdb69` changed one file, `ue_module/vendored_set.json`, moving `Save` and `Replay` from excluded to vendored, and moved no bytes into `Source/StratRules/`; the bytes entered the UE tree at `0897cb5`, whose vendored copy records `rulesCommit` `cb8e12b` | round `bridge-scope-6` measurement |
 | `rulesCommit` `e19605e` → `cb8e12b`; 22 files → 26; 20 sources → 24; ten vendored rules modules → twelve; both `T-INT` IDs re-date; no count moves | fact block, "CORRECTION" |
-| Measured re-dating pair is crew `9289c1d` over UE `0897cb5`; earliest qualifying pair unsettled | fact block, "CORRECTION", closing paragraph |
+| Crew `9289c1d` over UE `0897cb5` is the earliest pair meeting both re-dating conditions: 22 files at `a13626f` and at `fed8ae9`, 26 at `0897cb5`, the four added being Save's and Replay's header and implementation; `rulesCommit` `e19605e` at `fed8ae9`, `cb8e12b` at `0897cb5` | round `bridge-scope-5` measurement, F2; Director ruling on CR-2 |
 | The re-dating rationale both IDs meet again | §3 ledger prose, the `e19605e` record, quoted in the fact block's CORRECTION |
 | Headless at `9289c1d` over `0897cb5`: week-1 PASS `accepted=True`; integration 2/2 with 26 files at `cb8e12b`, 24 sources, 12 implementations, declaration partitioning 13 rules modules as 12 and 1; row 10 part (b) 36/36 with seven `GATE-REPLAY-FIXTURE` clauses | fact block, "Headless, at crew `9289c1d`" |
 | Three known-bad inputs and their results; `GATE-REPLAY-FIXTURE` clause behaviour | fact block, "Known-bad inputs" |
 | `T-DATA-05`'s unit-table test passed on reversed rows; lookup by Id; order-blind | fact block, "Known-bad inputs", third row |
 | `T-INT-05` did not run and lacks the real Stratocracy widgets | fact block, "What did NOT close" |
-| Bridge has no event list, no actor, no widget | fact block, "What did NOT close" |
+| Bridge has no event list, no actor, no widget; its load mapping and command surface are built, so the system a ledger row would name half-exists now, and the deferral's trigger reads *whole* at both of the master's statements of it — *the bridge is whole* and *§4.9 part 2 lands whole*, the only two sites that state it | fact block, "What did NOT close"; §4.9 part 2's component list; Director ruling on CR-3 (no row) and on this round's approved change request, *built* → *whole*; coordinator's `bridge-scope-6` sweep of the master for that trigger, two sites and no third |
 | No bridge at `a13626f`, and the widgets absent there | §4.9 part 2's own `a13626f` measurement |
-| Fixture carries `Move`, `Attack`, `EndTurn` only; `AiCommandKind` is `{Build, Move, Attack, EndTurn}`; `Build` unaffordable on the shipped scenario | fact block, "What did NOT close" |
+| `data/parity_fixture.save` carries `Move`, `Attack`, `EndTurn` only | fact block, "What did NOT close" |
+| `AiCommandKind` has no `Capture` member; that fixture's harness assigns no `buildlist`, so `chooseBuild` returns -1 before Fame is consulted, while `Balance`'s view assigns one; `startingFame` 200 a side, Infantry `CostFame` 100, side-0 `Factory` hex with `IsSpawnPoint` at column 1 row 4, `queueBuild` refusing only below cost | round `bridge-scope-5` measurement, F1 |
 | `Balance` not vendored; the 2026-08-05 ruling spent for `Save` and `Replay` | fact block, "What did NOT close"; §3, the naming record that rules the module `Balance` |
 | `StratRules` absent from the `Modules` array; `StratBridge` listed with a real `IMPLEMENT_MODULE` | fact block, "What did NOT close" |
-| Counts unmoved at 71 / 62 / 9, row 9 at 3, row 10 at 1 | §4.5's stated figures, held because nothing closes under §4.11's row-9 cell and Q29 |
+| Counts unmoved at 71 / 62 / 9, row 9 at 3, row 10 at 1 | §4.5's stated figures; Director ruling on CR-1 (no closure) |
 | A partial pass is a run and never a closure | §4.7 register, Q29; §4.11 row 9's *Depends on* cell |
 | Crew-side repair at `9289c1d`, eleven sites; *"they do not run here"* kept | fact block, "The crew-side repair at `9289c1d`" |
+| The same commit introduced fourteen clauses across ten files — two runner modules, three test and harness sources, the README and four spec documents — asserting that `T-SAVE-06` and `T-INT-02` closed, each beside a true negative that stands | round `bridge-scope-5` measurement, F4, its file breakdown re-measured in round `bridge-scope-6` |
+| The two unamendable commit messages and what contradicts them: UE `0897cb5` on "do not re-date" and on `cb8e12b` as the green commit; crew `9289c1d` on `Selfplay`, the declaration having named the module `Balance` since `e19605e` | round `bridge-scope-5` correction record, with F2; §3, the naming record; `ue_module/vendored_set.json` modified at two commits only, `e19605e` and `f5fdb69`, with `Balance` among the `excluded` keys at `e19605e` (round `bridge-scope-6`) |
