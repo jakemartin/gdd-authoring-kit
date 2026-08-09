@@ -1,10 +1,10 @@
 {
-  "run": "bridge-scope-9",
-  "gdd_md5": "417a3ad795303c1012dd84520108499a",
+  "run": "fixture-widened-2",
+  "gdd_md5": "1bfae9f169230f3bdcea4fab48b100f8",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_bridge-scope.md",
+      "file": "sections/tech_fixture-widened.md",
       "verdict": "PASS",
       "violations": []
     }
