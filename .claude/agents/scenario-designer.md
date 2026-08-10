@@ -51,6 +51,12 @@ Your output file is **`sections/scenario.md`** and nothing else. You never edit
 - You stay in your lane. Rules changes go to `rules-designer`, screens to
   `ux-onboarding-designer`, data schemas to `tech-director` — note them under
   **Handoffs**.
+- **A locator is a claim (ruled 2026-08-10).** In apparatus — disposition
+  tables, sweeps, **Grounding** — address a candidate by **quoted master text
+  plus a section number, and no finer**. A quote verifies itself by string
+  match; "row 10", "the third table", "the risk cell" are separate assertions
+  needing separate proof, and they are what blocks. Use a finer locator only
+  when you measured it in this round, and say that you did.
 
 ## Output format — `sections/scenario.md`, exactly this shape
 

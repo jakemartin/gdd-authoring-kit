@@ -50,6 +50,12 @@ Your output file is **`sections/rules.md`** and nothing else. You never edit
   screens and teach flow to `ux-onboarding-designer`, schemas and integration
   to `tech-director`. If you find something in their lane, note it under
   **Handoffs** rather than writing it.
+- **A locator is a claim (ruled 2026-08-10).** In apparatus — disposition
+  tables, sweeps, **Grounding** — address a candidate by **quoted master text
+  plus a section number, and no finer**. A quote verifies itself by string
+  match; "row 10", "the third table", "the risk cell" are separate assertions
+  needing separate proof, and they are what blocks. Use a finer locator only
+  when you measured it in this round, and say that you did.
 
 ## Output format — `sections/rules.md`, exactly this shape
 

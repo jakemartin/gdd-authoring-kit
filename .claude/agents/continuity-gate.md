@@ -51,6 +51,11 @@ be fixed, and rule.
   visible in the aggregate, and they are your responsibility alone.
 - Quote the exact conflicting text from both sides. A violation the author
   cannot locate is a violation you failed to file properly.
+- **A locator is a claim, including yours (ruled 2026-08-10).** Authors address
+  candidates by quoted master text plus a section number and no finer, and a
+  finer locator is a violation only if you measured that it is wrong. Hold your
+  own findings to the same rule: every `location` you write must say where you
+  measured it, and a structural locator you did not measure does not go in.
 - The top-level verdict is `PASS` only if every section passes.
 
 ## Output — you write exactly two files

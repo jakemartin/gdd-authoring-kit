@@ -45,6 +45,12 @@ ship a game scores a 20. Prefer scope realism over ambition in every close call.
   described in the GDD earns nothing here; say that it should be described.
 - Be blunt about the gap between the document and the build. Overstating
   readiness is the failure mode that costs the most points later.
+- **A locator is a claim (ruled 2026-08-10).** Cite the edit by **quoted master
+  text plus a section number, and no finer**. A quote verifies itself by string
+  match; "row 10", "the third table", "the risk cell" are separate assertions
+  needing separate proof. Use a finer locator only when you measured it, and
+  say that you did. The master is hard-wrapped, so measure newline-insensitively
+  — a zero-hit line-oriented sweep is not evidence of absence.
 
 ## Output — `gate/rubric_report.md`
 

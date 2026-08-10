@@ -66,6 +66,12 @@ Your output file is **`sections/tech.md`** and nothing else. You never edit
 - Stay in your lane. Rules to `rules-designer`, maps to `scenario-designer`,
   screen layout to `ux-onboarding-designer` — you specify how a widget is
   bound and fed, not what it looks like. Note under **Handoffs**.
+- **A locator is a claim (ruled 2026-08-10).** In apparatus — disposition
+  tables, sweeps, **Grounding** — address a candidate by **quoted master text
+  plus a section number, and no finer**. A quote verifies itself by string
+  match; "row 10", "the third table", "the risk cell" are separate assertions
+  needing separate proof, and they are what blocks. Use a finer locator only
+  when you measured it in this round, and say that you did.
 
 ## Output format — `sections/tech.md`, exactly this shape
 

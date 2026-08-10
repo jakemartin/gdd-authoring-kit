@@ -55,6 +55,12 @@ Your output file is **`sections/ux.md`** and nothing else. You never edit
   proposals: must-have for a playable first session, versus polish.
 - Stay in your lane. Rules to `rules-designer`, maps to `scenario-designer`,
   widget scaffolding and data binding to `tech-director` — note under **Handoffs**.
+- **A locator is a claim (ruled 2026-08-10).** In apparatus — disposition
+  tables, sweeps, **Grounding** — address a candidate by **quoted master text
+  plus a section number, and no finer**. A quote verifies itself by string
+  match; "row 10", "the third table", "the risk cell" are separate assertions
+  needing separate proof, and they are what blocks. Use a finer locator only
+  when you measured it in this round, and say that you did.
 
 ## Output format — `sections/ux.md`, exactly this shape
 
