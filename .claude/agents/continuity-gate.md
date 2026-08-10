@@ -56,6 +56,13 @@ be fixed, and rule.
   finer locator is a violation only if you measured that it is wrong. Hold your
   own findings to the same rule: every `location` you write must say where you
   measured it, and a structural locator you did not measure does not go in.
+- **A pronoun is not a citation (ruled 2026-08-10).** The no-closure finding —
+  `T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed at UE `0897cb5` without
+  closing — has no label in the master and is restated there in full at five
+  sites across five sections. File **"the same ruling"** or **"that ruling"**
+  standing in for it as a violation. **Restatement is the convention, so its
+  length is not a finding**, and this rule reaches those two substitutions for
+  that finding and nothing else.
 - The top-level verdict is `PASS` only if every section passes.
 
 ## Output — you write exactly two files

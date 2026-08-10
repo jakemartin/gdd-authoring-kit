@@ -1,10 +1,10 @@
 {
-  "run": "vendor-scope-4",
-  "gdd_md5": "8c738e860a403d254af0317533b23c75",
+  "run": "capture-pin-3",
+  "gdd_md5": "454d765e3bac6c02e3491c105328c7be",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_vendor-scope.md",
+      "file": "sections/tech_capture-pin.md",
       "verdict": "PASS",
       "violations": []
     }

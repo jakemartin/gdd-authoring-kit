@@ -72,6 +72,14 @@ Your output file is **`sections/tech.md`** and nothing else. You never edit
   match; "row 10", "the third table", "the risk cell" are separate assertions
   needing separate proof, and they are what blocks. Use a finer locator only
   when you measured it in this round, and say that you did.
+- **A pronoun is not a citation (ruled 2026-08-10).** The finding that
+  `T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed at UE `0897cb5`
+  **without closing** has no label in the master, and the master restates it in
+  full at five sites across five sections. **Restate it too.** The phrases
+  **"the same ruling"** and **"that ruling"** must never stand in for it: a
+  pronoun reaching across a section boundary is a claim the reader cannot
+  check, and it is what blocked a round at gate run 1. This forbids those two
+  substitutions for that finding, and nothing else about how you write.
 
 ## Output format — `sections/tech.md`, exactly this shape
 

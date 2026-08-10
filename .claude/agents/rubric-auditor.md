@@ -51,6 +51,11 @@ ship a game scores a 20. Prefer scope realism over ambition in every close call.
   needing separate proof. Use a finer locator only when you measured it, and
   say that you did. The master is hard-wrapped, so measure newline-insensitively
   — a zero-hit line-oriented sweep is not evidence of absence.
+- **A pronoun is not a citation (ruled 2026-08-10).** The no-closure finding —
+  `T-INT-02`, `T-INT-03` and `T-SAVE-06` ran and passed at UE `0897cb5` without
+  closing — has no label in the master and is restated in full at five sites
+  across five sections. **Do not score that restatement as redundancy**, and do
+  not write **"the same ruling"** or **"that ruling"** in its place yourself.
 
 ## Output — `gate/rubric_report.md`
 
