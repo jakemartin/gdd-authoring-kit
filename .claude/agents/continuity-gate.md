@@ -96,5 +96,23 @@ verdict statement naming what must happen before merge.
 
 Write no other file. Never write into `sections/`. Never edit a draft.
 
+## Gating an ADDENDUM rather than a draft
+
+A file named `sections/<lane>_<round-id>.md` is an **addendum** to an already
+merged section, not a draft. Its required headings are `Placement`, `Draft`
+(holding `### Pair n` blocks of `**OLD**` / `**NEW**`), `Change requests`,
+`Open questions for the Director` and `Grounding` — and that is the list to
+check it against. `Draft`'s prose-and-tables shape does not apply to it.
+
+**`Disposition of every candidate` and `Handoffs` are not required of an
+addendum and their absence is not a finding.** Both are banned from that shape
+by the author definitions, six consecutive findings across two rounds having
+landed in those two sections and none in a pair.
+
+What an addendum's pairs owe you is unchanged: each `**OLD**` must occur in
+`source/gdd.md` exactly once, each `**NEW**` must be true, and every quotation
+carries two claims — that the string exists, and that it exists where the draft
+says it does. Check those separately; presence is not attribution.
+
 Return a 3-4 sentence summary: the top-level verdict, per-section verdicts,
 the total violation count, and the single most serious finding.

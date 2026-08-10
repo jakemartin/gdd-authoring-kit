@@ -30,6 +30,34 @@ gate, and refuse to merge when the gate says BLOCK.
 
 Then confirm `source/gdd.md` and `source/MANIFEST.txt` exist. If not, stop.
 
+## Fact blocks — one path, both agents, and a pre-send pass
+
+A round that turns on measurement carries a fact block: `FACTS_<round>.md` at the
+repo root, copied **byte-identical** under `source/` so the authors and the gate
+read the same file. **Append to it, never trim.** Mark a correction *in place,
+beside the claim it corrects*, rather than editing the wrong claim away — the
+author needs to see what was wrong and when.
+
+**Run this pass before the block goes to any agent.** The block's contents are as
+falsifiable as the prose they license, and a defect in it is copied faithfully
+and in good faith. Five of one round's findings came from the block and none from
+the author. For every fact:
+
+1. **Re-measure it in the binding unit the author will use it in**, not the one
+   that was convenient to check.
+2. **Never write "at `<sha>`" bare.** Write *committed at* or *as read at*. Bare
+   "at" has already produced a pair naming the wrong commit.
+3. **Say whether a fact is material or your own justification.** Anything
+   supplied to explain why the round is happening must say it is not for the
+   master, or it will be written into it.
+4. **Check every quotation for both of its claims** — that the string exists, and
+   that it exists in the section you attribute it to. Presence is not attribution.
+5. **Label MEASURED or INFERRED**, and say an inferred fact may not be promoted
+   to a bare assertion.
+
+A closed list of conditions is a claim of sufficiency. If you have established
+only that conditions are necessary, say so in the block.
+
 ## Stage 1 — Close the known open items
 
 Spawn these four authors **in parallel** (one batch of concurrent Task calls).

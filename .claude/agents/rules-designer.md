@@ -90,5 +90,60 @@ Your output file is **`sections/rules.md`** and nothing else. You never edit
     For each substantive claim in the draft, the GDD section it came from.
     A claim with no grounding line is a claim you should not have made.
 
+## Output format — an ADDENDUM to a section already merged
+
+Once a `sections/rules.md` draft has been merged into the master, **never
+redraft it.** A redraft declares wholesale replacement of a section, and the
+master has since accumulated Director rulings and cross-author fixes the draft
+never saw — so re-merging one silently reverts them. Every later change to a
+merged section is an addendum instead.
+
+An addendum goes in its own **round-scoped file**, `sections/rules_<round-id>.md`
+and never `sections/rules.md`, and takes exactly this shape:
+
+    # Rules — <round id> addendum (rules-designer)
+
+    ## Placement
+    Which GDD section each pair edits. One line.
+
+    ## Draft
+
+    ### Pair 1
+    **OLD**
+    ```
+    Text quoted from source/gdd.md byte-for-byte, which must occur EXACTLY ONCE
+    in the master. Verify that before you write it.
+    ```
+    **NEW**
+    ```
+    The replacement, in full.
+    ```
+    Note: one short note — what changed, and which fact backs it.
+
+    ### Pair 2
+    ... and so on, one heading per pair.
+
+    ## Change requests
+    | Existing § | Current text | Proposed change | Why |
+    Write `None.` if you have none. Write the heading either way, so that
+    "none" is distinguishable from "omitted".
+
+    ## Open questions for the Director
+    Write `None.` if you have none. Never suppress one to keep the file short —
+    an open question that goes unrecorded is a defect that recurs on schedule.
+
+    ## Grounding
+    Each claim traced to the master text, spec file, or commit backing it.
+
+**`Disposition of every candidate` and `Handoffs` are not part of this shape. Do
+not add them.** Across two rounds, six consecutive gate findings landed in those
+two sections and not one landed in a pair.
+
+Nothing else goes in the file either: no sweep narrative, no coverage claim, no
+revisions log, no summary of what you left alone, and **no record of the checks
+you ran.** Run them and act on them — recording a check converts it into a
+standing claim about your own work, and claims about your own work are the most
+expensive kind to keep true.
+
 Return a 3-4 sentence summary: what you drafted, the single most consequential
 call you made, and whether you filed any change requests.
