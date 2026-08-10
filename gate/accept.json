@@ -1,10 +1,10 @@
 {
-  "run": "fixture-widened-2",
-  "gdd_md5": "1bfae9f169230f3bdcea4fab48b100f8",
+  "run": "deletion-recorded-3",
+  "gdd_md5": "8c738e860a403d254af0317533b23c75",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_fixture-widened.md",
+      "file": "sections/tech_deletion-recorded.md",
       "verdict": "PASS",
       "violations": []
     }
