@@ -137,6 +137,14 @@ widgets are still absent, no site in the table moves.
 widgets exist and both IDs go green, **nine sites go false or move**, of which
 Q1's clause is one:
 
+**Corrected 2026-08-10, beside the claim rather than over it: ten, not nine.** The
+sentence splitter did not break at the `### 4.5` heading, so §4.9's *"What is
+still uncelled is the real Stratocracy widgets `T-INT-05`, `T-UI-03` and
+`T-UI-04` assert against"* was folded into the §4.5 risk-row entry instead of
+being counted as a site of its own. It is the last row of the table. The nine is
+left standing so the undercount stays visible, and the cause was the instrument,
+not the reading.
+
 | Site | As written | After the landing |
 |---|---|---|
 | §3, the Q1 clause | `are` **T-UI-03** and **T-UI-04** | false |
@@ -148,6 +156,7 @@ Q1's clause is one:
 | §4.5 risk row | "**71** written … against **10** verified ledger rows" | 71 unmoved, 11 |
 | §4.5 running figures | 62 green, 9 unclosed | 64, 7 |
 | §3 ledger table, UI row | "**Partial pass — not a flip.**" | flips to ✓ |
+| §4.9 | "What is still **uncelled** is the real Stratocracy widgets …" | false |
 
 **The two figure rows are arithmetic on the master's own recorded figures, not
 read off a run:** §3 records the live figures as 71 written, 62 green and 9
@@ -155,6 +164,14 @@ unclosed, and the master's own convention through the block is that closing an I
 moves green up and unclosed down by the same step while the written count stays
 put where no ID is minted. The ledger-row flip is conditional on Q29's per-row
 reading and on these two being the only IDs row 8 lacks, which §4.11 states.
+
+**Corrected 2026-08-10, beside the table rather than in it: the figure rows count
+`T-UI-03` and `T-UI-04` in isolation, and the widget landing does not close only
+those two.** It also closes `T-INT-05` (row 9, folded in below). A widget landing
+that comes *before* the further editor pass therefore moves the figures 62 → 65
+green and 9 → 6 unclosed, and the "**9 IDs remain unclosed**" row above reads 6
+rather than 7 in that order. **These figures depend on which landing lands first,
+and the table as first written assumed row 8 in isolation.**
 
 **The remaining eleven sentences survive the landing** — they are pinned (`at this
 commit`, `at either commit`, `at 41a1452`), or they are the §4.9 invariant text,
@@ -172,7 +189,47 @@ repair that narrowed the quantifier made a new false claim.
 **The widget landing is wider than these two IDs.** `T-INT-05` carries the same
 widget dependency at three of the twenty sentences, and row 9's unclosed count of
 **3** includes it. The commit that supplies widgets therefore reaches row 9 as
-well as row 8, and this table does not cover row 9's sites.
+well as row 8, and this table does not cover row 9's sites. — **Corrected
+2026-08-10: row 9 is measured and folded in below.** The sentence stood when
+written.
+
+## Row 9, on the same method — folded in 2026-08-10
+
+**MEASURED: 63 sentences name `T-INT-02`, `T-INT-03` or `T-INT-05`.** Row 9's
+three unclosed IDs **do not share a blocker**, and that changes the answer this
+write-up gives above for row 8.
+
+- `T-INT-02` and `T-INT-03` **already ran and passed** in the editor pass at
+  `0897cb5`, and did not close because the fixture there carried `Move`, `Attack`
+  and `EndTurn` and no `Capture` and no `Build` — a run and not a closure under
+  Q29. What they wait on is a further editor pass, none having run since.
+  **The complete-command-set fixture is already committed at `c2f5860` and
+  vendored into the UE project at `4ceaf93`**, so their subject is in the tree.
+- `T-INT-05` waits on the real Stratocracy widgets — the same dependency as
+  `T-UI-03` and `T-UI-04`, and the reason it is not closed by an editor pass.
+- `T-SAVE-06` belongs to row 10 rather than row 9, is asserted jointly with
+  `T-INT-02`, and did not close at `0897cb5` for that same fixture reason.
+
+**So for row 9, unlike row 8, an editor session alone does close something.** The
+two landings are separate triggers with separate consequences:
+
+| Trigger | Closes | Unclosed | Green |
+|---|---|---|---|
+| A further editor pass over the complete fixture | `T-INT-02`, `T-INT-03`, `T-SAVE-06` | 9 → 6 | 62 → 65 |
+| The widget landing | `T-INT-05`, `T-UI-03`, `T-UI-04` | 6 → 3 | 65 → 68 |
+
+The residue of **3** is row 7's `T-SCN-08`, `T-SCN-09` and `T-SCN-11`. The nine
+decomposes exactly — 3 + 2 + 3 + 1 — measured from §4.11's own enumeration, which
+is why the two triggers account for all of it and no ID is left unassigned.
+
+**A condition that blocks both ledger creations, and is not measured here.** Rows
+9 and 10 are **named but uncreated**: neither is in §3's ledger table, which holds
+twelve rows, and each is created as one row when its full set closes. Q29 requires
+the full set green **at one commit**. `T-INT-02`/`T-INT-03` closing at one pass and
+`T-INT-05` at another does not satisfy that unless the later pass re-runs all five,
+and the same holds for row 10 over `T-SAVE-01..07`. **Whether either pass carries
+its whole set was not measured, so neither row's creation is asserted here** — the
+green and unclosed figures above do not depend on it.
 
 ---
 
