@@ -53,6 +53,129 @@ round`.
 
 ---
 
+# Q1 answered — measured 2026-08-10
+
+The question left open above: whether a commit-pinned record encloses the `are`
+clause. **It does not.** Disposition of that clause: **`exposed — needs a pin`**.
+It remains the only item here with a disposition; the 27 below have none.
+
+Measured against `source/gdd.md` md5 `1f27e981b623c7af2f6402d9a5b6a62b`, the same
+text this file was written against, on a whitespace-collapsed copy. The matcher
+was control-tested against a known-absent string (0 hits) before each count.
+
+**1 — The enclosing unit, MEASURED.** The clause occurs once, at line 1516,
+character offset 3306. Line 1516 is the italic *Status: live tracker* block that
+sits between §3's provenance-ledger lead-in and the ledger table, and it is
+**101,086 characters on one physical line** — lines 1515 and 1517 are blank, so
+that whole block is the only blank-line unit the clause sits in. It contains no
+table pipe, no heading and no fence.
+
+**2 — The candidate encloser, and why it fails, MEASURED.** The block opens
+(offset ~230) with *"This draft stands at 2026-08-06, at commit `c2edae0` in the
+crew repo and at `fed8ae9` in the Stratocracy UE project repo."* That stamp does
+not enclose the clause, on a count that needs no reading of intent: **the block
+cites four crew commits that postdate it.** In `../stratocracy-crew`, measured
+per sha with `git merge-base --is-ancestor`, `cb8e12b`, `9289c1d`, `5072d10` and
+`b5f524d` are each **not** an ancestor of `c2edae0`, and each was committed after
+it — `c2edae0` committed at 2026-08-06T20:02:59-04:00, the four at
+2026-08-07T13:48:25, 2026-08-07T16:31:44, 2026-08-07T18:13:43 and
+2026-08-08T23:19:20-04:00. The eight other shas checked (`d8284f1`, `6ccd40b`,
+`9086d6a`, `7c36303`, `41a1452`, `ec15be6`, `1ee890e`, `031ee20`) are ancestors.
+A stamp its own block's later content outruns cannot fix that block's present
+tense.
+
+One other candidate was considered and rejected on subject: *"Measured at
+`ec15be6`, every crew-repo commit this GDD cited then is an ancestor of
+`ec15be6`"*, at offset 1212. Its subject is the ancestry of cited commits, not
+the state of any acceptance ID. **These two were found by reading the block head
+and by a scan over the terms `as read at` / `committed at` / `Measured at` /
+`as at`. A pin can be written in none of those words — the stamp in the paragraph
+above is itself an instance — so the scan does not establish that no third
+candidate exists.**
+
+**3 — The clause has no past-tense verb of its own, MEASURED by reading.** `closed
+at 6ccd40b` is the verb of the coordinate clause before it. The exposed clause's
+own verb is `are`, and it carries no commit.
+
+**4 — The same fact is stated in enclosed form 30,348 characters later, MEASURED.**
+Inside the `41a1452` landing record the block writes *"**T-UI-03 and T-UI-04 did
+not run**, being editor-pass Automation marked † in §4.11, and **no editor pass
+exists at this commit**"* (offset 33654) and *"after it the IDs it lacks are the
+editor-pass `T-UI-03` and `T-UI-04`"* (offset 34621). Both sit inside a
+commit-pinned landing record and are scoped to it. **That those two are enclosed
+and tense-scoped is measured; whether what they say is true was not tested here.**
+Being a separate record 30k characters later, neither reaches the clause at 3306.
+
+**5 — Instrument finding for whoever scopes the round.** If "enclosed by a
+commit-pinned record" is read as *anywhere in the same paragraph*, then every item
+in this block is enclosed by that stale stamp and the test returns a pass for all
+of them. **8 of the 27 items below sit inside line 1516** — items 2, 3, 4, 5, 6,
+7, 8 and 9 — measured by locating each item's first 120 characters in the
+collapsed block; the other 19 each match exactly once elsewhere in the document.
+The test needs a stated reach before it is run on the rest. Fixing the stamp is a
+separate question and is not dispositioned here.
+
+---
+
+# Q1(b) — what the landing that closes these two IDs makes false
+
+Asked by the Director: the clause Q1 exposed is closed by an editor session, so
+what happens after that commit. Measured against the same text and md5, on a
+whitespace-collapsed copy, sentence-first; the matcher was control-tested against
+a known-absent ID spelling (0 hits) before each count.
+
+**The condition comes first: an editor session alone closes neither ID.** The
+master states this itself — the harness *"is a runner and nothing more, and
+running it supplies none of the subjects the IDs scheduled into it assert
+against"*, and *"the harness is **also not sufficient**"*. Both IDs additionally
+need real Stratocracy widgets, which the master records as **measured absent at
+`a13626f`**. **That absence is the master's claim and was not re-measured here.**
+It is the load-bearing condition for everything below: at a commit where the
+widgets are still absent, no site in the table moves.
+
+**MEASURED: 20 sentences in the master name `T-UI-03` or `T-UI-04`.** If the
+widgets exist and both IDs go green, **nine sites go false or move**, of which
+Q1's clause is one:
+
+| Site | As written | After the landing |
+|---|---|---|
+| §3, the Q1 clause | `are` **T-UI-03** and **T-UI-04** | false |
+| §4.7 | "Five are **written and not green**" | three |
+| §4.7 | "they are the IDs row 8 still lacks" | false |
+| §4.11 | "**9 IDs remain unclosed**" | 7 |
+| §3 | "**Two rows still carry evidence without a ✓**" | one |
+| §3 | "**Ten rows carry a ✓** … two more carry evidence without one" | eleven, one |
+| §4.5 risk row | "**71** written … against **10** verified ledger rows" | 71 unmoved, 11 |
+| §4.5 running figures | 62 green, 9 unclosed | 64, 7 |
+| §3 ledger table, UI row | "**Partial pass — not a flip.**" | flips to ✓ |
+
+**The two figure rows are arithmetic on the master's own recorded figures, not
+read off a run:** §3 records the live figures as 71 written, 62 green and 9
+unclosed, and the master's own convention through the block is that closing an ID
+moves green up and unclosed down by the same step while the written count stays
+put where no ID is minted. The ledger-row flip is conditional on Q29's per-row
+reading and on these two being the only IDs row 8 lacks, which §4.11 states.
+
+**The remaining eleven sentences survive the landing** — they are pinned (`at this
+commit`, `at either commit`, `at 41a1452`), or they are the §4.9 invariant text,
+which specifies what the IDs assert and is not a claim about their state. **That
+split is a reading of the twenty and is not measured.**
+
+## Two things this changes for whoever scopes the round
+
+**Pinning Q1's clause alone does not survive the landing.** It is one of seven
+live prose sites that expire together, plus two figure sites. A repair that
+reaches only the clause Q1 named leaves six sites saying the same expired thing —
+the failure shape recorded in the `don't-narrow-a-universal` round, where every
+repair that narrowed the quantifier made a new false claim.
+
+**The widget landing is wider than these two IDs.** `T-INT-05` carries the same
+widget dependency at three of the twenty sentences, and row 9's unclosed count of
+**3** includes it. The commit that supplies widgets therefore reaches row 9 as
+well as row 8, and this table does not cover row 9's sites.
+
+---
+
 ## 1  [NO-SHA-NEAR]
 
 > **It has since run, and §3 records the run:** it passed on a fixture configured with `captureTurns = 2`, a state *Ferrum Crossing* cannot reach at N = 1 (Q4).
