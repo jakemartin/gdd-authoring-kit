@@ -1,3 +1,23 @@
+> # ✅ APPLIED ADDENDUM — DO NOT RE-APPLY
+> # ⛔ EXCEPT Pair 11, WHICH WAS SUPERSEDED AND MUST NEVER BE APPLIED
+>
+> 16 of this file's 17 replacement pairs have been applied to the master
+> GDD. **Pair 11 was not applied, and must not be.** A later round rewrote the same
+> insertion point: the master now reads **"Q33 and Q34 are registered already
+> marked RULED"** in place of Pair 11's NEW block.
+> Applying Pair 11 would overwrite that later ruling with an older one.
+>
+> Verified 2026-08-10 against `source/gdd.md` md5 `1f27e981b623c7af2f6402d9a5b6a62b` (3365 lines), matched
+> newline-insensitively: Pair 11's NEW text is **absent** from the master while
+> its OLD text is present, and every other pair's OLD site in the master
+> carries that pair's NEW text.
+>
+> Its quoted "current" text, register extents and open items are a **snapshot of
+> the moment it was written**, not the state of the document.
+>
+> **The master GDD is the source of truth** — read `source/gdd.md`. Further changes
+> to a merged section go in a *new* addendum file.
+
 # T-INT-01 widening: GDD addendum (tech-director)
 
 Exact OLD/NEW pairs against `source/gdd.md` (MANIFEST md5 `0121ee5b`). Every OLD

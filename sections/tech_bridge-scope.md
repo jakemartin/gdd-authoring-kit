@@ -1,3 +1,22 @@
+> # ✅ APPLIED ADDENDUM — DO NOT RE-APPLY
+>
+> Every replacement pair in this file **has been applied to the master GDD**.
+> Verified 2026-08-10 against `source/gdd.md` md5 `1f27e981b623c7af2f6402d9a5b6a62b`
+> (3365 lines), matched newline-insensitively: each pair's old text is either
+> absent from the master, or present only inside the new text that replaced it —
+> the pairs that extend a sentence rather than swap it. No pair is outstanding.
+>
+> No pair count is stated here deliberately: this file's line-initial markers do
+> not reconcile with its own pair headings, because narrative prose that begins a
+> line with the word *old* parses as a marker. The verified claim is the one
+> above, which is per-pair and needs no total.
+>
+> Its quoted "current" text, register extents and open items are a **snapshot of
+> the moment it was written**, not the state of the document.
+>
+> **The master GDD is the source of truth** — read `source/gdd.md`. Further changes
+> to a merged section go in a *new* addendum file.
+
 # Technical design — addendum `bridge-scope` (tech-director)
 
 ## Placement

@@ -1,3 +1,16 @@
+> # ✅ APPLIED ADDENDUM — DO NOT RE-APPLY
+>
+> All 3 replacement pairs in this file **have been applied to the master GDD**.
+> Verified 2026-08-10 against `source/gdd.md` md5 `1f27e981b623c7af2f6402d9a5b6a62b` (3365 lines): every OLD
+> block is absent from the master, matched newline-insensitively. Re-applying is a
+> no-op at best.
+>
+> Its quoted "current" text, register extents and open items are a **snapshot of
+> the moment it was written**, not the state of the document.
+>
+> **The master GDD is the source of truth** — read `source/gdd.md`. Further changes
+> to a merged section go in a *new* addendum file.
+
 # Technical design — `vendor-scope` draft (tech-director)
 
 ## Placement
