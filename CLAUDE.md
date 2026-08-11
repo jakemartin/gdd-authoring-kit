@@ -58,6 +58,32 @@ the author. For every fact:
 A closed list of conditions is a claim of sufficiency. If you have established
 only that conditions are necessary, say so in the block.
 
+## Nominated sentences — check your own prose against the round's ban list
+
+The pass above checks *facts*. A sentence you hold up as a model is not a fact and
+none of those five questions touches it. In round `capture-pin` that was the one
+finding of five with no mechanism behind it: I told the author a particular
+sentence was "the shape that survives", and it carried the exact sufficiency
+defect I had just had removed from the sentence directly above it. The fact block
+was clean. The opinion was wrong.
+
+So: **any sentence you nominate — as a model, a template, a suggested
+replacement, "the shape that works", or in any other way put forward as prose to
+copy — is re-checked against the same forbidden-species list the round bans,
+before it is sent.** If the round forbids a species, your own nomination is the
+first place to look for it, not the last. You are writing under the same
+constraint as the author and with less review: the gate reads their file, not
+your task prompt.
+
+If a nomination cannot be checked that way, do not make it. **Name the defect and
+let the author write the replacement** — the author measures the site, and you
+are working from a brief.
+
+This is not a list of approved phrasings, and must never become one. An earlier
+round wrote exactly that closure and it went 1 → 2 → 5 violations before being
+withdrawn. The check reuses whatever list the current round already bans; it adds
+no vocabulary of its own.
+
 ## Stage 1 — Close the known open items
 
 Spawn these four authors **in parallel** (one batch of concurrent Task calls).
