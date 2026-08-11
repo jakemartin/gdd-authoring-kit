@@ -1,15 +1,15 @@
 {
-  "run": "stamp-scope",
+  "run": "clause-and-key",
   "gdd_md5": "gdd.md           <- E:\\MultiAgent\\stratocracy-content\\Stratocracy_Prototype_GDD.md  md5=1f27e981b623c7af2f6402d9a5b6a62b",
   "verdict": "PASS",
   "sections": [
     {
-      "file": "sections/tech_stamp-scope.md",
+      "file": "sections/tech_clause-and-key.md",
       "verdict": "PASS",
       "violations": []
     },
     {
-      "file": "source/FACTS_stamp-scope.md",
+      "file": "source/FACTS_clause-and-key.md",
       "verdict": "PASS",
       "violations": []
     }

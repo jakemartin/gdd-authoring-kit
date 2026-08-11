@@ -1,170 +1,159 @@
-# Gate report — run `stamp-scope`, second pass
+# Gate report — run `clause-and-key`, third pass
 
-Master: `source/gdd.md`, md5 `1f27e981b623c7af2f6402d9a5b6a62b`, per
-`source/MANIFEST.txt`. `source/MANIFEST.txt` is present, so the run is not
-`sync-missing`. Every count below was taken against that file at that md5.
+**Top-level verdict: PASS.**
 
-**Top-level verdict: PASS.** Zero violations.
+| File | Verdict | Violations |
+|---|---|---|
+| `sections/tech_clause-and-key.md` | **PASS** | 0 |
+| `source/FACTS_clause-and-key.md` | **PASS** | 0 |
 
-Out of reach for this round and not filed, as before: the §3 clause F5 names
-(verb `are`, subject two `T-UI-` acceptance IDs), and F6.
-
----
-
-## `sections/tech_stamp-scope.md` — PASS (0 violations)
-
-### Violation 1 (`invented-fact`) — cleared
-
-The Grounding bullet now reads:
-
-> The manifest Pair 2 turns on is the one recording `dataCommit`, and it is a UE
-> tree file: §3 reads `The UE tree there records `dataCommit` … in
-> `Data/StratData.manifest.json``, and §4 reads ``Data/StratData.manifest.json`
-> at `4ceaf93` records a sha256 for each of those five names and no others`,
-> `4ceaf93` being a UE project commit per F3's UE table. The master distinguishes
-> that file from `Source/StratRules/StratRules.manifest.json`, which the same §3
-> sentence gives `rulesCommit` rather than `dataCommit`.
-
-Both quotations were checked for both of their claims — that the string exists,
-and that it exists where the draft attributes it.
-
-- The §3 quotation is present, elided only over the commit link, in
-  `The UE tree there records `dataCommit` [`862a225`](…) in
-  `Data/StratData.manifest.json` and `rulesCommit` `cb8e12b` in
-  `Source/StratRules/StratRules.manifest.json``, measured at source/gdd.md line
-  1516. Attribution holds: the nearest preceding `## ` heading is
-  `## 3. AI Architecture — how AI agents are used (roles)` at line 1425, and the
-  next `## ` heading is `## 4. Technical Strategy` at line 1544 — both measured
-  by enumerating every `^## ` line in the file.
-- The §4 quotation is present across a hard wrap at source/gdd.md lines
-  2683–2684 (`… `Data/StratData.manifest.json` at` / ``4ceaf93` records a sha256
-  for each of those five names and no others.`), matched newline-insensitively.
-  Attribution holds: the last `## ` heading before line 2683 is
-  `## 4. Technical Strategy` at line 1544.
-- `4ceaf93` is in F3's UE-half table of `source/FACTS_stamp-scope.md`.
-- The distinction claim holds: the single §3 sentence at line 1516 gives
-  `rulesCommit` to `Source/StratRules/StratRules.manifest.json` and `dataCommit`
-  to `Data/StratData.manifest.json`.
-
-The manifest the pair turns on is now grounded on the file the master places in
-the UE tree, and Pair 2's comparator is grounded.
-
-### Violation 2 (`dead-reference`) — cleared
-
-Open question 2 now reads:
-
-> That clause sits in the §3 sentence ending `and the §3 status line above
-> carries that pinning.`; Pair 3's OLD is in the sentence after it, and neither
-> pair edits the clause.
-
-Master, measured at source/gdd.md line 1533:
-
-> each commit cited since is pinned at the landing that cites it, and the §3
-> status line above carries that pinning. That form was ruled on 2026-08-05, and
-> the ruling is confined to this sentence: it matches the §3 status line above,
-> whose substance is unchanged
-
-The clause sits in the sentence ending "carries that pinning."; Pair 3's OLD
-sits in the next sentence, which begins "That form was ruled on 2026-08-05".
-The attribution is now correct, and line 1533 is in §3 (headings at 1425 and
-1544, measured as above). No pair's `**OLD**` covers the clause.
-
-### The third change — Pair 2's `Note`, edited but not filed
-
-Reported by the author rather than made silently. Checked independently, claim
-by claim, against `source/gdd.md`:
-
-- "there is no longer a crew commit *the document stands at*" — Pair 1's `**NEW**`
-  removes the phrase `This draft stands at`, whose sole occurrence is at line
-  1516 (1 hit document-wide, occurrence-level).
-- "The manifest the sentence turns on is the one that records `dataCommit`,
-  which the master places in the UE tree" — the same §3 text at line 1516 that
-  Violation 1's repair cites. This is the site of the same mis-grounding, and it
-  is now grounded on `Data/StratData.manifest.json`, not on
-  `StratRules.manifest.json`.
-- "the passage's own two examples read it at UE project commits" — measured at
-  source/gdd.md lines 2707–2711: "The manifest recorded [`862a225`](…) at
-  `0897cb5` and records [`c2f5860`](…) at `4ceaf93`". Both `0897cb5` and
-  `4ceaf93` are in F3's UE-half table; neither appears in F3's crew-half table.
-  Two examples, both at UE project commits.
-- "The rule the sentence states is untouched" — the ruled rule immediately above
-  Pair 2's OLD (source/gdd.md lines 2703–2705, "**The manifest's `dataCommit`
-  names the commit the vendored bytes came from, and it advances when and only
-  when those bytes change (ruled 2026-08-06).**") is not covered by any pair's
-  `**OLD**`.
-
-So the third change repaired the same defect at a second site, and its repair is
-correct. **One limit on that finding, stated as a limit:** I verified the Note as
-it now stands; I did not recover the pre-edit text, so the author's account that
-the old Note carried the identical wording is not something this pass measured.
-The current text is true and grounded regardless of what it replaced.
-
-### Re-checked because the edits could have disturbed it
-
-- Addendum shape is complete: `Placement`, `Draft` (three `### Pair n` blocks of
-  `**OLD**`/`**NEW**`), `Change requests`, `Open questions for the Director`,
-  `Grounding`. `Disposition of every candidate` and `Handoffs` are banned from
-  this shape; their absence is not a finding.
-- All three `**OLD**` strings re-measured at occurrence level (not line level):
-  `This draft stands at` 1 hit (line 1516), `document stands at` 1 hit (line
-  2707), `whose substance is unchanged` 1 hit (line 1533). Uniqueness holds.
-- Placement holds: Pair 1 and Pair 3 under `## 3. AI Architecture — how AI agents
-  are used (roles)` (line 1425); Pair 2 under `## 4. Technical Strategy`
-  (line 1544).
-- No pair edits the §3 clause F5 names, and F6's reasoning does not appear in any
-  `**NEW**`.
-- The pairs touch §3 and §4 only, so `kb_rules.md` — a parse of §2 — is not made
-  wrong by them. No `kb-desync`.
-
-Not re-done, per the first pass and unmoved by these edits: F3's eleven late
-shas and their occurrence counts, the absence of any ceiling dependence, and
-Pair 3's `that ruling` (which stands in for the 2026-08-05 reachability ruling
-named in its own sentence, not for the `T-INT-02` / `T-INT-03` / `T-SAVE-06`
-no-closure finding).
+`source/MANIFEST.txt` is present and records `gdd.md` at md5
+`1f27e981b623c7af2f6402d9a5b6a62b` — the same md5 the first and second passes
+measured against. Every line number below was measured today by reading or
+matching against the named file; attributions to a GDD section are by nearest
+preceding `## ` heading and no finer, the heading lines being 1425
+(`## 3. AI Architecture — how AI agents are used (roles)`) and 1544
+(`## 4. Technical Strategy`), measured with a `^## ` match over
+`source/gdd.md`.
 
 ---
 
-## `source/FACTS_stamp-scope.md` — PASS (0 violations)
+## `source/FACTS_clause-and-key.md` — PASS (the second pass's one violation is cleared)
 
-Both corrections were re-measured rather than taken on trust.
+### 1. The deletion is complete
 
-**F2 / Subject — the stamp's position.** `^.{218}This draft stands at` returns
-1 hit at source/gdd.md line 1516, so exactly 218 characters precede the stamp on
-that line, and the correction's offset of 218 is right on the zero-based reading
-it uses. The preamble those 218 characters hold is
-`*Status: live tracker — first rows populated 2026-07-26 … (wk 1–3, §4.4). `,
-so the correction's claim that the preamble ends "(wk 1–3, §4.4)." also holds.
-The correction's collateral re-measurements hold too: `^.{101086}$` returns
-exactly 1 hit in the file, and line 1515 is blank.
+The second pass filed the closing clause of F2's correction. The sentence then
+read:
 
-**F2 — the count of 8.** Enumerated at occurrence level, document-wide:
-`end of this paragraph` returns 8 hits, all on line 1516; `recorded at the end of
-this paragraph` returns 6 of those 8. The remaining two read
-`an eighth**, counted at the end of this paragraph` and
-`as since been ruled, at the end of this paragraph`, exactly as the correction
-states. The count of 8 belongs to `end of this paragraph`.
+> The body below is left standing, including its instruction to test the
+> inference rather than adopt it, **because that instruction is what caused the
+> error to be caught.**
 
-**Marking in place.** Both corrections are blockquoted beside the claims they
-correct rather than edited over them, and each states what it supersedes and
-what survives. The superseded wording therefore still appears above each
-correction; that is the convention this kit requires, not a contradiction, and
-the re-reading each correction supplies is unambiguous. The pre-send declaration
-is likewise marked false in place with what it certified and did not left
-visible. Nothing in the block is left asserting both sides of a corrected claim.
+It now reads, in full, at line 81 of `source/FACTS_clause-and-key.md`, measured
+by reading that file today:
+
+> **Consequence: Pair 1 strands nothing, and this round has no stranded-referent
+> pair.** The body below is left standing.
+
+More was removed than the fix prescribed — the fix said to end the sentence
+after `rather than adopt it`, and the trailing participial phrase went with the
+clause. That is not a finding: what remains states the negative and stops, and
+nothing that was load-bearing was carried by the removed phrase. The body it
+refers to still carries the instruction on its own, at lines 88–90 of the same
+file: `**INFERRED:** that \`That form\` refers to the clause being deleted …
+**may not be promoted to a bare assertion.** If you find it refers to something
+else, say so and stop — that changes the round.`
+
+**The attributed cause is gone from the whole file, not relocated.** The file
+was matched end-to-end for `caught`, `instruction`, `credit` and `is what`:
+zero hits for all four. `because` returns two hits, at lines 92 and 122, and
+neither attributes the catching of an error to any instruction — line 92 is the
+blast-radius sentence (`scope is what your edits make false, not what the round
+is about`) and line 122 is F4's declared reading (`this does not falsify the
+sentence, because the sentence is conditional`). Both predate the correction and
+neither is a positive volunteered beside a negative finding. No restatement of
+the attributed cause under other words was found anywhere in the file.
+
+### 2. The correction survives the deletion on all four cleared points
+
+**a. The right defect is still named.** Lines 62–67 are untouched: the heading
+is faulted for stating the conclusion *"deleting it strands a referent"* as the
+fact's title and for labelling the fact MEASURED, `promoting the exact step the
+body below forbids promoting`. That is the defect the first pass filed.
+
+**b. The false inference is still correctly declared false, and it is still
+false.** Re-measured from `source/gdd.md` at the manifest md5, not carried
+forward:
+
+- `That form` returns exactly one match, on line 1533 (§3), and it opens the
+  sentence immediately after the clause Pair 1 deletes.
+- The §3 status line the sentence says the form *matches* is line 1533's
+  referent, and the string
+  `` are each an ancestor of `031ee20`, measured with `git merge-base --is-ancestor` per sha ``
+  returns exactly one match, on line 1516 (§3) — presence and attribution both
+  hold, checked separately.
+- The pinning language is not on that status line. `landing that cites`,
+  `pinned at the landing` and `carries that pinning` together match one line
+  document-wide, and that line is 1533, not 1516. So the status line carries the
+  ancestry form and carries no pinning-at-landings statement, which is what the
+  correction says.
+- `restating every reachability claim in this document against a named commit`
+  is on line 1533 as the generalisation the ruling declined, matched twice on
+  that one line — once beside `the ruling is confined to this sentence` and once
+  beside `Ruling S was made and declined, and that declining stands`.
+- `Ruling S's move applied to the other half` is on line 1533, in the same
+  parenthetical, immediately after `The claim this replaces was that each is
+  reachable from the head of \`master\`; a head expires and a sha does not` —
+  i.e. beside the replacement of head-reachability with a named sha, as the
+  correction states.
+
+**c. The three measurements are still attributed as the gate made them.** The
+three bullets of the correction (lines 71–78) map one-to-one onto the three
+re-measurements above, in the same order and with the same content, and the
+deletion removed none of them and altered none of their wording.
+
+**d. The marked-in-place heading is still not readable as current.** The
+correction is still the first thing under the F2 heading at line 58, is bolded,
+and says in its own opening that `This heading is the defect, and its inference
+is false.` The deleted clause was the last sentence of the correction and
+carried none of that marking, so its removal does not move the mark closer to
+the body or further from the heading.
+
+---
+
+## `sections/tech_clause-and-key.md` — PASS, confirmed unmodified
+
+**Confirmed rather than assumed, with one discrepancy recorded.** No hashing
+tool is available to this gate, so the file was re-read in full today and
+matched against every quotation and structural claim the second pass's report
+recorded of it. Pair 1's `OLD`/`NEW`, Pair 2's `OLD` at draft lines 22–23 and
+`NEW` at 27–30, the two Notes, `Change requests: None`, and all three Open
+questions are present in the same order and wording. Both anchors were re-run
+against the master today: Pair 1's `OLD` returns exactly one match, on line 1533
+of `source/gdd.md` (§3), and Pair 2's `OLD` returns exactly one match, spanning
+lines 2706–2707 (§4), matched newline-sensitively across the line break.
+
+The discrepancy: the Grounding section carries **12** bullets, measured today
+with a line-anchored `^- ` match over `sections/tech_clause-and-key.md`, at
+lines 45–56. The second pass's report said thirteen. I cannot distinguish a
+miscount in that report from a deletion, and I do not claim which it was. What I
+did measure is that nothing in the draft is left ungrounded by the 12 present:
+both `OLD`s' uniqueness and section, the clause's absence of a second site, the
+non-overlap with `stamp-scope`'s Pair 1 and Pair 3, the shared Pair 2 anchor and
+its merge-order consequence, the provenance of both keys and both file paths,
+the `stands at` count, F4's attribution, and the seal on
+`sections/tech_stamp-scope.md` are each carried by a bullet. No claim in the
+draft is unsupported, so nothing is filed, and the section's PASS stands.
+
+### Carried forward as context: the merge-order dependency (not a violation)
+
+Recorded again so the Director has it in the current record. Pair 2's `OLD`
+here is byte-identical to the `OLD` of Pair 2 in the sealed, gated-unmerged
+`sections/tech_stamp-scope.md`, and the master carries that string once,
+spanning lines 2706–2707 of `source/gdd.md` (§4 by the heading at line 1544),
+measured today. **At most one of the two can apply**; whichever merges first
+removes the other's anchor. This draft's Pair 2 is the one that names the key.
+Pair 1 carries no such dependency: its own anchor at line 1533 does not contain
+`stamp-scope`'s Pair 1 or Pair 3 anchors, so it matches whether `stamp-scope`
+merges first or second. This is a merge-order decision for the Director, filed
+as such by the author in Open question 3 and in Grounding; it is not a defect in
+either file, and nothing is filed against `sections/tech_stamp-scope.md`, which
+is sealed.
 
 ---
 
 ## Verdict
 
-**PASS.** `sections/tech_stamp-scope.md` carries zero violations: the Grounding
-now grounds Pair 2's manifest on `Data/StratData.manifest.json`, the file §3
-line 1516 places in the UE tree and §4 lines 2683–2684 name, and Open question 2
-now attributes its clause to the sentence ending "carries that pinning" at line
-1533 rather than to the sentence Pair 3 edits. The one unfiled change — Pair 2's
-`Note` — was the same mis-grounding at a second site and its repair is correct,
-with the caveat recorded above that this pass verified the new text and not the
-old. `source/FACTS_stamp-scope.md` carries zero violations: both in-place
-corrections re-measure true and leave the block self-consistent. Nothing further
-is required before merge; the Director may apply the three pairs at the
-placements the draft specifies, and should then rebuild the derived files and
-re-sync, since §3 and §4 both move.
+The run is **PASS**, with zero violations in either file. The clause filed on
+the second pass is gone from `source/FACTS_clause-and-key.md`, and it was not
+relocated or restated in other words anywhere in that file; the correction it
+sat in survives intact on the four points the second pass cleared it on, each
+re-measured today against `source/gdd.md` at the manifest md5 rather than
+carried forward. `sections/tech_clause-and-key.md` is unmodified on every
+quotation and structural claim previously recorded of it, both its anchors still
+match the master exactly once each, and it remains **PASS** with zero
+violations, so it is merge-eligible on this accept record. Before it merges the
+Director must sequence it against the sealed `sections/tech_stamp-scope.md`: the
+two Pair 2s share one anchor, applying either destroys the other's, and this
+draft's Pair 2 is the one that names the key — that ordering is the only thing
+still standing between this draft and the master.
