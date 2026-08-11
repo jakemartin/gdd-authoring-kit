@@ -1,3 +1,26 @@
+> # ⚠️ GATED, NOT MERGED — DO NOT RE-GATE
+> # ⛔ Pair 2 is SUPERSEDED and MUST NEVER BE APPLIED
+>
+> This addendum passed gate run `stamp-scope` and **has not been merged**. Do not
+> read this banner as an applied mark: **Pairs 1 and 3 are still to be applied.**
+>
+> **Pair 2 must not be applied.** Its `OLD` is byte-identical to Pair 2 of
+> `sections/tech_clause-and-key.md` — md5 `ea28d1ab8e70` over the fenced payload in
+> both files — and that string occurs **once** in the master, so applying either
+> pair destroys the other's anchor. **The Director ruled on 2026-08-11 to take
+> `clause-and-key`'s Pair 2 and drop this one.** That pair removes the same
+> referent this one removes, and names the manifest key besides.
+>
+> Verified 2026-08-11 against `source/gdd.md` md5
+> `1f27e981b623c7af2f6402d9a5b6a62b`, 3365 lines by `wc -l`, matched
+> newline-sensitively over the fenced payloads: the shared `OLD` occurs once, at
+> master lines 2706–2707. Pair 1's `OLD` occurs once, on line 1516; Pair 3's occurs
+> once, on line 1533. Neither overlaps the shared span.
+>
+> **Nothing below this banner was edited.** The pairs, Grounding and Open questions
+> stand as gated. Open question 3 of this file asked the Director to make this
+> merge choice; it is answered here and not in that section.
+
 # Technical design — stamp-scope addendum (tech-director)
 
 ## Placement
